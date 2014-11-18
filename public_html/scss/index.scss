@@ -17,12 +17,18 @@ $color-text: #555555;
     filter: $filter;
 }
 
+@mixin transition($arguments) {
+    -webkit-transition:$arguments;
+    -moz-transition:$arguments;
+    transition:$arguments;}
+
 
 html, body{
     margin:0px;
     padding:0px;
     width:100%;
     height:100%;
+    overflow-x: hidden;
 
     font-family: 'Francois One', sans-serif;
 
@@ -41,22 +47,40 @@ html, body{
     .active{
         width:100%;
         height:600px;
-        background-image: url("../images/games/dragonAge.jpg");
-        background-size: 100% auto;
-        background-repeat: no-repeat;
+
         margin:0px;
         padding:0px;
+
+        .imgBack{
+            //background-image: url("../images/games/dragonAge.jpg");
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            width:100%;
+            height: 100%;
+            background-image:
+                radial-gradient(
+                rgba(0,0,0,0),
+                #f06d06
+                );
+
+            img{
+                width: 100%;
+            }
+        }
     }
 
     .elements{
         margin:0px;
         padding:0px;
+        width:110%;
+        margin-left: -50px;
         .element{
             width:33.33333%;
             margin:0px;
             height:250px;
             display:inline-block;
             float:left;
+            transform: skewX(-15deg);
 
             text-align:center;
 
@@ -64,6 +88,11 @@ html, body{
 
             &:after, &:before{
                 clear: both;
+            }
+
+            *{
+                @include transition(all .3s linear);
+
             }
 
             &:hover{
@@ -80,6 +109,15 @@ html, body{
                 width: 100%;
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
+                position: absolute;
+                overflow-x:hidden;
+                overflow-y:hidden;
+                img{
+                    height: 100%;
+                    width: 110%;
+                    transform: skewX(15deg);
+                }
+
             }
 
             .text{
@@ -90,10 +128,7 @@ html, body{
                 padding-top: 50px;
                 top: 0; left: 0; bottom: 0; right: 0;
                 opacity: 0;
-
-
-
-
+                transform: skewX(15deg);
                 .diagnalA{
                     transform: skewX(-30deg);
                     background-color: #F2CE1B;
