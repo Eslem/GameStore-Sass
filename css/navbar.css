@@ -1,0 +1,159 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 3, 2014, 10:52:53 AM
+    Author     : eslem
+*/
+div.navbar {
+  background-color: #1D1F21;
+  display: block;
+  overflow: auto;
+  width: 100%;
+  position: fixed;
+  z-index: 350; }
+  div.navbar *:not(i) {
+    font-family: "Open Sans", sans-serif; }
+  div.navbar img.logo {
+    float: left;
+    height: 40px;
+    margin: 5px 0px;
+    padding-left: 50px; }
+  div.navbar form.navbar-form {
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: inline-block;
+    margin: 0px;
+    float: left; }
+    div.navbar form.navbar-form.navbar-right {
+      float: right;
+      padding-right: 50px; }
+    div.navbar form.navbar-form .hexagon {
+      position: relative;
+      width: 34px;
+      display: inline-block;
+      background-color: #64C7CC;
+      margin: 9.81px 0;
+      text-align: center;
+      cursor: pointer;
+      color: #222;
+      -webkit-transition: all 0.5 linear;
+      -moz-transition: all 0.5 linear;
+      transition: all 0.5 linear; }
+      div.navbar form.navbar-form .hexagon:hover {
+        color: #fff; }
+    div.navbar form.navbar-form .hexagon:before,
+    div.navbar form.navbar-form .hexagon:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      border-left: 17px solid transparent;
+      border-right: 17px solid transparent;
+      left: 0px; }
+    div.navbar form.navbar-form .hexagon:before {
+      bottom: 100%;
+      border-bottom: 9.81px solid #64C7CC; }
+    div.navbar form.navbar-form .hexagon:after {
+      top: 100%;
+      width: 0;
+      border-top: 9.81px solid #64C7CC; }
+    div.navbar form.navbar-form input {
+      display: inline-block;
+      text-decoration: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: auto;
+      vertical-align: middle; }
+      div.navbar form.navbar-form input.form-slideLeft {
+        width: 0px;
+        -webkit-transition: all 0.5s ease-in;
+        -moz-transition: all 0.5s ease-in;
+        transition: all 0.5s ease-in;
+        opacity: 0; }
+        div.navbar form.navbar-form input.form-slideLeft.active {
+          width: 150px;
+          opacity: 1; }
+    div.navbar form.navbar-form button {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
+      vertical-align: middle; }
+  div.navbar ul {
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: inline-block;
+    margin: 0px;
+    float: left; }
+    div.navbar ul.navbar-right {
+      float: right;
+      padding-right: 150px; }
+    div.navbar ul:after, div.navbar ul:before {
+      clear: both; }
+    div.navbar ul li {
+      display: inline-block;
+      text-decoration: none;
+      padding: 15px;
+      list-style: none;
+      margin: 0px;
+      line-height: 20px;
+      font-size: 14px;
+      cursor: pointer; }
+      div.navbar ul li:hover a {
+        color: #fff; }
+      div.navbar ul li.active {
+        background-color: #080808; }
+        div.navbar ul li.active a {
+          color: #fff; }
+      div.navbar ul li.button {
+        display: inline-block; }
+      div.navbar ul li a {
+        text-decoration: none;
+        color: #777; }
+      div.navbar ul li.header {
+        font-size: 18px; }
+      div.navbar ul li.slide-nav {
+        display: none;
+        color: #777; }
+        div.navbar ul li.slide-nav:hover {
+          color: #fff; }
+
+div.navbar.invisible {
+  background-color: transparent; }
+  div.navbar.invisible ul li:hover a {
+    color: #eee;
+    font-weight: bold; }
+  div.navbar.invisible ul li a {
+    color: #777; }
+  div.navbar.invisible ul li.active {
+    background-color: transparent; }
+    div.navbar.invisible ul li.active a {
+      font-weight: bold;
+      font-size: 1.2em;
+      border-bottom: 4px solid #7ed1e2;
+      color: #fff; }
+  div.navbar.invisible form.navbar-form button, div.navbar.invisible form.navbar-form.navbar-right button {
+    -webkit-appearance: value;
+    -moz-appearance: value;
+    appearance: value;
+    background-color: transparent;
+    font-weight: bold;
+    outline: 2px solid #7ed1e2;
+    color: #fff;
+    cursor: pointer;
+    color: #222;
+    box-shadow: none;
+    -webkit-appearance: none;
+    border: none;
+    -webkit-transition: all 3 linear;
+    -moz-transition: all 3 linear;
+    transition: all 3 linear; }
+    div.navbar.invisible form.navbar-form button:hover, div.navbar.invisible form.navbar-form.navbar-right button:hover {
+      border: none;
+      background-color: #7ed1e2;
+      color: #fff; }
+
+/*# sourceMappingURL=navbar.css.map */

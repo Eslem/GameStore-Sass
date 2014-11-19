@@ -1,0 +1,12 @@
+@mixin transition($arguments) {
+    -webkit-transition:$arguments;
+    -moz-transition:$arguments;
+    transition:$arguments;}
+
+@mixin scale($size) {
+    transform:scale($size);
+    -webkit-backface-visibility:hidden;}
+
+@mixin box-sizing($sizing) {
+    -moz-box-sizing:$sizing;
+    box-sizing:$sizing;}
