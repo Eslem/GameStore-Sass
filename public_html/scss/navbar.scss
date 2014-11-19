@@ -25,7 +25,7 @@ div.navbar{
     position:fixed;
     z-index:350;
 
-    *{
+    *:not(i){
         font-family: $font-family;
     }
 
@@ -46,6 +46,45 @@ div.navbar{
         &.navbar-right{
             float:right;
             padding-right: 50px;
+        }
+
+        .hexagon {
+            position: relative;
+            width: 34px; 
+            display: inline-block;
+            //height: 19.63px;
+            background-color: #64C7CC;
+            margin: 9.81px 0;
+            text-align: center;
+            cursor: pointer;
+            color:#222;
+
+            @include transition(all .5 linear) ;
+
+            &:hover{
+                color:#fff;
+            }
+        }
+
+        .hexagon:before,
+            .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 17px solid transparent;
+            border-right: 17px solid transparent;
+            left: 0px;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 9.81px solid #64C7CC;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            width: 0;
+            border-top: 9.81px solid #64C7CC;
         }
 
         input{
@@ -146,11 +185,13 @@ div.navbar{
 div.navbar.invisible{
     background-color: transparent;
 
+
     ul li{
 
         &:hover{
             a{
                 color:#eee; 
+                font-weight: bold;
             }
         }
 
@@ -169,67 +210,30 @@ div.navbar.invisible{
             }
         }
     }
-}
+    form.navbar-form, form.navbar-form.navbar-right{
 
+        button{
+            -webkit-appearance: value;
+            -moz-appearance:    value;
+            appearance:         value;
+            background-color: transparent;
+            font-weight: bold;
+            outline: 2px solid #7ed1e2;
+            color:#fff;
+            cursor: pointer;
+            color:#222;
+            box-shadow: none;
+            -webkit-appearance: none;
+            border: none;
+            @include transition(all 3 linear);
 
-@media screen and (max-width:$width-tablets){
-    div.navbar{
-        ul{
-            display: block;
-            width:100%;
-            padding-left:0px;
-            padding-right:0px;
-
-            &.navbar-right{
-                padding-right: 0px;
-            }
-
-            li{
-                display: none;
-                width:100%;
-
-                &.header{
-                    display:block
-                }
-
-                &.slide-nav{
-                    display:block;
-                    position: fixed;
-                    right:0px;
-                    top:0px;
-                    width:auto;
-                }
+            &:hover{
+                border:none;
+                background-color: #7ed1e2;
+                color:#fff;
             }
         }
-
-        form.navbar-form, form.navbar-form.navbar-right{
-            padding: 0px;
-            display: none;
-            margin:0px;
-            float:none;
-            width:100%;
-            padding-left:30px;
-            padding-right:30px;
-
-            input{
-                display: block;
-                width:100%;
-                margin:5px;
-
-                &.form-slideLeft{
-                    opacity:1;
-                }
-            }
-
-            button{
-                display: inline-block;
-                padding: 6px 12px;
-                font-size: 14px;
-                vertical-align: middle;
-                float:right;
-                margin:5px;
-            }
-        }
-
     }
+
+
 }

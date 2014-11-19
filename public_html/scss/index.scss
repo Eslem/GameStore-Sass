@@ -1,6 +1,7 @@
 @import "mixins";
 @import "navbar";
 
+
 @mixin filter($filt){
     -webkit-filter: $filt;
     -moz-filter: $filt;
@@ -32,7 +33,7 @@ html, body {
     font-family: $font;
 }
 
-*{
+*:not(i){
     @include box-sizing(border-box);
 }
 
@@ -241,6 +242,7 @@ html, body {
                     height: 100%;
                     width: 120%;
                     margin-left: -10%;
+                    @include transition(all .3s linear);
                     transform: skewX(15deg);
                 }
             }
@@ -436,3 +438,4 @@ html, body {
 }
 
 
+@import "responsive";

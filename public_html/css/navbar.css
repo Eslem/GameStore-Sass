@@ -14,7 +14,7 @@ div.navbar {
   width: 100%;
   position: fixed;
   z-index: 350; }
-  div.navbar * {
+  div.navbar *:not(i) {
     font-family: "Open Sans", sans-serif; }
   div.navbar img.logo {
     float: left;
@@ -31,6 +31,35 @@ div.navbar {
     div.navbar form.navbar-form.navbar-right {
       float: right;
       padding-right: 50px; }
+    div.navbar form.navbar-form .hexagon {
+      position: relative;
+      width: 34px;
+      display: inline-block;
+      background-color: #64C7CC;
+      margin: 9.81px 0;
+      text-align: center;
+      cursor: pointer;
+      color: #222;
+      -webkit-transition: all 0.5 linear;
+      -moz-transition: all 0.5 linear;
+      transition: all 0.5 linear; }
+      div.navbar form.navbar-form .hexagon:hover {
+        color: #fff; }
+    div.navbar form.navbar-form .hexagon:before,
+    div.navbar form.navbar-form .hexagon:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      border-left: 17px solid transparent;
+      border-right: 17px solid transparent;
+      left: 0px; }
+    div.navbar form.navbar-form .hexagon:before {
+      bottom: 100%;
+      border-bottom: 9.81px solid #64C7CC; }
+    div.navbar form.navbar-form .hexagon:after {
+      top: 100%;
+      width: 0;
+      border-top: 9.81px solid #64C7CC; }
     div.navbar form.navbar-form input {
       display: inline-block;
       text-decoration: none;
@@ -95,7 +124,8 @@ div.navbar {
 div.navbar.invisible {
   background-color: transparent; }
   div.navbar.invisible ul li:hover a {
-    color: #eee; }
+    color: #eee;
+    font-weight: bold; }
   div.navbar.invisible ul li a {
     color: #777; }
   div.navbar.invisible ul li.active {
@@ -105,46 +135,25 @@ div.navbar.invisible {
       font-size: 1.2em;
       border-bottom: 4px solid #7ed1e2;
       color: #fff; }
-
-@media screen and (max-width: 768px) {
-  div.navbar ul {
-    display: block;
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px; }
-    div.navbar ul.navbar-right {
-      padding-right: 0px; }
-    div.navbar ul li {
-      display: none;
-      width: 100%; }
-      div.navbar ul li.header {
-        display: block; }
-      div.navbar ul li.slide-nav {
-        display: block;
-        position: fixed;
-        right: 0px;
-        top: 0px;
-        width: auto; }
-  div.navbar form.navbar-form, div.navbar form.navbar-form.navbar-right {
-    padding: 0px;
-    display: none;
-    margin: 0px;
-    float: none;
-    width: 100%;
-    padding-left: 30px;
-    padding-right: 30px; }
-    div.navbar form.navbar-form input, div.navbar form.navbar-form.navbar-right input {
-      display: block;
-      width: 100%;
-      margin: 5px; }
-      div.navbar form.navbar-form input.form-slideLeft, div.navbar form.navbar-form.navbar-right input.form-slideLeft {
-        opacity: 1; }
-    div.navbar form.navbar-form button, div.navbar form.navbar-form.navbar-right button {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 14px;
-      vertical-align: middle;
-      float: right;
-      margin: 5px; } }
+  div.navbar.invisible form.navbar-form button, div.navbar.invisible form.navbar-form.navbar-right button {
+    -webkit-appearance: value;
+    -moz-appearance: value;
+    appearance: value;
+    background-color: transparent;
+    font-weight: bold;
+    outline: 2px solid #7ed1e2;
+    color: #fff;
+    cursor: pointer;
+    color: #222;
+    box-shadow: none;
+    -webkit-appearance: none;
+    border: none;
+    -webkit-transition: all 3 linear;
+    -moz-transition: all 3 linear;
+    transition: all 3 linear; }
+    div.navbar.invisible form.navbar-form button:hover, div.navbar.invisible form.navbar-form.navbar-right button:hover {
+      border: none;
+      background-color: #7ed1e2;
+      color: #fff; }
 
 /*# sourceMappingURL=navbar.css.map */
