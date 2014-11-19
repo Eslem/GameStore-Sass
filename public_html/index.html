@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -13,17 +8,49 @@ and open the template in the editor.
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
-
+        <script>
+            $(document).ready(function() {
+                //$('.main-Slider').append('');
+            });
+        </script>
     </head>
     <body>
         <div class="navbar"></div>
 
-        <div class="main-Slider">
+
+
+
+        <div class="game" style="width:360px; margin-left:50%;">
+            <div class="skewed">
+                <div class="unskewed">
+                    <img src="images/games/gearsOfWar.jpg" alt>
+                </div>
+
+                <div class="show-on-hover">
+                    <div class="details">Ver Detalles</div>
+                    <div class="trailer">Ver Tráiler</div>
+                </div>
+            </div>
+            
+            <div class="info">
+                <div>Gears of War 3</div><div>30.00€</div>
+                <hr/>
+                <div>Shooter, Acción</div>
+            </div>
+        </div>
+
+
+
+
+        <div id="main-Slider">
+
             <div class="active">
                 <div class="imgBack">
                     <img src="images/games/dragonAge.jpg" >
                 </div>
             </div>
+
+
             <div class="elements">
                 <div class="element">
                     <div class="imgBack" >
@@ -40,6 +67,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+
             <div class="elements">
                 <div class="element">
                     <div class="imgBack" >
@@ -54,6 +82,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+
             <div class="elements">
                 <div class="element" >
                     <div class="imgBack" >
@@ -70,6 +99,8 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+
+
         </div>
 
 
@@ -112,7 +143,6 @@ and open the template in the editor.
 
             </div>
         </div>
-
 
     </body>
 </html>

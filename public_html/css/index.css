@@ -1,12 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 18, 2014, 12:05:13 PM
-    Author     : eslem
-*/
 html, body {
   background-color: #111111;
   margin: 0px;
@@ -19,28 +10,28 @@ html, body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-.main-Slider {
+#main-Slider {
   width: 100%; }
-  .main-Slider .active {
+  #main-Slider .active {
     width: 100%;
     height: 600px;
     margin: 0px;
     padding: 0px; }
-    .main-Slider .active .imgBack {
+    #main-Slider .active .imgBack {
       background-size: 100% auto;
       background-repeat: no-repeat;
       width: 100%;
       height: 100%;
       background-image: radial-gradient(transparent, #f06d06); }
-      .main-Slider .active .imgBack img {
+      #main-Slider .active .imgBack img {
         width: 100%; }
-  .main-Slider .elements {
+  #main-Slider .elements {
     -webkit-backface-visibility: hidden;
     margin: 0px;
     padding: 0px;
     width: 110%;
     margin-left: -50px; }
-    .main-Slider .elements .element {
+    #main-Slider .elements .element {
       -webkit-backface-visibility: hidden;
       width: 33.33333%;
       margin: 0px;
@@ -50,23 +41,23 @@ html, body {
       transform: skewX(-15deg);
       text-align: center;
       position: relative; }
-      .main-Slider .elements .element:after, .main-Slider .elements .element:before {
+      #main-Slider .elements .element:after, #main-Slider .elements .element:before {
         clear: both; }
-      .main-Slider .elements .element * {
+      #main-Slider .elements .element * {
         -webkit-transition: all 0.3s linear;
         -moz-transition: all 0.3s linear;
         transition: all 0.3s linear; }
-      .main-Slider .elements .element:hover {
+      #main-Slider .elements .element:hover {
         -webkit-backface-visibility: hidden; }
-        .main-Slider .elements .element:hover .text {
+        #main-Slider .elements .element:hover .text {
           opacity: 1; }
-        .main-Slider .elements .element:hover .imgBack {
+        #main-Slider .elements .element:hover .imgBack {
           -webkit-filter: brightness(0.5);
           -moz-filter: brightness(0.5);
           -o-filter: brightness(0.5);
           -ms-filter: brightness(0.5);
           filter: brightness(0.5); }
-      .main-Slider .elements .element .imgBack {
+      #main-Slider .elements .element .imgBack {
         -webkit-backface-visibility: hidden;
         height: 100%;
         width: 100%;
@@ -75,13 +66,13 @@ html, body {
         position: absolute;
         overflow-x: hidden;
         overflow-y: hidden; }
-        .main-Slider .elements .element .imgBack img {
+        #main-Slider .elements .element .imgBack img {
           -webkit-backface-visibility: hidden;
           height: 100%;
           width: 120%;
           margin-left: -10%;
           transform: skewX(15deg); }
-      .main-Slider .elements .element .text {
+      #main-Slider .elements .element .text {
         -webkit-backface-visibility: hidden;
         height: 50%;
         overflow: auto;
@@ -94,19 +85,19 @@ html, body {
         right: 0;
         opacity: 0;
         transform: skewX(15deg); }
-        .main-Slider .elements .element .text .diagnalA {
+        #main-Slider .elements .element .text .diagnalA {
           transform: skewX(-30deg);
           background-color: #F2CE1B;
           padding: 10px;
           margin: 0 150px; }
-          .main-Slider .elements .element .text .diagnalA .normalize {
+          #main-Slider .elements .element .text .diagnalA .normalize {
             transform: skewX(30deg); }
-            .main-Slider .elements .element .text .diagnalA .normalize a {
+            #main-Slider .elements .element .text .diagnalA .normalize a {
               margin: 0px;
               text-transform: uppercase;
               text-decoration: none;
               color: #555555; }
-        .main-Slider .elements .element .text h3 {
+        #main-Slider .elements .element .text h3 {
           margin: 0px;
           margin-top: 5px;
           color: #eeeeee;
@@ -151,5 +142,55 @@ html, body {
         filter: brightness(0.5); }
     .gallery .imagenes:after, .gallery .imagenes:before {
       clear: both; }
+
+.skewed {
+  -webkit-backface-visibility: hidden;
+  transform: skewX(-10deg);
+  overflow: hidden; }
+  .skewed .unskewed {
+    -webkit-backface-visibility: hidden;
+    transform: skewX(10deg);
+    font-size: 0; }
+    .skewed .unskewed img {
+      -webkit-transition: all 0.15s;
+      -moz-transition: all 0.15s;
+      transition: all 0.15s;
+      -webkit-backface-visibility: hidden;
+      width: 114%;
+      margin: 0 -7%; }
+  .skewed .show-on-hover {
+    -webkit-transition: all 0.15s;
+    -moz-transition: all 0.15s;
+    transition: all 0.15s;
+    opacity: 0; }
+  .skewed:hover img {
+    opacity: .5; }
+  .skewed:hover .show-on-hover {
+    opacity: 1; }
+
+.game .details, .game .trailer {
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  line-height: 32px;
+  height: 32px;
+  margin-top: -32px;
+  width: 50%; }
+.game .details {
+  left: 0;
+  background: #F2CE1B; }
+.game .trailer {
+  right: 0;
+  background: black;
+  color: white; }
+.game .info div {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: lightgray;
+  text-align: center; }
+.game .info hr {
+  margin: 0 6%; }
 
 /*# sourceMappingURL=index.css.map */
