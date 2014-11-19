@@ -179,7 +179,10 @@ html, body {
            #f06d06
            );*/ }
       #main-Slider .active .imgBack img {
-        width: 100%; }
+        width: 100%;
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s linear;
+        transition: all 0.3s linear; }
     #main-Slider .active .score {
       position: absolute;
       bottom: 10%;

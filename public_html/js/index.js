@@ -11,7 +11,7 @@ $(document).ready(function () {
     navBar();
 
     onScroll(".elements", function (el) {
-       console.log("animate");
+        console.log("animate");
     });
 });
 
@@ -26,6 +26,28 @@ function onScroll(elem, funcion) {
         });
     });
 }
+
+function changeMain(elem) {
+    var img = $(elem).find("img").attr("src");
+    var text = $(elem).find("h3").text();
+    var beforeImg = $("#mainImg").attr("src");
+    var h1 = $("#mainImg").parent().parent().find("h1");
+    var beforeText = h1.text();
+    
+    
+    $("#mainImg").css("opacity", "0");
+    $("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
+        
+        $(elem).find("h3").text(beforeText);
+        h1.text(text);
+        
+        $(elem).find("img").attr("src", beforeImg);
+        
+        $("#mainImg").attr("src", img);
+        $("#mainImg").css("opacity", "1");
+    });
+}
+
 
 function slide(elem, number, id) {
     //var margin = $(id + " .game").width() * 4*number*-1;

@@ -59,6 +59,11 @@ html, body {
                  );*/
             img {
                 width: 100%;
+                @include transition(all .3s linear);
+            }
+            
+            #mainImg{
+                
             }
         }
 
