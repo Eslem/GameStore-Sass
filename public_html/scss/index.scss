@@ -60,13 +60,15 @@ html, body {
         padding:0px;
         width:110%;
         margin-left: -50px;
+        display: inline-block;
         .element {
+
             -webkit-backface-visibility: hidden;
-            width:33.33333%;
+            width:100/3 * 1%;
             margin:0px;
             height:250px;
             display:inline-block;
-            float:left;
+
             transform: skewX(-15deg);
             text-align:center;
             position:relative;
@@ -143,64 +145,33 @@ html, body {
 
 
 
-.gallery {
-    margin-top: 400px;
+.gallery1, .gallery2 {
     width: 100%;
     height: 300px;
     .categorias {
         .listacategorias {
-            .categoria {
+            margin-top: 5%;
+            
+            .categoria {               
                 display: inline-block;
                 margin-left:15px;
                 a {
-                    color: #555555;
+                    color: $color-text;
                     text-decoration: none;
+                    &:hover{
+                        color:  $c-yellow;
+                    }
                 }
+
             }
         }
     }    
 
-    .imagenes { 
-        width: 100%;
-        height: 400px;
-        .imagen {
-            .text {
-                //display: none;
-                overflow: auto;
-                margin: auto;
-                position: absolute;
 
-                a {
-                    color:white;
-                    text-decoration: none;
-                }
-                .diagnalA {
-                    .normalize {
-                    }
-                }
-            }
-        }
-        transform: skewX(-15deg);
-        &:first-child {
-            margin-left: 5%;
-        }
-        img {
-            float: left;
-            height: 250px;
-            width: 25%;
-            -webkit-backface-visibility: hidden;
-            margin-left:-1%;
 
-            &:hover {
-                -webkit-backface-visibility: hidden;                
-                @include filter(brightness(0.5));
-            }
-        }
-        &:after, &:before {
-            clear: both;
-        }
 
-    }
+
+
 }
 
 .skewed {
@@ -212,15 +183,17 @@ html, body {
         font-size:0;
 
         img {
-            @include transition(all .15s);
+            @include transition(all .3s);
             -webkit-backface-visibility:hidden;
             width:114%;
+            height:234px;
             margin:0 -7%;
+
         }
     }
 
     .show-on-hover {
-        @include transition(all .15s);
+        @include transition(all .3s);
         opacity:0;}    
     &:hover {
         img {
@@ -231,8 +204,10 @@ html, body {
     }
 }
 
+
 .game {
     .details, .trailer {
+        text-transform: uppercase;
         display:inline-block;
 
         text-align:center;
@@ -243,24 +218,53 @@ html, body {
         width:50%;}
     .details {
         left:0;
-        background:$c-yellow;}
+        background:black;
+        color:white;
+    }
     .trailer {
         right:0;
-        background:black;
-        color:white;}
+        background:$c-yellow;
+        color:black;
+    }
     .info {
+        margin:0 10%;
+
         div {
             @include box-sizing(border-box);
             display:inline-block;
             width:50%;
 
-            color:lightgray;
-            text-align:center;}
+            color:$color-text;
+            text-align:left;}
         hr {
-            margin:0 6%;
+            margin:0 6% 0 0;
+            border-ycolor:$color-text;
         }
     }
+
+    &:first-child .details {
+        margin-left:16px;
+    }
+    &:last-child .trailer {
+        margin-right:16px;
+    }
+
 }
 
+.imagenes {
+    margin:0 -3% 0 -2%;
+
+    .game {
+        width:25%;        
+        display:inline-block;
+
+        .precio{
+
+            text-align: right;
+            padding-right: 10%;
+        }
+    }
+
+}
 
 
