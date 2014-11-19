@@ -8,20 +8,74 @@
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
-        <script>
-            $(document).ready(function() {
-                //$('.main-Slider').append('');
-            });
-        </script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+        <script src="libs/jquery/jquery.js" type="text/javascript"></script>
+
+        <script src="js/index.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class="navbar"></div>
+        <div class="navbar invisibl">
+
+            <img src="images/logo1.png" alt="logo" class="logo">
+
+            <ul>
+                <li><a href="#">Opt1</a></li>
+                <li class="active"><a href="#">Opt2</a></li>
+                <li><a href="#">Opt3</a></li>  
+                <li class="slide-nav"><i class="fa fa-bars"></i></li>
+            </ul>
+
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-slideLeft" placeholder="Login">
+                <input type="text" class="form-slideLeft" placeholder="Password">
+                <button type="button" class="show-animate">Login</button>
+            </form>
+        </div>
         <div id="main-Slider">
 
             <div class="active">
                 <div class="imgBack">
-                    <img src="images/games/dragonAge.jpg" >
+                    <img src="images/games/dragonAge.jpg" id="mainImg" >
                 </div>
+
+                <div class="description">
+                    <div class="diagnalA">
+                        <div class="normalize">
+                            <a href="#">Introducing</a>
+                        </div>
+                    </div>
+                    <h1>Dragon Age: inquisition </h1>
+                    <p class="text">
+                        "One of the best games anyones ever played hands down!"
+                    </p>
+
+                    <div class="diagnalA bordered">
+                        <div class="normalize">
+                            <a href="#">Pre order</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="score">
+                    <div class="hexagon">
+                        8.2
+                    </div>
+                    <div class="text">
+                        <p class="title">
+                            Puntuacion
+                        </p>
+                        <p class="ranking">
+                            Bueno
+                        </p>
+                        <p class="reviews">
+                            3245 reviews
+                        </p>
+                    </div>
+                </div>
+
+
             </div>
 
 
@@ -73,13 +127,13 @@
         <div class="gallery1">
             <div class="categorias">
                 <ul class="listacategorias">
-                    <li class="categoria active"><a href="#">Mas vendidos</a></li>
-                    <li class="categoria"><a href="#">Nuevos lanzamientos</a></li>
-                    <li class="categoria"><a href="#">Proximamente</a></li>
-                    <li class="categoria"><a href="#">Especiales</a></li>
+                    <li class="categoria active" onclick="slide(this, 0, '#slider1')"><a href="#">Mas vendidos</a></li>
+                    <li class="categoria" onclick="slide(this, 1, '#slider1')"><a href="#">Nuevos lanzamientos</a></li>
+                    <li class="categoria" onclick="slide(this, 2, '#slider1')"><a href="#">Proximamente</a></li>
+                    <li class="categoria" onclick="slide(this, 3, '#slider1')"><a href="#">Especiales</a></li>
                 </ul>
             </div>
-            <div class="imagenes">
+            <div class="imagenes" id="slider1">
 
                 <div class="game">
                     <div class="skewed">
@@ -113,7 +167,8 @@
                     <div class="info">
                         <div>Gears of War</div><div class="precio">10.00€</div>
                         <hr/>
-                        <div>Accion,3PS</div>
+                        <div>Accion,3PS                        
+                        </div>
                     </div>
 
                 </div><div class="game">
@@ -134,7 +189,8 @@
                         <div>Accion, Survival</div>
                     </div>
 
-                </div><div class="game">
+                </div>
+                <div class="game">
 
                     <div class="skewed">
                         <div class="unskewed">
@@ -154,6 +210,233 @@
                 </div>
 
 
+
+                <!-- Secon Slider -->
+
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/dust.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/halfLife.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">40.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/dragonAge.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/sniper.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+
+                <!-- Third Slider -->
+
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/cod.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/battlefield.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">40.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/homefront.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/watchDogs.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+
+                <!-- Last Slider -->
+
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/cod.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/battlefield.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">40.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/homefront.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+                <div class="game">
+
+                    <div class="skewed">
+                        <div class="unskewed">
+                            <img src="images/games/watchDogs.jpg" alt>
+                        </div>
+                        <div class="show-on-hover">
+                            <div class="details">Ver Detalles</div>
+                            <div class="trailer">Ver Tráiler</div>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div>Game</div><div class="precio">50.00€</div>
+                        <hr/>
+                        <div>Accion, FPS</div>
+                    </div>
+                </div>
+
+
             </div>                
 
 
@@ -164,7 +447,8 @@
             <div class="categorias">
                 <ul class="listacategorias">
                     <li class="categoria active"><a href="#">Demos</a></li>
-                    
+                </ul>
+
             </div>
             <div class="imagenes">
                 <div class="game">

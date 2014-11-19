@@ -1,3 +1,151 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 3, 2014, 10:52:53 AM
+    Author     : eslem
+*/
+div.navbar {
+  background-color: #1D1F21;
+  display: block;
+  overflow: auto;
+  width: 100%;
+  position: fixed;
+  z-index: 350; }
+  div.navbar * {
+    font-family: "Open Sans", sans-serif; }
+  div.navbar img.logo {
+    float: left;
+    height: 40px;
+    margin: 5px 0px;
+    padding-left: 50px; }
+  div.navbar form.navbar-form {
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: inline-block;
+    margin: 0px;
+    float: left; }
+    div.navbar form.navbar-form.navbar-right {
+      float: right;
+      padding-right: 50px; }
+    div.navbar form.navbar-form input {
+      display: inline-block;
+      text-decoration: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: auto;
+      vertical-align: middle; }
+      div.navbar form.navbar-form input.form-slideLeft {
+        width: 0px;
+        -webkit-transition: all 0.5s ease-in;
+        -moz-transition: all 0.5s ease-in;
+        transition: all 0.5s ease-in;
+        opacity: 0; }
+        div.navbar form.navbar-form input.form-slideLeft.active {
+          width: 150px;
+          opacity: 1; }
+    div.navbar form.navbar-form button {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
+      vertical-align: middle; }
+  div.navbar ul {
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: inline-block;
+    margin: 0px;
+    float: left; }
+    div.navbar ul.navbar-right {
+      float: right;
+      padding-right: 150px; }
+    div.navbar ul:after, div.navbar ul:before {
+      clear: both; }
+    div.navbar ul li {
+      display: inline-block;
+      text-decoration: none;
+      padding: 15px;
+      list-style: none;
+      margin: 0px;
+      line-height: 20px;
+      font-size: 14px;
+      cursor: pointer; }
+      div.navbar ul li:hover a {
+        color: #fff; }
+      div.navbar ul li.active {
+        background-color: #080808; }
+        div.navbar ul li.active a {
+          color: #fff; }
+      div.navbar ul li.button {
+        display: inline-block; }
+      div.navbar ul li a {
+        text-decoration: none;
+        color: #777; }
+      div.navbar ul li.header {
+        font-size: 18px; }
+      div.navbar ul li.slide-nav {
+        display: none;
+        color: #777; }
+        div.navbar ul li.slide-nav:hover {
+          color: #fff; }
+
+div.navbar.invisible {
+  background-color: transparent; }
+  div.navbar.invisible ul li:hover a {
+    color: #eee; }
+  div.navbar.invisible ul li a {
+    color: #777; }
+  div.navbar.invisible ul li.active {
+    background-color: transparent; }
+    div.navbar.invisible ul li.active a {
+      font-weight: bold;
+      font-size: 1.2em;
+      border-bottom: 4px solid #7ed1e2;
+      color: #fff; }
+
+@media screen and (max-width: 768px) {
+  div.navbar ul {
+    display: block;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px; }
+    div.navbar ul.navbar-right {
+      padding-right: 0px; }
+    div.navbar ul li {
+      display: none;
+      width: 100%; }
+      div.navbar ul li.header {
+        display: block; }
+      div.navbar ul li.slide-nav {
+        display: block;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        width: auto; }
+  div.navbar form.navbar-form, div.navbar form.navbar-form.navbar-right {
+    padding: 0px;
+    display: none;
+    margin: 0px;
+    float: none;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px; }
+    div.navbar form.navbar-form input, div.navbar form.navbar-form.navbar-right input {
+      display: block;
+      width: 100%;
+      margin: 5px; }
+      div.navbar form.navbar-form input.form-slideLeft, div.navbar form.navbar-form.navbar-right input.form-slideLeft {
+        opacity: 1; }
+    div.navbar form.navbar-form button, div.navbar form.navbar-form.navbar-right button {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 14px;
+      vertical-align: middle;
+      float: right;
+      margin: 5px; } }
 html, body {
   background-color: #111111;
   margin: 0px;
@@ -5,9 +153,10 @@ html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  font-family: 'Francois One', sans-serif;
+  font-family: "Francois One", sans-serif; }
+
+* {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 #main-Slider {
@@ -16,15 +165,108 @@ html, body {
     width: 100%;
     height: 600px;
     margin: 0px;
-    padding: 0px; }
+    position: relative;
+    padding: 0px;
+    overflow-y: hidden; }
     #main-Slider .active .imgBack {
       background-size: 100% auto;
       background-repeat: no-repeat;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(transparent, #f06d06); }
+      /*background-image:
+           radial-gradient(
+           rgba(0,0,0,0),
+           #f06d06
+           );*/ }
       #main-Slider .active .imgBack img {
         width: 100%; }
+    #main-Slider .active .score {
+      position: absolute;
+      bottom: 10%;
+      right: 4%; }
+      #main-Slider .active .score .text {
+        float: left;
+        display: inline-block;
+        margin-left: 15px; }
+        #main-Slider .active .score .text p {
+          margin: 0px; }
+        #main-Slider .active .score .text .title {
+          text-transform: uppercase;
+          font-size: .8em;
+          color: #7ed1e2; }
+        #main-Slider .active .score .text .ranking {
+          color: #fff;
+          font-weight: bold; }
+        #main-Slider .active .score .text .reviews {
+          color: #777;
+          font-size: .8em;
+          font-weight: bold; }
+      #main-Slider .active .score .hexagon {
+        position: relative;
+        width: 65px;
+        height: 37.53px;
+        background-color: #64C7CC;
+        margin: 18.76px 0;
+        float: left;
+        display: inline-block;
+        text-align: center;
+        font-size: 1.5em;
+        color: #eee; }
+      #main-Slider .active .score .hexagon:before,
+      #main-Slider .active .score .hexagon:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        border-left: 32.5px solid transparent;
+        border-right: 32.5px solid transparent;
+        left: 0px; }
+      #main-Slider .active .score .hexagon:before {
+        bottom: 100%;
+        border-bottom: 18.76px solid #64C7CC; }
+      #main-Slider .active .score .hexagon:after {
+        top: 100%;
+        width: 0;
+        border-top: 18.76px solid #64C7CC; }
+    #main-Slider .active .description {
+      position: absolute;
+      top: 20%;
+      left: 5%; }
+      #main-Slider .active .description h1 {
+        text-transform: uppercase;
+        margin-bottom: 0px;
+        width: 80%;
+        color: #fff; }
+      #main-Slider .active .description .text {
+        font-style: italic;
+        font-family: "Open Sans", sans-serif;
+        color: #fff;
+        width: 60%; }
+      #main-Slider .active .description .diagnalA {
+        transform: skewX(-30deg);
+        background-color: #7ed1e2;
+        padding: 5px;
+        margin-right: 150px; }
+        #main-Slider .active .description .diagnalA .normalize {
+          transform: skewX(30deg);
+          text-align: center; }
+          #main-Slider .active .description .diagnalA .normalize a {
+            margin: 0px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #555555;
+            padding: 0px 25px; }
+        #main-Slider .active .description .diagnalA.bordered {
+          background-color: transparent;
+          border: 2px solid #fff;
+          margin-right: 130px;
+          -webkit-transition: all 1s linear;
+          -moz-transition: all 1s linear;
+          transition: all 1s linear; }
+          #main-Slider .active .description .diagnalA.bordered .normalize a {
+            color: #fff; }
+          #main-Slider .active .description .diagnalA.bordered:hover {
+            background-color: #7ed1e2;
+            border: none; }
   #main-Slider .elements {
     -webkit-backface-visibility: hidden;
     margin: 0px;
@@ -76,6 +318,7 @@ html, body {
         -webkit-backface-visibility: hidden;
         height: 50%;
         overflow: auto;
+        overflow-y: hidden;
         margin: auto;
         position: absolute;
         padding-top: 50px;
@@ -87,7 +330,7 @@ html, body {
         transform: skewX(15deg); }
         #main-Slider .elements .element .text .diagnalA {
           transform: skewX(-30deg);
-          background-color: #F2CE1B;
+          background-color: #7ed1e2;
           padding: 10px;
           margin: 0 150px; }
           #main-Slider .elements .element .text .diagnalA .normalize {
@@ -104,6 +347,23 @@ html, body {
           text-transform: uppercase;
           font-weight: 200; }
 
+.gallery1 {
+  position: relative; }
+  .gallery1 .categorias .listacategorias li.active a {
+    color: #7ed1e2; }
+  .gallery1 .categorias .listacategorias li a {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease; }
+  .gallery1 .imagenes {
+    position: absolute;
+    width: 435%;
+    -webkit-transition: margin-left 1s ease;
+    -moz-transition: margin-left 1s ease;
+    transition: margin-left 1s ease; }
+    .gallery1 .imagenes .game {
+      width: 6%; }
+
 .gallery1, .gallery2 {
   width: 100%;
   height: 300px; }
@@ -116,7 +376,7 @@ html, body {
         color: #555555;
         text-decoration: none; }
         .gallery1 .categorias .listacategorias .categoria a:hover, .gallery2 .categorias .listacategorias .categoria a:hover {
-          color: #F2CE1B; }
+          color: #7ed1e2; }
 
 .skewed {
   -webkit-backface-visibility: hidden;
@@ -159,7 +419,7 @@ html, body {
   color: white; }
 .game .trailer {
   right: 0;
-  background: #F2CE1B;
+  background: #7ed1e2;
   color: black; }
 .game .info {
   margin: 0 10%; }
@@ -179,7 +439,7 @@ html, body {
   margin-right: 16px; }
 
 .imagenes {
-  margin: 0 -3% 0 -2%; }
+  margin-left: -2%; }
   .imagenes .game {
     width: 25%;
     display: inline-block; }

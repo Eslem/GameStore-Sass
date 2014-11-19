@@ -1,0 +1,235 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 3, 2014, 10:52:53 AM
+    Author     : eslem
+*/
+@import "mixins.scss";
+
+$backNavbar : #1D1F21;
+$backSideBar : #eee;
+$font-style: iniherit;
+$font-family: 'Open Sans', sans-serif;
+$navbar-color: #777;
+$navbar-black: #080808;
+$width-tablets : 768px;
+$width-mobiles : 480px;
+div.navbar{
+    background-color: $backNavbar;
+    display:block;
+    overflow: auto;
+    width:100%;
+    position:fixed;
+    z-index:350;
+
+    *{
+        font-family: $font-family;
+    }
+
+    img.logo{
+        float: left;
+        height: 40px;
+        margin: 5px 0px;
+        padding-left: 50px;
+    }
+
+    form.navbar-form{
+        padding-left: 50px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        display: inline-block;
+        margin:0px;
+        float:left;
+        &.navbar-right{
+            float:right;
+            padding-right: 50px;
+        }
+
+        input{
+            display: inline-block;
+            text-decoration: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: auto;
+            vertical-align: middle;
+
+            &.form-slideLeft{
+                width:0px;
+                @include transition(all .5s ease-in);
+                opacity:0;
+
+                &.active{
+                    width:150px;
+                    opacity:1;
+                }
+            }
+        }
+
+        button{
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+    }
+
+
+    ul {
+        padding-left: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        display: inline-block;
+        margin:0px;
+        float:left;
+
+        &.navbar-right{
+            float:right;
+            padding-right: 150px;
+        }
+
+        &:after, &:before{
+            clear: both;
+        }
+
+        li{
+            display: inline-block;
+            text-decoration: none;
+            padding:15px;
+            list-style: none;
+            margin:0px;
+            line-height: 20px;
+            font-size: 14px;
+            cursor: pointer;
+
+            &:hover{
+                a{
+                    color:#fff;
+                }
+            }
+
+            &.active{
+                background-color: $navbar-black;
+                a{
+                    color:#fff;
+                }
+            }
+
+            &.button{
+                display:inline-block;
+            }
+
+            a{
+                text-decoration: none;
+                color:$navbar-color;
+            }
+
+            &.header{
+                font-size: 18px;
+            }
+            &.slide-nav{
+                display: none;
+                color:$navbar-color;
+
+                &:hover{
+                    color:#fff;
+                }
+            }
+
+        }
+    }
+}
+
+
+div.navbar.invisible{
+    background-color: transparent;
+
+    ul li{
+
+        &:hover{
+            a{
+                color:#eee; 
+            }
+        }
+
+        a{
+            color:#777;
+        }
+
+        &.active{
+            background-color: transparent;
+
+            a{
+                font-weight: bold;
+                font-size: 1.2em;
+                border-bottom: 4px solid #7ed1e2;
+                color:#fff;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:$width-tablets){
+    div.navbar{
+        ul{
+            display: block;
+            width:100%;
+            padding-left:0px;
+            padding-right:0px;
+
+            &.navbar-right{
+                padding-right: 0px;
+            }
+
+            li{
+                display: none;
+                width:100%;
+
+                &.header{
+                    display:block
+                }
+
+                &.slide-nav{
+                    display:block;
+                    position: fixed;
+                    right:0px;
+                    top:0px;
+                    width:auto;
+                }
+            }
+        }
+
+        form.navbar-form, form.navbar-form.navbar-right{
+            padding: 0px;
+            display: none;
+            margin:0px;
+            float:none;
+            width:100%;
+            padding-left:30px;
+            padding-right:30px;
+
+            input{
+                display: block;
+                width:100%;
+                margin:5px;
+
+                &.form-slideLeft{
+                    opacity:1;
+                }
+            }
+
+            button{
+                display: inline-block;
+                padding: 6px 12px;
+                font-size: 14px;
+                vertical-align: middle;
+                float:right;
+                margin:5px;
+            }
+        }
+
+    }
+}
