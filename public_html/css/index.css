@@ -166,6 +166,16 @@ div.navbar.invisible {
       border-bottom: 4px solid #7ed1e2;
       color: #fff; }
 
+@-webkit-keyframes infinite-spinning {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+@-webkit-keyframes infinite-spinning2 {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(-360deg); } }
 @keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
