@@ -237,6 +237,24 @@ div.navbar.invisible{
     }
 
 }
+@-webkit-keyframes infinite-spinning{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes infinite-spinning2{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
 
 
 @keyframes infinite-spinning {
