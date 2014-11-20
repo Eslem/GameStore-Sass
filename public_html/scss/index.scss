@@ -5,13 +5,13 @@
 
 /* ---------------------------------- Html y body ------------------------ */
 html, body {
-    background-color: #111111;
+    background-color:#111111;
     margin:0px;
     padding:0px;
     width:100%;
     height:100%;
-    overflow-x: hidden;
-    font-family: $font;
+    overflow-x:hidden;
+    font-family:$font;
 }
 
 *:not(i){
@@ -28,209 +28,201 @@ html, body {
         width:100%;
         height:600px;
         margin:0px;
-        position: relative;
+        position:relative;
         padding:0px;
         overflow-y:hidden;
         .imgBack {
-            background-size: 100% auto;
-            background-repeat: no-repeat;
+            background-size:100% auto;
+            background-repeat:no-repeat;
             width:100%;
-            height: 100%;
-            //background-image:                  radial-gradient(                 rgba(0,0,0,0),                 #f06d06                 );
+            height:100%;
+            //background-image:radial-gradient(rgba(0,0,0,0), #f06d06);
             // Regla que no hemos podido aplicar como nos gustaria y hemos decidido implementarla mas adelante
             img {
-                width: 100%;
+                width:100%;
                 @include transition(all .3s linear);
             }
         }
 
         .score{
-            position: absolute;
+            position:absolute;
             bottom:10%;
-            right: 4%;
+            right:4%;
 
             .text{
                 float:left;
                 display:inline-block;
                 margin-left:15px;
                 p{
-                    margin: 0px;
+                    margin:0px;
                 }
 
                 .title{
-                    text-transform: uppercase;
-                    font-size: .8em;
+                    text-transform:uppercase;
+                    font-size:.8em;
                     color:$blue-color;
                 }
 
                 .ranking{
                     color:#fff;
-                    font-weight: bold;
+                    font-weight:bold;
                 }
 
                 .reviews{
                     color:#777;
-                    font-size: .8em;
-                    font-weight: bold;
+                    font-size:.8em;
+                    font-weight:bold;
                 }
             }
 
             .hexagon {
-                position: relative;
-                width: 65px; 
-                height: 37.53px;
-                background-color: #64C7CC;
-                margin: 18.76px 0;
+                position:relative;
+                width:65px; 
+                height:37.53px;
+                background-color:#64C7CC;
+                margin:18.76px 0;
                 float:left;
                 display:inline-block;
-                text-align: center;
-                font-size: 1.5em;
+                text-align:center;
+                font-size:1.5em;
                 color:#eee;
 
                 &:before, &:after{
-                    content: "";
-                    position: absolute;
-                    width: 0;
-                    border-left: 32.5px solid transparent;
-                    border-right: 32.5px solid transparent;
-                    left: 0px;
+                    content:"";
+                    position:absolute;
+                    width:0;
+                    border-left:32.5px solid transparent;
+                    border-right:32.5px solid transparent;
+                    left:0px;
                 }
 
                 &:before{
-                    bottom: 100%;
-                    border-bottom: 18.76px solid #64C7CC;
+                    bottom:100%;
+                    border-bottom:18.76px solid #64C7CC;
                 }
 
                 &:after{
-                    top: 100%;
-                    width: 0;
-                    border-top: 18.76px solid #64C7CC;
-
+                    top:100%;
+                    width:0;
+                    border-top:18.76px solid #64C7CC;
                 }
-
             }
         }
 
         .description{
-            position: absolute;
+            position:absolute;
             top:20%;
-            left: 5%;
+            left:5%;
 
             h1{
-                text-transform: uppercase;
-                margin-bottom: 0px;
-                width: 80%;
+                text-transform:uppercase;
+                margin-bottom:0px;
+                width:80%;
                 color:#fff;
-                text-shadow: 2px 2px 8px $blue-color;
+                text-shadow:2px 2px 8px $blue-color;
             }
-
             .text{
-                font-style: italic;
-                font-family: $font-text;
+                font-style:italic;
+                font-family:$font-text;
                 color:#fff;
-                width: 60%;
+                width:60%;
             }
-
             .diagnalA {
-                text-align: center;
+                text-align:center;
                 padding:5px;
-                margin-right: 150px;
+                margin-right:150px;
                 margin-left:0px;
                 .normalize a {
                     margin:0px;
-                    padding: 0px 25px;
+                    padding:0px 25px;
                 }
-
                 &.bordered{
-                    background-color: transparent;
-                    outline: 2px solid #fff;
-                    margin-right: 130px;
+                    background-color:transparent;
+                    outline:2px solid #fff;
+                    margin-right:130px;
                     @include transition(all .5s linear);
-
+                    
                     .normalize a{
                         color:#fff;
                     }
-
                     &:hover{
-                        background-color: $blue-color;
-                        outline: none;
+                        background-color:$blue-color;
+                        outline:none;
                     }
                 }
-
             }
         }
-
     }
 
 
     /* Elementos no activos del Slider  */
     .elements {
-        -webkit-backface-visibility: hidden;
+        -webkit-backface-visibility:hidden;
         margin:0px;
         padding:0px;
         width:110%;
-        margin-left: -50px;
-        display: inline-block;
+        margin-left:-50px;
+        display:inline-block;
+        
         .element {
-
-            -webkit-backface-visibility: hidden;
+            -webkit-backface-visibility:hidden;
             width:100/3 * 1%;
             margin:0px;
             height:300px;
             display:inline-block;
 
-            transform: skewX(-15deg);
+            transform:skewX(-15deg);
             text-align:center;
             position:relative;
 
             &:after, &:before {
-                clear: both;
+                clear:both;
             }
             * {
                 @include transition(all .3s linear);
             }
             &:hover {
-                -webkit-backface-visibility: hidden;
+                -webkit-backface-visibility:hidden;
                 .text {
-                    opacity: 1;
+                    opacity:1;
                 }
                 .imgBack {
                     @include filter(brightness(0.5));
                 }
             }
             .imgBack {
-                -webkit-backface-visibility: hidden;
-                height: 100%;
-                width: 100%;
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                position: absolute;
+                -webkit-backface-visibility:hidden;
+                height:100%;
+                width:100%;
+                background-size:100% 100%;
+                background-repeat:no-repeat;
+                position:absolute;
                 overflow:hidden;
                 img {
-                    -webkit-backface-visibility: hidden;
-                    height: 100%;
-                    width: 120%;
-                    margin-left: -10%;
+                    -webkit-backface-visibility:hidden;
+                    height:100%;
+                    width:120%;
+                    margin-left:-10%;
                     @include transition(all .3s linear);
-                    transform: skewX(15deg);
+                    transform:skewX(15deg);
                 }
             }
             .text {
-                -webkit-backface-visibility: hidden;
-                height: 50%;
-                overflow: auto;
-                overflow-y: hidden;
-                margin: auto;
-                position: absolute;
-                padding-top: 50px;
-                top: 0; left: 0; bottom: 0; right: 0;
-                opacity: 0;
-                transform: skewX(15deg);
+                -webkit-backface-visibility:hidden;
+                height:50%;
+                overflow:auto;
+                overflow-y:hidden;
+                margin:auto;
+                position:absolute;
+                padding-top:50px;
+                top:0; left:0; bottom:0; right:0;
+                opacity:0;
+                transform:skewX(15deg);
                 h3 {
                     margin:0px;
-                    margin-top: 5px;
-                    color: #eeeeee;
-                    text-transform: uppercase;
+                    margin-top:5px;
+                    color:#eeeeee;
+                    text-transform:uppercase;
                     font-weight:200;
                 }
             }
@@ -243,28 +235,28 @@ html, body {
 //Clase que usamos para darle el efecto diente de sierra al texto de dentro de las imagenes de las galerias
 
 .diagnalA {
-    transform: skewX(-30deg);
-    background-color: $blue-color;
+    transform:skewX(-30deg);
+    background-color:$blue-color;
     padding:10px;
     margin:0 150px;
     .normalize {
-        transform: skewX(30deg);
+        transform:skewX(30deg);
         a {
             margin:0px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: $color-text;
+            text-transform:uppercase;
+            text-decoration:none;
+            color:$color-text;
         }
     }
 }
 
 //Clase para la galeria 1
 .gallery1{
-    position: relative;
+    position:relative;
 
     .categorias  .listacategorias  li{
         &.active a{
-            color:  $blue-color;
+            color: $blue-color;
         }
         a{
             @include transition(all .5s ease);
@@ -272,7 +264,7 @@ html, body {
     }
 
     .imagenes{
-        position: absolute;
+        position:absolute;
         width:435%;
         @include transition(margin-left 1s ease);
 
@@ -284,30 +276,29 @@ html, body {
 
 //Clase para la galeria 1 y 2 (atributos en comun)
 .gallery1, .gallery2 {
-    width: 100%;
-    height: 300px;
+    width:100%;
+    height:300px;
     .categorias {
         .listacategorias {
-            margin-top: 5%;
+            margin-top:5%;
 
             .categoria {               
-                display: inline-block;
+                display:inline-block;
                 margin-left:15px;
                 a {
-                    color: $color-text;
-                    text-decoration: none;
+                    color:$color-text;
+                    text-decoration:none;
                     &:hover{
-                        color:  $blue-color;
+                        color: $blue-color;
                     }
                 }
-
             }
         }
     }   
 }
 
 
-//Clase que usamos para llevar a cabo el efecto sierra en las imagenes de las galerias
+// Clase que usamos para aplicar el efecto "sierra"
 
 .skewed {
     @include transform(skewX(-10deg));
@@ -384,7 +375,6 @@ html, body {
     &:last-child .trailer {
         margin-right:16px;
     }
-
 }
 
 .imagenes {
@@ -393,11 +383,10 @@ html, body {
         width:25%;        
         display:inline-block;
         .precio{
-            text-align: right;
-            padding-right: 10%;
+            text-align:right;
+            padding-right:10%;
         }
     }
-
 }
 
 

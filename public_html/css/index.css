@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ---------------------------------- Barra de navegacion ---------------------------------- */
 div.navbar {
   background-color: #1D1F21;
@@ -52,9 +53,9 @@ div.navbar {
       content: "";
       position: absolute;
       width: 0;
+      left: 0px;
       border-left: 17px solid transparent;
-      border-right: 17px solid transparent;
-      left: 0px; }
+      border-right: 17px solid transparent; }
     div.navbar form.navbar-form .hexagon:before {
       bottom: 100%;
       border-bottom: 9.81px solid #64C7CC; }
@@ -149,6 +150,7 @@ div.navbar.invisible {
       border-bottom: 4px solid #7ed1e2;
       color: #fff; }
 
+/* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
