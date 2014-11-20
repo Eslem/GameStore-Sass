@@ -1,15 +1,8 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 3, 2014, 10:52:53 AM
-    Author     : eslem
-*/
+
 @import "mixins.scss";
 @import "vars.scss";
 
+/* ---------------------------------- Barra de navegacion ---------------------------------- */ 
 div.navbar{
     background-color: $backNavbar;
     display:block;
@@ -55,7 +48,7 @@ div.navbar{
             text-align: center;
             cursor: pointer;
             color:#222;
-            //@include animation(infinite-spinning 2s 1);
+            //@include animation(infinite-spinning 2s 1); Se implementará en la proxima version
 
             @include transition(all .5 linear) ;
 
