@@ -10,3 +10,23 @@
 @mixin box-sizing($sizing) {
     -moz-box-sizing:$sizing;
     box-sizing:$sizing;}
+
+@mixin animation($value){
+    -webkit-animation: $value;
+    -moz-animation:    $value;
+    -o-animation:      $value;
+    animation:         $value;
+}
+
+@mixin filter($filt){
+    -webkit-filter: $filt;
+    -moz-filter: $filt;
+    -o-filter:$filt;
+    -ms-filter: $filt;
+    filter: $filt;
+}
+
+@mixin transform($arguments) {
+    -webkit-backface-visibility:hidden;
+    transform:$arguments;
+}

@@ -13,7 +13,19 @@ $(document).ready(function () {
     onScroll(".elements", function (el) {
         console.log("animate");
     });
+
+    setInterval(autoSlider, 1000);
 });
+
+var active = 0;
+function autoSlider() {
+    
+    $(".element .elements").eq(active).click();
+    active++;
+    if (active === 2) {
+        active = 0;
+    }
+}
 
 function onScroll(elem, funcion) {
     $(window).scroll(function () {
@@ -39,7 +51,7 @@ function changeMain(elem) {
     $("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
         $(elem).find("h3").text(beforeText);
         h1.text(text);
-        
+
         $("#mainImg").attr("src", img);
         $("#mainImg").css("opacity", "1");
     });
@@ -77,6 +89,9 @@ function slide(elem, number, id) {
 
 function navBar() {
     $(".show-animate").click(function () {
+        $(this).toggleClass("active");
+        $(this).toggleClass("inactive");
+        
         $(".form-slideLeft").toggleClass("active");
     });
 

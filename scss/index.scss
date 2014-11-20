@@ -1,27 +1,6 @@
 @import "mixins";
 @import "navbar";
-
-
-@mixin filter($filt){
-    -webkit-filter: $filt;
-    -moz-filter: $filt;
-    -o-filter:$filt;
-    -ms-filter: $filt;
-    filter: $filt;
-}
-
-@mixin transform($arguments) {
-    -webkit-backface-visibility:hidden;
-    transform:$arguments;
-}
-
-
-$color-text: #555555;
-$c-yellow:#7ed1e2;
-
-$font: 'Francois One', sans-serif;
-$font-text: 'Open Sans', sans-serif;
-
+@import "vars.scss";
 
 html, body {
     background-color: #111111;
@@ -62,10 +41,6 @@ html, body {
                 width: 100%;
                 @include transition(all .3s linear);
             }
-            
-            #mainImg{
-                
-            }
         }
 
         .score{
@@ -84,7 +59,7 @@ html, body {
                 .title{
                     text-transform: uppercase;
                     font-size: .8em;
-                    color:$c-yellow;
+                    color:$blue-color;
                 }
 
                 .ranking{
@@ -110,29 +85,29 @@ html, body {
                 text-align: center;
                 font-size: 1.5em;
                 color:#eee;
-            }
 
-            .hexagon:before,
-                .hexagon:after {
-                content: "";
-                position: absolute;
-                width: 0;
-                border-left: 32.5px solid transparent;
-                border-right: 32.5px solid transparent;
-                left: 0px;
-            }
+                &:before, &:after{
+                    content: "";
+                    position: absolute;
+                    width: 0;
+                    border-left: 32.5px solid transparent;
+                    border-right: 32.5px solid transparent;
+                    left: 0px;
+                }
 
-            .hexagon:before {
-                bottom: 100%;
-                border-bottom: 18.76px solid #64C7CC;
-            }
+                &:before{
+                    bottom: 100%;
+                    border-bottom: 18.76px solid #64C7CC;
+                }
 
-            .hexagon:after {
-                top: 100%;
-                width: 0;
-                border-top: 18.76px solid #64C7CC;
-            }
+                &:after{
+                    top: 100%;
+                    width: 0;
+                    border-top: 18.76px solid #64C7CC;
 
+                }
+
+            }
         }
 
         .description{
@@ -145,6 +120,7 @@ html, body {
                 margin-bottom: 0px;
                 width: 80%;
                 color:#fff;
+                text-shadow: 2px 2px 8px $blue-color;
             }
 
             .text{
@@ -155,35 +131,28 @@ html, body {
             }
 
             .diagnalA {
-                transform: skewX(-30deg);
-                background-color: $c-yellow;
+                text-align: center;
                 padding:5px;
                 margin-right: 150px;
-                .normalize {
-                    transform: skewX(30deg);
-                    text-align: center;
-                    a {
-                        margin:0px;
-                        text-transform: uppercase;
-                        text-decoration: none;
-                        color: $color-text;
-                        padding: 0px 25px;
-                    }
+                margin-left:0px;
+                .normalize a {
+                    margin:0px;
+                    padding: 0px 25px;
                 }
 
                 &.bordered{
                     background-color: transparent;
-                    border: 2px solid #fff;
+                    outline: 2px solid #fff;
                     margin-right: 130px;
-                    @include transition(all 1s linear);
+                    @include transition(all .5s linear);
 
                     .normalize a{
                         color:#fff;
                     }
 
                     &:hover{
-                        background-color: $c-yellow;
-                        border: none;
+                        background-color: $blue-color;
+                        outline: none;
                     }
                 }
 
@@ -206,7 +175,7 @@ html, body {
             -webkit-backface-visibility: hidden;
             width:100/3 * 1%;
             margin:0px;
-            height:250px;
+            height:300px;
             display:inline-block;
 
             transform: skewX(-15deg);
@@ -235,8 +204,7 @@ html, body {
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
                 position: absolute;
-                overflow-x:hidden;
-                overflow-y:hidden;
+                overflow:hidden;
                 img {
                     -webkit-backface-visibility: hidden;
                     height: 100%;
@@ -257,22 +225,6 @@ html, body {
                 top: 0; left: 0; bottom: 0; right: 0;
                 opacity: 0;
                 transform: skewX(15deg);
-                .diagnalA {
-                    transform: skewX(-30deg);
-                    background-color: $c-yellow;
-                    padding:10px;
-                    margin:0 150px;
-                    .normalize {
-                        transform: skewX(30deg);
-                        a {
-                            margin:0px;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            color: $color-text;
-                        }
-                    }
-                }
-
                 h3 {
                     margin:0px;
                     margin-top: 5px;
@@ -285,23 +237,34 @@ html, body {
     }
 }
 
+.diagnalA {
+    transform: skewX(-30deg);
+    background-color: $blue-color;
+    padding:10px;
+    margin:0 150px;
+    .normalize {
+        transform: skewX(30deg);
+        a {
+            margin:0px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $color-text;
+        }
+    }
+}
+
 .gallery1{
     position: relative;
 
-    .categorias{
-
-        .listacategorias{
-            li{
-                &.active a{
-                    color:  $c-yellow;
-                }
-                a{
-                    @include transition(all .5s ease);
-                }
-            }
+    .categorias  .listacategorias  li{
+        &.active a{
+            color:  $blue-color;
         }
-
+        a{
+            @include transition(all .5s ease);
+        }
     }
+
     .imagenes{
         position: absolute;
         width:435%;
@@ -329,7 +292,7 @@ html, body {
                     color: $color-text;
                     text-decoration: none;
                     &:hover{
-                        color:  $c-yellow;
+                        color:  $blue-color;
                     }
                 }
 
@@ -393,7 +356,7 @@ html, body {
     }
     .trailer {
         right:0;
-        background:$c-yellow;
+        background:$blue-color;
         color:black;
     }
     .info {
@@ -423,13 +386,10 @@ html, body {
 
 .imagenes {
     margin-left:-2%;
-
     .game {
         width:25%;        
         display:inline-block;
-
         .precio{
-
             text-align: right;
             padding-right: 10%;
         }
@@ -438,4 +398,5 @@ html, body {
 }
 
 
+//Esta al final por que si no no sobreescribe las clases
 @import "responsive";

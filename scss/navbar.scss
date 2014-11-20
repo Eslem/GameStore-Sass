@@ -8,15 +8,8 @@ and open the template in the editor.
     Author     : eslem
 */
 @import "mixins.scss";
+@import "vars.scss";
 
-$backNavbar : #1D1F21;
-$backSideBar : #eee;
-$font-style: iniherit;
-$font-family: 'Open Sans', sans-serif;
-$navbar-color: #777;
-$navbar-black: #080808;
-$width-tablets : 768px;
-$width-mobiles : 480px;
 div.navbar{
     background-color: $backNavbar;
     display:block;
@@ -25,8 +18,9 @@ div.navbar{
     position:fixed;
     z-index:350;
 
+    /* Font awesome */
     *:not(i){
-        font-family: $font-family;
+        font-family: $font-text;
     }
 
     img.logo{
@@ -37,9 +31,12 @@ div.navbar{
     }
 
     form.navbar-form{
-        padding-left: 50px;
-        padding-top: 5px;
-        padding-bottom: 0px;
+        padding:{
+            left: 50px;
+            top: 5px;
+            bottom: 0px;
+        }        
+
         display: inline-block;
         margin:0px;
         float:left;
@@ -54,15 +51,23 @@ div.navbar{
             display: inline-block;
             //height: 19.63px;
             background-color: #64C7CC;
-            margin: 9.81px 0;
+            //margin: 9.81px 0;
             text-align: center;
             cursor: pointer;
             color:#222;
+            //@include animation(infinite-spinning 2s 1);
 
             @include transition(all .5 linear) ;
 
             &:hover{
                 color:#fff;
+            }
+
+            &.active{
+                @include animation(infinite-spinning 2s 1);
+            }
+            &.inactive{
+                @include animation(infinite-spinning2 2s 1);
             }
         }
 
@@ -71,8 +76,11 @@ div.navbar{
             content: "";
             position: absolute;
             width: 0;
-            border-left: 17px solid transparent;
-            border-right: 17px solid transparent;
+            border:{
+                left: 17px solid transparent;
+                right: 17px solid transparent;  
+            }
+
             left: 0px;
         }
 
@@ -93,7 +101,25 @@ div.navbar{
             padding: 6px 12px;
             font-size: 14px;
             cursor: auto;
+            background: none #FFFFFF;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+            color: #555555;
+            font-size: 14px;
+            height: 34px;
+            line-height: 1.42857;
+            padding: 6px 12px;
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+            width: 100%;
+            margin: 5px;
+            max-width: 100%;
             vertical-align: middle;
+
+            &:focus{
+                border-color: $blue-color;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset, 0 0 8px rgba($blue-color, 0.6);
+            }
 
             &.form-slideLeft{
                 width:0px;
@@ -106,20 +132,16 @@ div.navbar{
                 }
             }
         }
-
-        button{
-            display: inline-block;
-            padding: 6px 12px;
-            font-size: 14px;
-            vertical-align: middle;
-        }
     }
 
 
     ul {
-        padding-left: 10px;
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding:{
+            left: 10px;
+            top: 0px;
+            bottom: 0px;
+        }
+
         display: inline-block;
         margin:0px;
         float:left;
@@ -203,37 +225,35 @@ div.navbar.invisible{
             background-color: transparent;
 
             a{
-                font-weight: bold;
-                font-size: 1.2em;
+                font:{
+                    weight: bold;
+                    size: 1.2em;
+                }
+
                 border-bottom: 4px solid #7ed1e2;
                 color:#fff;
             }
         }
     }
-    form.navbar-form, form.navbar-form.navbar-right{
 
-        button{
-            -webkit-appearance: value;
-            -moz-appearance:    value;
-            appearance:         value;
-            background-color: transparent;
-            font-weight: bold;
-            outline: 2px solid #7ed1e2;
-            color:#fff;
-            cursor: pointer;
-            color:#222;
-            box-shadow: none;
-            -webkit-appearance: none;
-            border: none;
-            @include transition(all 3 linear);
+}
 
-            &:hover{
-                border:none;
-                background-color: #7ed1e2;
-                color:#fff;
-            }
-        }
+
+@keyframes infinite-spinning {
+    from {
+        transform: rotate(0deg);
     }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
+@keyframes infinite-spinning2 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }

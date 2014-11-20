@@ -78,6 +78,7 @@ $width-mobiles : 480px;
         .active {
             width:100%;
             height:200px;
+            overflow: hidden;
 
             .description{
 
@@ -233,13 +234,10 @@ $width-mobiles : 480px;
                 }
             }
 
-            button{
-                display: inline-block;
-                padding: 6px 12px;
-                font-size: 14px;
-                vertical-align: middle;
-                float:right;
-                margin:5px;
+            .hexagon{
+                float: right;
+                margin-bottom: 15px;
+                margin: 9.81px 0;
             }
         }
 
