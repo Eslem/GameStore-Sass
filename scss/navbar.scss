@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Nov 3, 2014, 10:52:53 AM
     Author     : eslem
 */
@@ -35,7 +35,7 @@ div.navbar{
             left: 50px;
             top: 5px;
             bottom: 0px;
-        }        
+        }
 
         display: inline-block;
         margin:0px;
@@ -47,7 +47,7 @@ div.navbar{
 
         .hexagon {
             position: relative;
-            width: 34px; 
+            width: 34px;
             display: inline-block;
             //height: 19.63px;
             background-color: #64C7CC;
@@ -78,7 +78,7 @@ div.navbar{
             width: 0;
             border:{
                 left: 17px solid transparent;
-                right: 17px solid transparent;  
+                right: 17px solid transparent;
             }
 
             left: 0px;
@@ -212,7 +212,7 @@ div.navbar.invisible{
 
         &:hover{
             a{
-                color:#eee; 
+                color:#eee;
                 font-weight: bold;
             }
         }
@@ -237,6 +237,23 @@ div.navbar.invisible{
     }
 
 }
+@-webkit-keyframes infinite-spinning{
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes infinite-spinning{
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
 
 
 @keyframes infinite-spinning {
