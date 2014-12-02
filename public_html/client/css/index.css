@@ -471,7 +471,7 @@ html, body {
       text-align: right;
       padding-right: 10%; }
 
-/* ---------------------------------- Responsive Desing ---------------------------------- */
+/* ---------------------------------- Responsive Design ---------------------------------- */
 @media screen and (max-width: 768px) {
   #main-Slider {
     width: 100%; }
