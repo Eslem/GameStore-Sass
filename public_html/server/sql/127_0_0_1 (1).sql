@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2014 a las 12:00:39
+-- Tiempo de generación: 02-12-2014 a las 12:13:20
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tienda`
 --
+CREATE DATABASE IF NOT EXISTS `tienda` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `tienda`;
 
 -- --------------------------------------------------------
 
@@ -27,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `administrador` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `direccion` varchar(100) NOT NULL,
@@ -54,8 +56,9 @@ INSERT INTO `administrador` (`id`, `nombre`, `apellido`, `direccion`, `telefono`
 --
 
 CREATE TABLE IF NOT EXISTS `categoria` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -66,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 --
 
 CREATE TABLE IF NOT EXISTS `linea_pedido` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `id_pedido` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -81,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `linea_pedido` (
 --
 
 CREATE TABLE IF NOT EXISTS `pedido` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
@@ -94,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 --
 
 CREATE TABLE IF NOT EXISTS `producto` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `precio` float NOT NULL,
@@ -118,7 +121,7 @@ INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `precio`, `categorias`) V
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `direccion` varchar(100) NOT NULL,
