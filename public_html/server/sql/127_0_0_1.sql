@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2014 a las 13:12:55
+-- Tiempo de generación: 02-12-2014 a las 12:00:39
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -50,6 +50,18 @@ INSERT INTO `administrador` (`id`, `nombre`, `apellido`, `direccion`, `telefono`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `linea_pedido`
 --
 
@@ -86,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `precio` float NOT NULL,
-  `categorias` varchar(200) NOT NULL,
+  `categorias` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `nombre` (`nombre`)
