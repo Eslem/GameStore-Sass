@@ -14,8 +14,12 @@ html, body {
     font-family:$font;
 }
 
-*:not(i){
+*{
     @include box-sizing(border-box);
+}
+
+*:not(i){
+   font-family: $font;
 }
 
 
