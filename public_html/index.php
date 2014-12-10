@@ -1,1 +1,1 @@
-<?php header ("location: client/index.html");
+<?php header ("location: cliente/index.html");
