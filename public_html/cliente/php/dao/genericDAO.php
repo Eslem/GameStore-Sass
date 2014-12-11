@@ -67,6 +67,32 @@ class GenericDAO {
         }
     }
 
+    function selectJoin($otherTable, $field, $otherField, $condition) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "SELECT * FROM " . $this->tableName . ", " . $otherTable
+                . " WHERE " . $this->tableName . "." . $field . " = "
+                . $otherTable . "." . $otherField;
+        if ($condition !== null) {
+            $query = $query . " AND " . $condition;
+        }
+        $result = $connection->query($query);
+
+        if ($result->num_rows > 0) {
+            $resultArray = [];
+            while ($row = $result->fetch_assoc()) {
+                foreach ($row as &$property)
+                    $property = utf8_encode($property);
+                array_push($resultArray, $row);
+            }
+
+            $this->connectionManager->closeConnection($connection);
+            echo json_encode($resultArray);
+        } else {
+            echo false;
+        }
+    }
+
     function find($id) {
         $connection = $this->connectionManager->getConnection();
 
