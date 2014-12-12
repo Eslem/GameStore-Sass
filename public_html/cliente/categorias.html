@@ -5,9 +5,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+
+        <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
+        <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/animacion.js" type="text/javascript"></script>
         <script>
             var categories;
+            var exist = false;
 
             function getCategories(callback) {
                 $.ajax({
@@ -20,7 +28,7 @@
                     categories = JSON.parse(result);
                     callback(categories);
                 }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);                    
+                    $('#log').html(errorHTML);
                 });
             }
 
@@ -36,30 +44,31 @@
                         condition: 'idCategoria = ' + category
                     }
                 }).success(function(result) {
-                    callback(JSON.parse(result));
+                        callback(result);
                 }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);                    
+                    $('#log').html(errorHTML);
                 });
             }
 
             $('document').ready(function() {
                 getCategories(function(result) {
                     for (var i in result) {
-                        $('ul#categories').append('<li data-id="' + result[i].id + '">'
+                        $('ul#categories').append('<li style="color: white;" data-id="' + result[i].id + '">'
                                 + result[i].nombre + '</li>');
                         $('ul#categories li:last-child').click(function(self) {
                             getProductsByCategory($(self.target).attr('data-id'), function(result) {
-                                $('#divGames').html('');
-                                for (var i in result) {
-                                    $('#divGames').append('<li>' + result[i].nombre
-                                            + '<img src="images/games/' + result[i].id 
-                                            + '.jpg"></img></li>');
-                                    console.log(result[i]);
-                                   /* alert(i);
-                                    alert(result[i].nombre);
-                                    alert(result[i].id);*/
-                                    
+                                if (result !== '' && result !== null) {
+                                    result = JSON.parse(result);
+                                    $('#divGames').html('');
+                                    for (var i in result) {
+                                        $('#divGames').append('<li style="color: white;">' + result[i].nombre
+                                                + '<img src="images/games/' + result[i].id
+                                                + '.jpg"></img></li>');
+                                    }
+                                }else{
+                                    $('#divGames').html('');
                                 }
+
                             });
                         });
                     }
