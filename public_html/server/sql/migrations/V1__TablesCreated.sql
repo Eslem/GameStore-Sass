@@ -93,13 +93,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
-CREATE TABLE `producto_categorias` (
+CREATE TABLE IF NOT EXISTS `producto_categorias` (
 	`idProducto` INT(11) NULL DEFAULT NULL,
 	`idCategoria` INT(11) NULL DEFAULT NULL,
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	PRIMARY KEY (`id`)
-)
-ENGINE=InnoDB AUTO_INCREMENT=4;
+	`idRelacion` INT(11) NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (`idRelacion`)
+)ENGINE=InnoDB AUTO_INCREMENT=4;
 
 
 INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (1, 4);

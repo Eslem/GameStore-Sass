@@ -76,6 +76,8 @@ class GenericDAO {
         if ($condition !== null) {
             $query = $query . " AND " . $condition;
         }
+        
+        //echo $query;
         $result = $connection->query($query);
 
         if ($result->num_rows > 0) {

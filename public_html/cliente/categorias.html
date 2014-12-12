@@ -51,7 +51,14 @@
                             getProductsByCategory($(self.target).attr('data-id'), function(result) {
                                 $('#divGames').html('');
                                 for (var i in result) {
-                                    $('#divGames').append('<li>' + result[i].nombre + '</li>');
+                                    $('#divGames').append('<li>' + result[i].nombre
+                                            + '<img src="images/games/' + result[i].id 
+                                            + '.jpg"></img></li>');
+                                    console.log(result[i]);
+                                   /* alert(i);
+                                    alert(result[i].nombre);
+                                    alert(result[i].id);*/
+                                    
                                 }
                             });
                         });

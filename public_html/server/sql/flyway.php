@@ -49,14 +49,12 @@ class Flyway {
     function checkTable($connection) {
         $query = $connection->query("SELECT * FROM flyway_schema IF EXISTS");
         if (!$query) {
-            //$query->free_result();
             $queryCreateTable = $connection->query($this->createStatement);
             if (!$queryCreateTable) {
                 error("Error creating database");
                 $queryCreateTable->free_result();
                 return false;
             } else {
-                //$queryCreateTable->free_result();
                 return true;
             }
         } else {
@@ -64,10 +62,11 @@ class Flyway {
             return true;
         }
     }
+    
 
     function executeFile($connection, $file) {
-        $statement = file_get_contents($this->folderPath . "/" . $file);
-        if (!$statement) {
+        $statement = utf8_decode(file_get_contents($this->folderPath . "/" . $file));
+        if (!$statement) {            
             die('Error opening file');
         } else {
             $query = $connection->multi_query($statement);
