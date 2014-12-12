@@ -16,10 +16,11 @@
                     data: {
                         query: 'select'
                     }
-                }).done(function(result) {
-                    //$('#log').html(result);
-                    categories = JSON.parse(result)
+                }).success(function(result) {
+                    categories = JSON.parse(result);
                     callback(categories);
+                }).error(function(errorHTML) {
+                    $('#log').html(errorHTML);                    
                 });
             }
 
@@ -34,9 +35,10 @@
                         otherField: 'idProducto',
                         condition: 'idCategoria = ' + category
                     }
-                }).done(function(result) {
-                    //$('#log').html(result);
+                }).success(function(result) {
                     callback(JSON.parse(result));
+                }).error(function(errorHTML) {
+                    $('#log').html(errorHTML);                    
                 });
             }
 
