@@ -1,14 +1,3 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-CREATE DATABASE IF NOT EXISTS `tienda` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `tienda`;
-
-
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'administrador'
---------------------------------------------------------------------------------
-
 CREATE TABLE IF NOT EXISTS `administrador` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -24,17 +13,9 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
---------------------------------------------------------------------------------
--- Inserción de tuplas en la tabla 'administrador'
---------------------------------------------------------------------------------
-
 INSERT INTO `administrador` (`id`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `alias`, `password`) VALUES
 (1, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin');
 
-
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'categoria'
---------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -44,9 +25,13 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'linea_pedido'
---------------------------------------------------------------------------------
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (1, 'RPG');
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (2, 'FPS');
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (3, 'F2P');
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (4, 'Acción');
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (5, 'Aventura');
+INSERT INTO `tienda`.`categoria` (`id`, `nombre`) VALUES (6, '3PS');
+
 
 CREATE TABLE IF NOT EXISTS `linea_pedido` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -58,10 +43,6 @@ CREATE TABLE IF NOT EXISTS `linea_pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'pedido'
---------------------------------------------------------------------------------
-
 CREATE TABLE IF NOT EXISTS `pedido` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
@@ -69,10 +50,6 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'producto'
---------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -85,17 +62,21 @@ CREATE TABLE IF NOT EXISTS `producto` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
---------------------------------------------------------------------------------
--- Inserción de tuplas en la tabla 'producto'
---------------------------------------------------------------------------------
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (1, 'Dragon Age: Inquisition', 'Texto de Ejemplo', 50);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (2, 'Batman Arkham Knigth', 'Texto de Ejemplo', 50);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (3, 'Dishonored', 'Texto de Ejemplo', 30);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (4, 'Metal Gear Solid Rising', 'Texto de Ejemplo', 50);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (5, 'The Witcher 3', 'Texto de Ejemplo', 60);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (6, 'Gears of War 3', 'Texto de Ejemplo', 50);
+INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
+VALUES (7, 'Dead Rising 3', 'Texto de Ejemplo', 50);
 
-INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `precio`) VALUES
-(1, 'Farming Simulator 2014', 'Simuladorzaco', 24.99);
-
-
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'usuario'
---------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -112,10 +93,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
---------------------------------------------------------------------------------
--- Creación de la tabla de relación 'producto_categorias'
---------------------------------------------------------------------------------
-
 CREATE TABLE `producto_categorias` (
 	`idProducto` INT(11) NULL DEFAULT NULL,
 	`idCategoria` INT(11) NULL DEFAULT NULL,
@@ -123,3 +100,15 @@ CREATE TABLE `producto_categorias` (
 	PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB AUTO_INCREMENT=4;
+
+
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (1, 4);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (2, 4);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (2, 5);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (3, 4);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (3, 5);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (4, 4);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (5, 4);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (5, 5);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (6, 2);
+INSERT INTO `tienda`.`producto_categorias` (`idProducto`, `idCategoria`) VALUES (7, 4);
