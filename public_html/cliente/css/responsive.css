@@ -39,6 +39,11 @@
     height: 134px;
     margin: 0 -7%; } }
 @media screen and (max-width: 480px) {
+  .back-panel ul {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%; }
+
   #main-Slider {
     width: 100%; }
     #main-Slider .active {

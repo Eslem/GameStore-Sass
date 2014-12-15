@@ -71,6 +71,13 @@ $width-mobiles:480px;
 
 
 @media screen and (max-width:$width-mobiles){
+    
+    .back-panel ul{
+        margin-left: 5%;
+        margin-right: 5%;
+        width:90%;
+    }
+    
     #main-Slider {
         width:100%;
 

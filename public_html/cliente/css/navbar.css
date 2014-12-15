@@ -116,8 +116,10 @@ div.navbar {
       line-height: 20px;
       font-size: 14px;
       cursor: pointer; }
-      div.navbar ul li:hover a {
-        color: #fff; }
+      div.navbar ul li:hover a:before, div.navbar ul li:hover a:after, div.navbar ul li.active a:before, div.navbar ul li.active a:after {
+        opacity: 1;
+        -webkit-backface-visibility: hidden;
+        transform: translateX(0px); }
       div.navbar ul li.active {
         background-color: #080808; }
         div.navbar ul li.active a {
@@ -127,6 +129,22 @@ div.navbar {
       div.navbar ul li a {
         text-decoration: none;
         color: #777; }
+        div.navbar ul li a::before, div.navbar ul li a::after {
+          display: inline-block;
+          opacity: 0;
+          -webkit-transition: transform 0.3s, opacity 0.2s;
+          -moz-transition: transform 0.3s, opacity 0.2s;
+          transition: transform 0.3s, opacity 0.2s; }
+        div.navbar ul li a::before {
+          margin-right: 10px;
+          content: '[';
+          -webkit-backface-visibility: hidden;
+          transform: translateX(20px); }
+        div.navbar ul li a::after {
+          margin-left: 10px;
+          content: ']';
+          -webkit-backface-visibility: hidden;
+          transform: translateX(-20px); }
       div.navbar ul li.header {
         font-size: 18px; }
       div.navbar ul li.slide-nav {
@@ -150,7 +168,7 @@ div.navbar.invisible {
       border-bottom: 4px solid #7ed1e2;
       color: #fff; }
 
-/* Animaci├│n del bot├│n de login */
+/* AnimaciÃ³n del botÃ³n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
