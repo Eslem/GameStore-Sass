@@ -1,21 +1,5 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 3, 2014, 10:52:53 AM
-    Author     : eslem
-*/
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 20, 2014, 12:09:46 PM
-    Author     : eslem
-*/
+@charset "UTF-8";
+/* ---------------------------------- Barra de navegacion ---------------------------------- */
 div.navbar {
   background-color: #1D1F21;
   display: block;
@@ -69,9 +53,9 @@ div.navbar {
       content: "";
       position: absolute;
       width: 0;
+      left: 0px;
       border-left: 17px solid transparent;
-      border-right: 17px solid transparent;
-      left: 0px; }
+      border-right: 17px solid transparent; }
     div.navbar form.navbar-form .hexagon:before {
       bottom: 100%;
       border-bottom: 9.81px solid #64C7CC; }
@@ -132,8 +116,10 @@ div.navbar {
       line-height: 20px;
       font-size: 14px;
       cursor: pointer; }
-      div.navbar ul li:hover a {
-        color: #fff; }
+      div.navbar ul li:hover a:before, div.navbar ul li:hover a:after, div.navbar ul li.active a:before, div.navbar ul li.active a:after {
+        opacity: 1;
+        -webkit-backface-visibility: hidden;
+        transform: translateX(0px); }
       div.navbar ul li.active {
         background-color: #080808; }
         div.navbar ul li.active a {
@@ -143,6 +129,22 @@ div.navbar {
       div.navbar ul li a {
         text-decoration: none;
         color: #777; }
+        div.navbar ul li a::before, div.navbar ul li a::after {
+          display: inline-block;
+          opacity: 0;
+          -webkit-transition: transform 0.3s, opacity 0.2s;
+          -moz-transition: transform 0.3s, opacity 0.2s;
+          transition: transform 0.3s, opacity 0.2s; }
+        div.navbar ul li a::before {
+          margin-right: 10px;
+          content: '[';
+          -webkit-backface-visibility: hidden;
+          transform: translateX(20px); }
+        div.navbar ul li a::after {
+          margin-left: 10px;
+          content: ']';
+          -webkit-backface-visibility: hidden;
+          transform: translateX(-20px); }
       div.navbar ul li.header {
         font-size: 18px; }
       div.navbar ul li.slide-nav {
@@ -166,6 +168,7 @@ div.navbar.invisible {
       border-bottom: 4px solid #7ed1e2;
       color: #fff; }
 
+/* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
