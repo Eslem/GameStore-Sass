@@ -5,6 +5,9 @@ function executeQuery($dao) {
         case 'select' :
             echo $dao->select();
             break;
+        case 'selectPaginated' :
+            echo $dao->selectPaginated($_POST["index"], $_POST["quantity"]);
+            break;
         case 'selectJoin' :
             $condition = null;
             if (isset($_POST["condition"])) $condition = $_POST['condition'];
