@@ -61,7 +61,7 @@ class GenericDAO {
             }
 
             $this->connectionManager->closeConnection($connection);
-            echo json_encode($resultArray);
+            echo $resultArray;
         } else {
             echo false;
         }
@@ -82,7 +82,7 @@ class GenericDAO {
             }
 
             $this->connectionManager->closeConnection($connection);
-            echo json_encode($resultArray);
+            return $resultArray;
         } else {
             echo false;
         }
@@ -110,7 +110,7 @@ class GenericDAO {
             }
 
             $this->connectionManager->closeConnection($connection);
-            echo json_encode($resultArray);
+            return $resultArray;
         } else {
             echo false;
         }
@@ -133,7 +133,7 @@ class GenericDAO {
                 foreach ($row as &$property) {
                     $property = utf8_encode($property);
                 }
-                echo json_encode($row);
+                echo $row;
             } else {
                 echo false;
             }
@@ -156,7 +156,7 @@ class GenericDAO {
             }
 
             $this->connectionManager->closeConnection($connection);
-            echo json_encode($resultArray);
+            echo $resultArray;
         } else {
             echo false;
         }

@@ -3,21 +3,23 @@
 function executeQuery($dao) {
     switch ($_POST['query']) {
         case 'select' :
-            echo $dao->select();
+            echo json_encode($dao->select());
             break;
         case 'selectPaginated' :
-            echo $dao->selectPaginated($_POST["index"], $_POST["quantity"]);
+            echo json_encode($dao->selectPaginated($_POST["index"], $_POST["quantity"]));
             break;
         case 'selectJoin' :
             $condition = null;
-            if (isset($_POST["condition"])) $condition = $_POST['condition'];
-            echo $dao->selectJoin($_POST['otherTable'], $_POST['field'], $_POST['otherField'], $condition);
+            if (isset($_POST["condition"])) {
+                $condition = $_POST['condition'];
+            }
+            echo json_encode($dao->selectJoin($_POST['otherTable'], $_POST['field'], $_POST['otherField'], $condition));
             break;
         case 'find' :
-            echo $dao->find($_POST['id']);
+            echo json_encode($dao->find($_POST['id']));
             break;
         case 'findByCondition' :
-            echo $dao->findByCondition($_POST['condition']);
+            echo json_encode($dao->findByCondition($_POST['condition']));
             break;
         case 'insert' :
             echo $dao->insert($_POST['values']);
