@@ -15,6 +15,8 @@ $(document).ready(function () {
     });
 
     setInterval(autoSlider, 1000);
+    
+    setUpCategorias();
 });
 
 var active = 0;
@@ -98,4 +100,19 @@ function navBar() {
     $(".slide-nav").click(function () {
         $(".navbar form, .navbar ul li:not(.slide-nav, .header)").slideToggle();
     });
+}
+
+function setUpCategorias(){
+    $(".back-panel").mouseup(function()
+		{
+			$(this).removeClass("active");
+	});
+	$(".back-panel ul").mouseup(function()
+		{
+			return false;
+	});
+}
+
+function showCategorias(){
+ $(".back-panel").addClass("active");
 }

@@ -12,7 +12,7 @@
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
         <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/animacion.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="navbar invisible">
@@ -20,9 +20,9 @@
             <img src="images/logo1.png" alt="logo" class="logo">
 
             <ul>
-                <li><a href="#">Opt1</a></li>
-                <li class="active"><a href="#">Opt2</a></li>
-                <li><a href="#">Opt3</a></li>  
+                <li  class="active"><a href="#">Home</a></li>
+                <li><a href="#" onClick="showCategorias()">Categorias</a></li>
+                <li><a href="#">Perfil</a></li>  
                 <li class="slide-nav"><i class="fa fa-bars"></i></li>
             </ul>
             <form class="navbar-form navbar-right">
@@ -38,7 +38,7 @@
 
             <div class="active">
                 <div class="imgBack">
-                    <img src="images/games/dragonAge.jpg" id="mainImg" >
+                    <img src="images/games/1.jpg" id="mainImg" alt="" >
                 </div>
 
                 <div class="description">
@@ -84,7 +84,7 @@
             <div class="elements">
                 <div class="element" onclick="changeMain(this)">
                     <div class="imgBack" >
-                        <img src="images/games/batman.jpg">
+                        <img src="images/games/2.jpg" alt="">
                     </div>
 
                     <div class="text">
@@ -97,7 +97,7 @@
                     </div>
                 </div><div class="element" onclick="changeMain(this)" >
                     <div class="imgBack">
-                        <img src="images/games/dishonored.jpg">
+                        <img src="images/games/3.jpg" alt="">
                     </div>                <div class="text">
                         <div class="diagnalA">
                             <div class="normalize">
@@ -106,9 +106,9 @@
                         </div>
                         <h3>Dishonored</h3>
                     </div>
-                </div><div class="element"onclick="changeMain(this)" >
+                </div><div class="element" onclick="changeMain(this)" >
                     <div class="imgBack" >
-                        <img src="images/games/metalGear.jpg">
+                        <img src="images/games/4.jpg" alt="">
                     </div>                <div class="text">
 
                         <div class="diagnalA">
@@ -140,7 +140,7 @@
                 <div class="game">
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/theWitcher.jpg" alt>
+                            <img src="images/games/5.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -159,7 +159,7 @@
 
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/gearsOfWar.jpg" alt>
+                            <img src="images/games/6.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -178,7 +178,7 @@
 
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/deadRising.jpg" alt>
+                            <img src="images/games/7.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -248,7 +248,7 @@
 
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/dragonAge.jpg" alt>
+                            <img src="images/games/1.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -441,7 +441,7 @@
                 <div class="game">
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/theWitcher.jpg" alt>
+                            <img src="images/games/5.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -459,7 +459,7 @@
 
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/gearsOfWar.jpg" alt>
+                            <img src="images/games/6.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -477,7 +477,7 @@
 
                     <div class="skewed">
                         <div class="unskewed">
-                            <img src="images/games/deadRising.jpg" alt>
+                            <img src="images/games/7.jpg" alt>
                         </div>
                         <div class="show-on-hover">
                             <div class="details">Ver Detalles</div>
@@ -514,5 +514,14 @@
             </div>                
         </div>
 
+        <div class="back-panel">
+            <ul class="panel-categorias">
+                <li><a href="#"><i class="fa fa-gamepad"></i>RPG</a><a href="#"><i class="fa fa-gamepad"></i>FPS</a></li>
+                <li><a href="#"><i class="fa fa-gamepad"></i>F2P</a><a href="#"><i class="fa fa-gamepad"></i>Accion</a></li>
+               <li><a href="#"><i class="fa fa-gamepad"></i>Aventura</a><a href="#"><i class="fa fa-gamepad"></i>3PS</a></li>                
+            </nav>
+    </div>
+
+        
     </body>
 </html>
