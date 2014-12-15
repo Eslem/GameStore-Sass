@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Categorias</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <link href="css/categorias.css" rel="stylesheet" type="text/css"/>
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -44,7 +44,7 @@
                         condition: 'idCategoria = ' + category
                     }
                 }).success(function(result) {
-                        callback(result);
+                    callback(result);
                 }).error(function(errorHTML) {
                     $('#log').html(errorHTML);
                 });
@@ -65,7 +65,7 @@
                                                 + '<img src="images/games/' + result[i].id
                                                 + '.jpg"></img></li>');
                                     }
-                                }else{
+                                } else {
                                     $('#divGames').html('');
                                 }
 
@@ -77,6 +77,25 @@
         </script>
     </head>
     <body>
+        <div class="navbar invisible">
+
+            <img src="images/logo1.png" alt="logo" class="logo">
+
+            <ul>
+                <li><a href="#">Opt1</a></li>
+                <li class="active"><a href="#">Opt2</a></li>
+                <li><a href="#">Opt3</a></li>  
+                <li class="slide-nav"><i class="fa fa-bars"></i></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-slideLeft" placeholder="Login">
+                <input type="text" class="form-slideLeft" placeholder="Password">
+                <div class="hexagon navbar-right show-animate inactive">
+                    <i class="fa fa-sign-in"></i>
+                </div>
+
+            </form>
+        </div>
         <div id="divCategories">
             <ul id="categories"></ul>
             <div id="divGames">
@@ -84,6 +103,23 @@
             </div>
 
             <div id="log"></div>
+
+            <div class="gallery2">
+                <div class="imagenes">
+                    <div class="game">
+
+                        <img src="images/games/5.jpg" alt>
+
+
+                        <div class="info">
+                            <div>The Witcher 3</div><!--<div class="precio">60.00€</div>-->
+                        </div>
+
+                    </div>
+
+
+                </div>                
+            </div>
         </div>
     </body>
 </html>
