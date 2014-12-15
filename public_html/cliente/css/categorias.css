@@ -362,7 +362,8 @@ html, body {
   -webkit-backface-visibility: hidden;
   height: 250px;
   width: 25%;
-  overflow: hidden; }
+  overflow: hidden;
+  display: inline-block; }
   .imagenes .game img {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -370,7 +371,11 @@ html, body {
     width: 100%;
     height: 80%; }
   .imagenes .game .info {
-    margin: 0% 0%;
     text-align: center; }
+    .imagenes .game .info div {
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+      color: #555555; }
 
 /*# sourceMappingURL=categorias.css.map */

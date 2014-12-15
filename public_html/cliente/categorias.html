@@ -24,10 +24,10 @@
                     data: {
                         query: 'select'
                     }
-                }).success(function(result) {
+                }).success(function (result) {
                     categories = JSON.parse(result);
                     callback(categories);
-                }).error(function(errorHTML) {
+                }).error(function (errorHTML) {
                     $('#log').html(errorHTML);
                 });
             }
@@ -43,27 +43,27 @@
                         otherField: 'idProducto',
                         condition: 'idCategoria = ' + category
                     }
-                }).success(function(result) {
+                }).success(function (result) {
                     callback(result);
-                }).error(function(errorHTML) {
+                }).error(function (errorHTML) {
                     $('#log').html(errorHTML);
                 });
             }
 
-            $('document').ready(function() {
-                getCategories(function(result) {
+            $('document').ready(function () {
+                getCategories(function (result) {
                     for (var i in result) {
                         $('ul#categories').append('<li style="color: white;" data-id="' + result[i].id + '">'
                                 + result[i].nombre + '</li>');
-                        $('ul#categories li:last-child').click(function(self) {
-                            getProductsByCategory($(self.target).attr('data-id'), function(result) {
+                        $('ul#categories li:last-child').click(function (self) {
+                            getProductsByCategory($(self.target).attr('data-id'), function (result) {
                                 if (result !== '' && result !== null) {
                                     result = JSON.parse(result);
                                     $('#divGames').html('');
                                     for (var i in result) {
-                                        $('#divGames').append('<li style="color: white;">' + result[i].nombre
-                                                + '<img src="images/games/' + result[i].id
-                                                + '.jpg"></img></li>');
+                                        $('#divGames').append('<div class="game"><img src="images/games/' +
+                                                result[i].id + '.jpg" alt><div class="info"><div>' +
+                                                result[i].nombre + '</div></div></div>');
                                     }
                                 } else {
                                     $('#divGames').html('');
@@ -96,30 +96,15 @@
 
             </form>
         </div>
+
         <div id="divCategories">
             <ul id="categories"></ul>
-            <div id="divGames">
+            <div id="divGames" class="imagenes">
 
             </div>
 
             <div id="log"></div>
 
-            <div class="gallery2">
-                <div class="imagenes">
-                    <div class="game">
-
-                        <img src="images/games/5.jpg" alt>
-
-
-                        <div class="info">
-                            <div>The Witcher 3</div><!--<div class="precio">60.00€</div>-->
-                        </div>
-
-                    </div>
-
-
-                </div>                
-            </div>
         </div>
     </body>
 </html>
