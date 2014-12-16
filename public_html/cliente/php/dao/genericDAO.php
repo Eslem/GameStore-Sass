@@ -52,7 +52,7 @@ class GenericDAO {
         $query = "SELECT * FROM " . $this->tableName;
         $result = $connection->query($query);
 
-        if ($result->num_rows > 0) {
+        if (is_object($result) && $result->num_rows > 0) {
             $resultArray = [];
             while ($row = $result->fetch_assoc()) {
                 foreach ($row as &$property)
@@ -73,7 +73,7 @@ class GenericDAO {
         $query = "SELECT * FROM " . $this->tableName . " LIMIT " . $index . ", " . $quantity;
         $result = $connection->query($query);
 
-        if ($result->num_rows > 0) {
+        if (is_object($result) && $result->num_rows > 0) {
             $resultArray = [];
             while ($row = $result->fetch_assoc()) {
                 foreach ($row as &$property)
@@ -101,7 +101,7 @@ class GenericDAO {
         //echo $query;
         $result = $connection->query($query);
 
-        if ($result->num_rows > 0) {
+        if (is_object($result) && $result->num_rows > 0) {
             $resultArray = [];
             while ($row = $result->fetch_assoc()) {
                 foreach ($row as &$property)
@@ -128,7 +128,7 @@ class GenericDAO {
             $preparedStatement->close();
             $this->connectionManager->closeConnection($connection);
 
-            if ($result->num_rows === 1) {
+            if (is_object($result) && $result->num_rows === 1) {
                 $row = $result->fetch_assoc();
                 foreach ($row as &$property) {
                     $property = utf8_encode($property);
@@ -147,7 +147,7 @@ class GenericDAO {
 
         $query = "SELECT * FROM " . $this->tableName . " WHERE " . $condition;
         $result = $connection->query($query);
-        if ($result->num_rows > 0) {
+        if (is_object($result) && $result->num_rows > 0) {
             $resultArray = [];
             while ($row = $result->fetch_assoc()) {
                 foreach ($row as &$property)
