@@ -4,14 +4,14 @@ $width-mobiles:480px;
 
 /* ---------------------------------- Responsive Design ---------------------------------- */
 
-@media screen and (max-width:1024px){
+@media screen and (max-width:1024px) {
     .skewed .unskewed img {
         // Fix
         height:150px;
     }
 }
 
-@media screen and (max-width:$width-tablets){
+@media screen and (max-width:$width-tablets) {
     #main-Slider {
         width:100%;
 
@@ -78,9 +78,9 @@ $width-mobiles:480px;
 }
 
 
-@media screen and (max-width:$width-mobiles){
+@media screen and (max-width:$width-mobiles) {
 
-    .back-panel ul{
+    .back-panel ul {
         margin-left: 5%;
         margin-right: 5%;
         width:90%;
@@ -94,18 +94,18 @@ $width-mobiles:480px;
             height:200px;
             overflow:hidden;
 
-            .description{
+            .description {
 
-                .text{
+                .text {
                     display:none;
                 }
-                h1{
+                h1 {
                     font-size:1.2em;
                 }
 
             }
 
-            .score .text{
+            .score .text {
                 display:none;
             }
         }
@@ -153,10 +153,10 @@ $width-mobiles:480px;
         height:250px;
     }
 
-    .gallery1{
-        .imagenes{
+    .gallery1 {
+        .imagenes {
             width:879%;
-            .game{
+            .game {
                 width:6%;
             }
         }
@@ -182,7 +182,7 @@ $width-mobiles:480px;
                 height:140px;
             }
 
-            .precio{
+            .precio {
                 text-align:right;
                 padding-right:10%;
             }
@@ -191,10 +191,10 @@ $width-mobiles:480px;
     }
 
 
-    div.navbar{
+    div.navbar {
         position:relative;
 
-        img.logo{
+        img.logo {
             float:left;
             height:40px;
             clear:both;
@@ -202,28 +202,28 @@ $width-mobiles:480px;
             padding-left:15px;
         }
 
-        &.invisible{
+        &.invisible {
             background-color:$backNavbar;
         }
-        ul{
+        ul {
             display:block;
             width:100%;
             padding-left:0px;
             padding-right:0px;
 
-            &.navbar-right{
+            &.navbar-right {
                 padding-right:0px;
             }
 
-            li{
+            li {
                 display:none;
                 width:100%;
 
-                &.header{
+                &.header {
                     display:block
                 }
 
-                &.slide-nav{
+                &.slide-nav {
                     display:block;
                     position:fixed;
                     right:0px;
@@ -233,7 +233,7 @@ $width-mobiles:480px;
             }
         }
 
-        form.navbar-form, form.navbar-form.navbar-right{
+        form.navbar-form, form.navbar-form.navbar-right {
             padding:0px;
             display:none;
             margin:0px;
@@ -243,17 +243,17 @@ $width-mobiles:480px;
             padding-left:30px;
             padding-right:30px;
 
-            input{
+            input {
                 display:block;
                 width:100%;
                 margin:5px;
 
-                &.form-slideLeft{
+                &.form-slideLeft {
                     opacity:1;
                 }
             }
 
-            .hexagon{
+            .hexagon {
                 float:right;
                 margin-bottom:15px;
                 margin:9.81px 0;

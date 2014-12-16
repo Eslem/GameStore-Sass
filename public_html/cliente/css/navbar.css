@@ -7,6 +7,7 @@ div.navbar {
   width: 100%;
   position: fixed;
   z-index: 350;
+  overflow: hidden;
   /* Font awesome */ }
   div.navbar *:not(i) {
     font-family: "Open Sans", sans-serif; }
@@ -16,7 +17,6 @@ div.navbar {
     margin: 5px 0px;
     padding-left: 50px; }
   div.navbar form.navbar-form {
-    padding-left: 50px;
     padding-top: 5px;
     padding-bottom: 0px;
     display: inline-block;
@@ -88,12 +88,14 @@ div.navbar {
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset, 0 0 8px rgba(126, 209, 226, 0.6); }
       div.navbar form.navbar-form input.form-slideLeft {
         width: 0px;
+        padding: 0;
         -webkit-transition: all 0.5s ease-in;
         -moz-transition: all 0.5s ease-in;
         transition: all 0.5s ease-in;
         opacity: 0; }
         div.navbar form.navbar-form input.form-slideLeft.active {
           width: 150px;
+          padding: 6px 16px;
           opacity: 1; }
   div.navbar ul {
     padding-left: 10px;
@@ -152,21 +154,32 @@ div.navbar {
         color: #777; }
         div.navbar ul li.slide-nav:hover {
           color: #fff; }
+  div.navbar .background {
+    height: 48px;
+    background: rgba(32, 32, 32, 0.5); }
 
 div.navbar.invisible {
   background-color: transparent; }
   div.navbar.invisible ul li:hover a {
-    color: #eee;
+    color: #7ed1e2;
     font-weight: bold; }
   div.navbar.invisible ul li a {
-    color: #777; }
+    color: #EEE;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
   div.navbar.invisible ul li.active {
     background-color: transparent; }
     div.navbar.invisible ul li.active a {
       font-weight: bold;
       font-size: 1.2em;
-      border-bottom: 4px solid #7ed1e2;
-      color: #fff; }
+      /*border-bottom:4px solid #7ed1e2;
+      color:#fff;*/
+      color: #7ed1e2; }
+      div.navbar.invisible ul li.active a:before, div.navbar.invisible ul li.active a:after {
+        color: #fff; }
+      div.navbar.invisible ul li.active a:before {
+        content: '<'; }
+      div.navbar.invisible ul li.active a:after {
+        content: '>'; }
 
 /* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
