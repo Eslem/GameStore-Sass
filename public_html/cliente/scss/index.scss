@@ -45,7 +45,7 @@ html, body {
             }
         }
 
-        .score{
+        .score{            
             position:absolute;
             bottom:10%;
             right:4%;
@@ -54,6 +54,7 @@ html, body {
                 float:left;
                 display:inline-block;
                 margin-left:15px;
+                text-shadow:0 0 3px rgba(0,0,0,.75);
                 p{
                     margin:0px;
                 }
