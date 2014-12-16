@@ -488,7 +488,7 @@ html, body {
     text-align: left; }
   .game .info hr {
     margin: 0 6% 0 0;
-    border-ycolor: #555555; }
+    border-color: #555555; }
 .game:first-child .details {
   margin-left: 16px; }
 .game:last-child .trailer {
