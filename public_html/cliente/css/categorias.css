@@ -359,6 +359,7 @@ html, body {
 
 .imagenes .game {
   margin-left: 6.25%;
+  margin-top: 2%;
   -webkit-backface-visibility: hidden;
   height: 250px;
   width: 25%;
