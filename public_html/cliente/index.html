@@ -13,6 +13,40 @@
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
         <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/animacion.js" type="text/javascript"></script>
+        <script>
+            function getCategories(callback) {
+                $.ajax({
+                    url: 'php/controller/categoriaController.php',
+                    type: 'POST',
+                    data: {
+                        query: 'select'
+                    }
+                }).success(function(result) {
+                    console.log(result);
+                    categories = JSON.parse(result);
+                    callback(categories);
+                }).error(function(errorHTML) {
+                    $('#log').html(errorHTML);
+                });
+            }
+
+            $('document').ready(function() {
+                getCategories(function(categories) {
+                    var strHTML = '';
+                    for (var i = 0; i < categories.length; i++) {
+                        var category = categories[i];
+
+                        if (i % 3 === 0) strHTML += '<li>';
+                        strHTML += '<a href="categorias.html#' + category.id + '">'
+                                + '<img class="genreIcon" src="images/genres/' + category.nombre + '.svg">'
+                                + '<br/>' + category.nombre + '</a>';
+                        if (!i % 3 === 2) strHTML += '</li>';
+                    }
+
+                    $('.panel-categorias').html(strHTML);
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="navbar invisible">
@@ -282,7 +316,7 @@
                 </div>
                 <!-- Third Slider -->
                 <div class="game">
-                    
+
 
                     <div class="skewed">
                         <div class="unskewed">
@@ -517,12 +551,20 @@
 
         <div class="back-panel">
             <ul class="panel-categorias">
-                <li><a href="#"><i class="fa fa-gamepad"></i>RPG</a><a href="#"><i class="fa fa-gamepad"></i>FPS</a></li>
-                <li><a href="#"><i class="fa fa-gamepad"></i>F2P</a><a href="#"><i class="fa fa-gamepad"></i>Accion</a></li>
-               <li><a href="#"><i class="fa fa-gamepad"></i>Aventura</a><a href="#"><i class="fa fa-gamepad"></i>3PS</a></li>                
-            </nav>
-    </div>
+                <!--<li>
+                    <a href="#"><i class="fa fa-gamepad"></i>RPG</a>
+                    <a href="#"><i class="fa fa-gamepad"></i>FPS</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gamepad"></i>F2P</a>
+                    <a href="#"><i class="fa fa-gamepad"></i>Accion</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gamepad"></i>Aventura</a>
+                    <a href="#"><i class="fa fa-gamepad"></i>3PS</a>
+                </li> -->
+            </ul>
+        </div>
 
-        
     </body>
 </html>

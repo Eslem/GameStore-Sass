@@ -61,7 +61,7 @@ class GenericDAO {
             }
 
             $this->connectionManager->closeConnection($connection);
-            echo $resultArray;
+            return $resultArray;
         } else {
             echo false;
         }
