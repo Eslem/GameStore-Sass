@@ -125,7 +125,7 @@
                     outline:2px solid #fff;
                     margin-right:130px;
                     @include transition(all .5s linear);
-                    
+
                     .normalize a{
                         color:#fff;
                     }
@@ -147,7 +147,7 @@
         width:110%;
         margin-left:-50px;
         display:inline-block;
-        
+
         .element {
             -webkit-backface-visibility:hidden;
             width:100/3 * 1%;
@@ -171,7 +171,8 @@
                     opacity:1;
                 }
                 .imgBack {
-                    @include filter(brightness(0.5));
+                    img{
+                        opacity: .5;}
                 }
             }
             .imgBack {

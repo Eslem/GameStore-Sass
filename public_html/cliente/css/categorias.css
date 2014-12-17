@@ -394,7 +394,7 @@ html, body {
   .detail button {
     position: absolute;
     bottom: 4%;
-    left: 89%;
+    right: 3%;
     padding: 1% 1%;
     color: #005F6B;
     font-weight: bold;
@@ -424,15 +424,40 @@ html, body {
   height: 250px;
   width: 25%;
   overflow: hidden;
-  display: inline-block; }
-  .imagenes .game img {
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+  display: inline-block;
+  position: relative; }
+  .imagenes .game:hover {
+    -webkit-backface-visibility: hidden; }
+    .imagenes .game:hover .diagnalA {
+      opacity: 1; }
+    .imagenes .game:hover .imgBack img {
+      opacity: .5; }
+  .imagenes .game .imgBack {
+    -webkit-backface-visibility: hidden;
+    height: 100%;
     width: 100%;
-    height: 80%; }
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    overflow: hidden; }
+    .imagenes .game .imgBack img {
+      -webkit-backface-visibility: hidden;
+      height: 80%;
+      width: 100%;
+      position: absolute; }
+  .imagenes .game .diagnalA {
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    top: 35%;
+    text-align: center;
+    opacity: 0; }
   .imagenes .game .info {
-    text-align: center; }
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    bottom: 0%; }
     .imagenes .game .info div {
       -moz-box-sizing: border-box;
       box-sizing: border-box;

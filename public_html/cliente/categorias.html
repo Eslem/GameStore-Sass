@@ -82,8 +82,8 @@
                                     result = JSON.parse(result);
                                     for (var i in result) {
                                         $('#divGames').append('<div class="game" data-id="' + result[i].id
-                                                + '"><img src="images/games/' + result[i].id
-                                                + '.jpg" alt><div class="info"><div>'
+                                                + '"><div class="imgBack"><img src="images/games/' + result[i].id
+                                                + '.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
                                                 + result[i].nombre + '</div></div></div>');
                                     }
                                     $('.game').click(function(ev) {
