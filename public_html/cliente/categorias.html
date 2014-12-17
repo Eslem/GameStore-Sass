@@ -12,6 +12,8 @@
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
         <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/CreativeButtons/css/component.css" rel="stylesheet" type="text/css"/>
+        
         <script src="js/animacion.js" type="text/javascript"></script>
         <script>
             var categories;
@@ -75,9 +77,9 @@
                         $('ul#categories li:last-child').click(function(ev) {
                             getProductsByCategory($(ev.currentTarget).attr('data-id'), function(result) {
                                 $('#divGames').html('');
+                                $('#divDetail').html('');
                                 if (result !== '' && result !== null) {
                                     result = JSON.parse(result);
-                                    $('#divDetail').html('');
                                     for (var i in result) {
                                         $('#divGames').append('<div class="game" data-id="' + result[i].id
                                                 + '"><img src="images/games/' + result[i].id
@@ -87,8 +89,12 @@
                                     $('.game').click(function(ev) {
                                         findProduct($(ev.currentTarget).attr('data-id'), function(result) {
                                             $('#divDetail').html('<div class="detail"><img class="imgDet" src="images/games/'
-                                                    + result.id + '.jpg" alt><div><h3>' + result.nombre 
-                                                    + '</h3><p>' + result.descripcion + '</p></div></div>');
+                                                    + result.id + '.jpg" alt><div><h3>' + result.nombre
+                                                    + '</h3><hr/><p>' + result.descripcion + '</p>'
+                                                    + '</div><div class="platforms">Plataformas</div><div class="precio">' 
+                                                    + result.precio + '€</div><button class="btnCB btnCB-5 btnCB-5b" data-content="">'
+                                                    + '<span>Add to cart</span></button>'
+                                                    + '</div>');
                                         });
                                     });
                                 }

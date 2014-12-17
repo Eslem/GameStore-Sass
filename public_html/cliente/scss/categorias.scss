@@ -19,11 +19,30 @@
         display: inline-block;
         width: 50%;
         color: #888888;
-        text-align: center;
+        text-align: justify;
         position: absolute;
         font-size: 12.5px;
-        padding: 0% 4%;
+        padding: 0% 3%;
+        h3{
+            text-align: center;
+        }
     }
+    .platforms{
+        border: 2px $color-text solid;
+        width: auto;
+        bottom: 4%;
+        left: 53%;
+        padding: 1% 1%;}
+    .precio{
+        bottom: 7%;
+        left: 83%;
+    }
+    button{
+        background-color:$blue-color;
+        position: absolute;
+        bottom: 4%;
+        left: 89%;
+        padding: 1% 1%;}
 }
 
 /* ----------------------------------  Lista de Productos ---------------------------------- */
