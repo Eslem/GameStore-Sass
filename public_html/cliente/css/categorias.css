@@ -377,7 +377,9 @@ html, body {
     font-size: 12.5px;
     padding: 0% 3%; }
     .detail div h3 {
-      text-align: center; }
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px #7ed1e2; }
   .detail .platforms {
     border: 2px #555555 solid;
     width: auto;
@@ -386,13 +388,33 @@ html, body {
     padding: 1% 1%; }
   .detail .precio {
     bottom: 7%;
-    left: 83%; }
+    left: 81%;
+    font-size: 16px;
+    color: white; }
   .detail button {
-    background-color: #7ed1e2;
     position: absolute;
     bottom: 4%;
     left: 89%;
-    padding: 1% 1%; }
+    padding: 1% 1%;
+    color: #005F6B;
+    font-weight: bold;
+    border: none; }
+    .detail button:hover {
+      background-color: #005F6B;
+      color: #7ed1e2;
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      transition: all 0.2s;
+      outline: none;
+      cursor: pointer; }
+
+.diagnalA {
+  transform: skewX(-25deg);
+  background-color: #7ed1e2; }
+  .diagnalA span, .diagnalA:before {
+    transform: skewX(25deg); }
+    .diagnalA span:hover, .diagnalA:before:hover {
+      outline: none; }
 
 /* ----------------------------------  Lista de Productos ---------------------------------- */
 .imagenes .game {
