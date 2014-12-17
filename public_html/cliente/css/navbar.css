@@ -10,7 +10,7 @@ div.navbar {
   overflow: hidden;
   /* Font awesome */ }
   div.navbar *:not(i) {
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Francois One", sans-serif; }
   div.navbar img.logo {
     float: left;
     height: 40px;
@@ -130,6 +130,7 @@ div.navbar {
         display: inline-block; }
       div.navbar ul li a {
         text-decoration: none;
+        text-transform: uppercase;
         color: #777; }
         div.navbar ul li a::before, div.navbar ul li a::after {
           display: inline-block;
@@ -171,15 +172,18 @@ div.navbar.invisible {
     div.navbar.invisible ul li.active a {
       font-weight: bold;
       font-size: 1.2em;
-      /*border-bottom:4px solid #7ed1e2;
-      color:#fff;*/
-      color: #7ed1e2; }
-      div.navbar.invisible ul li.active a:before, div.navbar.invisible ul li.active a:after {
-        color: #fff; }
-      div.navbar.invisible ul li.active a:before {
-        content: '<'; }
-      div.navbar.invisible ul li.active a:after {
-        content: '>'; }
+      border-bottom: 4px solid #7ed1e2;
+      color: #7ed1e2;
+      /*
+                      &:before, &:after {
+                          color:#fff;                    
+                      }
+                      &:before {
+                          content: '<';                 
+                      }
+                      &:after {
+                          content: '>';                 
+                      }*/ }
 
 /* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {

@@ -14,7 +14,7 @@ div.navbar {
 
     /* Font awesome */
     *:not(i) {
-        font-family:$font-text;
+        font-family:$font;
     }
     img.logo {
         float:left;
@@ -181,6 +181,7 @@ div.navbar {
 
             a {
                 text-decoration:none;
+                text-transform: uppercase;
                 color:$navbar-color;
 
                 &::before, &::after {
@@ -253,11 +254,11 @@ div.navbar.invisible {
                     size:1.2em;
                 }
 
-                /*border-bottom:4px solid #7ed1e2;
-                color:#fff;*/
+                border-bottom:4px solid #7ed1e2;
+                //color:#fff;
                 //Fix
                 color:#7ed1e2;
-
+/*
                 &:before, &:after {
                     color:#fff;                    
                 }
@@ -266,7 +267,7 @@ div.navbar.invisible {
                 }
                 &:after {
                     content: '>';                 
-                }
+                }*/
             }
         }
     }
