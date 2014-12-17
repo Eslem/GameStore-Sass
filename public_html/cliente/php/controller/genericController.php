@@ -6,29 +6,57 @@ function executeQuery($dao) {
             echo json_encode($dao->select());
             break;
         case 'selectPaginated' :
-            echo json_encode($dao->selectPaginated($_POST["index"], $_POST["quantity"]));
+            if (!isset($_POST["index"]) || !isset($_POST["quantity"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo json_encode($dao->selectPaginated($_POST["index"], $_POST["quantity"]));
+            }
             break;
         case 'selectJoin' :
             $condition = null;
             if (isset($_POST["condition"])) {
                 $condition = $_POST['condition'];
             }
-            echo json_encode($dao->selectJoin($_POST['otherTable'], $_POST['field'], $_POST['otherField'], $condition));
+            if (!isset($_POST["otherTable"]) || !isset($_POST["field"]) || !isset($_POST["otherField"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo json_encode($dao->selectJoin($_POST['otherTable'], $_POST['field'], $_POST['otherField'], $condition));
+            }
             break;
         case 'find' :
-            echo json_encode($dao->find($_POST['id']));
+            if (!isset($_POST["id"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo json_encode($dao->find($_POST['id']));
+            }
             break;
         case 'findByCondition' :
-            echo json_encode($dao->findByCondition($_POST['condition']));
+            if (!isset($_POST["condition"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo json_encode($dao->findByCondition($_POST['condition']));
+            }
             break;
         case 'insert' :
-            echo $dao->insert($_POST['values']);
+            if (!isset($_POST["values"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->insert($_POST['values']);
+            }
             break;
         case 'update' :
-            echo $dao->update($_POST['id'], $_POST['values']);
+            if (!isset($_POST["id"]) || !isset($_POST["values"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->update($_POST['id'], $_POST['values']);
+            }
             break;
         case 'delete' :
-            echo $dao->delete($_POST['id']);
+            if (!isset($_POST["id"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->delete($_POST['id']);
+            }
             break;
         default :
             echo 'Invalid AJAX query';
