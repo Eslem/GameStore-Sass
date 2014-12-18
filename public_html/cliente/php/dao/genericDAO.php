@@ -133,7 +133,7 @@ class GenericDAO {
                 foreach ($row as &$property) {
                     $property = utf8_encode($property);
                 }
-                echo $row;
+                return $row;
             } else {
                 echo false;
             }
