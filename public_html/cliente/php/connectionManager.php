@@ -10,7 +10,7 @@ class ConnectionManager {
     }
 
     public function getConnection() {
-        $connection = mysqli_connect($this->server, $this->username, $this->password, $this->database);
+        $connection = mysqli_connect($this->server, $this->username, $this->password, $this->database) or die ("Error connectin ".mysqli_connect_error());
 
         if (!$connection) {
             die('Connection failed: ' . mysqli_connect_error());

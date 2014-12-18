@@ -1,9 +1,13 @@
 <?php
+
 require "flyway.php";
 
-$link = mysqli_connect("localhost","root","root","tienda") or die("Error " . mysqli_error($link)); 
+$openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
+$openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
+echo 'mysql://' . $openshiftHost . ':' . $openshiftPort;
+$link = mysqli_connect($openshiftHost . ':' . $openshiftPort, 'adminyGQgBlT', 'uAZR7FyX8zh9', 'metroidgames') or die("Error link" . mysqli_error($link));
 
 $flyway = new Flyway($link);
 $flyway->migrate();
-    
+
 

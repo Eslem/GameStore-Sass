@@ -7,8 +7,7 @@ class GenericDAO {
     function __construct() {
         $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
         $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
-        $this->connectionManager = new ConnectionManager(
-                'metroidgames', 'adminyGQgBlT', 'uAZR7FyX8zh9', 'mysql://' . $openshiftHost . ':' . $openshiftPort);
+        $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminyGQgBlT', 'uAZR7FyX8zh9', 'metroidgames');
         /*$this->connectionManager = new ConnectionManager(
                 'localhost', 'root', 'root', 'tienda');*/
         $this->tableName = '';
@@ -99,6 +98,9 @@ class GenericDAO {
         $query = "SELECT * FROM " . $this->tableName . ", " . $otherTable
                 . " WHERE " . $this->tableName . "." . $field . " = "
                 . $otherTable . "." . $otherField;
+        
+        
+        
         if ($condition !== null) {
             $query = $query . " AND " . $condition;
         }

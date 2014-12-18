@@ -77,6 +77,7 @@ class Flyway {
     function executeFile($connection, $file) {
         $this->output( "Reading script $file");
         $statement = utf8_decode(file_get_contents($this->folderPath . "/" . $file));
+        //$statement = file_get_contents($this->folderPath . "/" . $file);
 
       
         if (!$statement) {
