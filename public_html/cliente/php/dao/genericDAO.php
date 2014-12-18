@@ -5,7 +5,12 @@ require_once '../connectionManager.php';
 class GenericDAO {
 
     function __construct() {
-        $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+        $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
+        $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
+        $this->connectionManager = new ConnectionManager(
+                'metroidgames', 'adminyGQgBlT', 'uAZR7FyX8zh9', 'mysql://' . $openshiftHost . ':' . $openshiftPort);
+        /*$this->connectionManager = new ConnectionManager(
+                'localhost', 'root', 'root', 'tienda');*/
         $this->tableName = '';
         $this->propertyNames = [];
         $this->propertyTypes = [];
@@ -97,7 +102,7 @@ class GenericDAO {
         if ($condition !== null) {
             $query = $query . " AND " . $condition;
         }
-        
+
         //echo $query;
         $result = $connection->query($query);
 
