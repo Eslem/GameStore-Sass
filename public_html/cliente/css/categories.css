@@ -251,7 +251,8 @@ html, body {
     width: auto;
     bottom: 4%;
     left: 53%;
-    padding: 1% 1%; }
+    padding: 1% 1%;
+    display: none; }
   .detail .precio {
     bottom: 7%;
     left: 81%;
@@ -332,5 +333,3 @@ html, body {
       box-sizing: border-box;
       width: 100%;
       color: #555555; }
-
-/*# sourceMappingURL=categories.css.map */
