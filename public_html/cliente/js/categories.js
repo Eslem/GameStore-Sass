@@ -61,7 +61,7 @@ function loadGames(categoryID) {
                 });
             });
         } else {
-            if (!$(".back-panel").hasClass("active")) $(".back-panel").addClass("active");            
+            if (!$(".back-panel").hasClass("active")) $(".back-panel").addClass("active");
         }
     });
 }
