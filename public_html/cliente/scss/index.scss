@@ -4,22 +4,6 @@
 @import "panel";
 
 
-/* ---------------------------------- Html y body ------------------------ */
-html, body {
-    background-color:#111111;
-    margin:0px;
-    padding:0px;
-    width:100%;
-    height:100%;
-    overflow-x:hidden;
-    font-family:$font;
-}
-
-*:not(i){
-    @include box-sizing(border-box);
-}
-
-
 /* ----------------------------------  Slider principal ---------------------------------- */
 
 #main-Slider {

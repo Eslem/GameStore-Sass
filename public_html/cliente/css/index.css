@@ -309,20 +309,6 @@ div.navbar.invisible {
       .back-panel ul li:last-child a {
         margin-bottom: 0px; }
 
-/* ---------------------------------- Html y body ------------------------ */
-html, body {
-  background-color: #111111;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  font-family: "Francois One", sans-serif; }
-
-*:not(i) {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
 /* ----------------------------------  Slider principal ---------------------------------- */
 #main-Slider {
   width: 100%;
