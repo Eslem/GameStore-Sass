@@ -1,0 +1,7 @@
+{
+    "devDependencies": {
+        "grunt": "latest",
+        "grunt-contrib-sass": "latest",
+        "grunt-contrib-watch": "latest"
+    }
+}

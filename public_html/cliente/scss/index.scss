@@ -1,7 +1,8 @@
 @import "mixins";
 @import "navbar";
-@import "vars.scss";
-@import "main.scss";
+@import "vars";
+@import "panel";
+
 
 /* ----------------------------------  Slider principal ---------------------------------- */
 
@@ -28,7 +29,7 @@
             }
         }
 
-        .score{
+        .score{            
             position:absolute;
             bottom:10%;
             right:4%;
@@ -37,6 +38,7 @@
                 float:left;
                 display:inline-block;
                 margin-left:15px;
+                text-shadow:0 0 3px rgba(0,0,0,.75);
                 p{
                     margin:0px;
                 }
@@ -350,7 +352,7 @@
             text-align:left;}
         hr {
             margin:0 6% 0 0;
-            border-ycolor:$color-text;
+            border-color:$color-text;
         }
     }
 
@@ -364,9 +366,11 @@
 
 .imagenes {
     margin-left:-2%;
-    .game {
-        width:25%;        
+    .game {       
         display:inline-block;
+        width:25%;
+        // Fix
+        white-space:nowrap;
         .precio{
             text-align:right;
             padding-right:10%;

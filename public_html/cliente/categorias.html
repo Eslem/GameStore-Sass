@@ -5,138 +5,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="css/categorias.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/CreativeButtons/css/component.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="css/panel.css" rel="stylesheet" type="text/css"/>
+        <link href="css/categories.css" rel="stylesheet" type="text/css"/>
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
-        <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="libs/CreativeButtons/css/component.css" rel="stylesheet" type="text/css"/>
-        
+        <script src="js/categoriesPanel.js" type="text/javascript"></script>
         <script src="js/animacion.js" type="text/javascript"></script>
-        <script>
-            var categories;
-            var exist = false;
-
-            function getCategories(callback) {
-                $.ajax({
-                    url: 'php/controller/categoriaController.php',
-                    type: 'POST',
-                    data: {
-                        query: 'select'
-                    }
-                }).success(function(result) {
-                    categories = JSON.parse(result);
-                    callback(categories);
-                }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);
-                });
-            }
-
-            function getProductsByCategory(category, callback) {
-                $.ajax({
-                    url: 'php/controller/productoController.php',
-                    type: 'POST',
-                    data: {
-                        query: 'selectJoin',
-                        otherTable: 'producto_categorias',
-                        field: 'id',
-                        otherField: 'idProducto',
-                        condition: 'idCategoria = ' + category
-                    }
-                }).success(function(result) {
-                    callback(result);
-                }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);
-                });
-            }
-
-            function findProduct(id, callback) {
-                $.ajax({
-                    url: 'php/controller/productoController.php',
-                    dataType: 'JSON',
-                    type: 'POST',
-                    data: {
-                        query: 'find',
-                        id: id
-                    }
-                }).success(function(result) {
-                    $('#log').html(result);
-                    callback(result);
-                }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);
-                });
-            }
-
-            $('document').ready(function() {
-                getCategories(function(result) {
-                    for (var i in result) {
-                        $('ul#categories').append('<li style="color: white;" data-id="' + result[i].id + '">'
-                                + result[i].nombre + '</li>');
-                        $('ul#categories li:last-child').click(function(ev) {
-                            getProductsByCategory($(ev.currentTarget).attr('data-id'), function(result) {
-                                $('#divGames').html('');
-                                $('#divDetail').html('');
-                                if (result !== '' && result !== null) {
-                                    result = JSON.parse(result);
-                                    for (var i in result) {
-                                        $('#divGames').append('<div class="game" data-id="' + result[i].id
-                                                + '"><div class="imgBack"><img src="images/games/' + result[i].id
-                                                + '.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
-                                                + result[i].nombre + '</div></div></div>');
-                                    }
-                                    $('.game').click(function(ev) {
-                                        findProduct($(ev.currentTarget).attr('data-id'), function(result) {
-                                            $('#divDetail').html('<div class="detail"><img class="imgDet" src="images/games/'
-                                                    + result.id + '.jpg" alt><div><h3>' + result.nombre
-                                                    + '</h3><hr/><p>' + result.descripcion + '</p>'
-                                                    + '</div><div class="platforms">Plataformas</div><div class="precio">' 
-                                                    + result.precio + '€</div><button class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                                                    + '<span>Add to cart</span></button>'
-                                                    + '</div>');
-                                        });
-                                    });
-                                }
-                            });
-                        });
-                    }
-                });
-            });
-        </script>
+        <script src="js/categories.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class="navbar invisible">
-
-            <img src="images/logo1.png" alt="logo" class="logo">
-
-            <ul>
-                <li><a href="#">Opt1</a></li>
-                <li class="active"><a href="#">Opt2</a></li>
-                <li><a href="#">Opt3</a></li>  
-                <li class="slide-nav"><i class="fa fa-bars"></i></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-slideLeft" placeholder="Login">
-                <input type="text" class="form-slideLeft" placeholder="Password">
-                <div class="hexagon navbar-right show-animate inactive">
-                    <i class="fa fa-sign-in"></i>
-                </div>
-
-            </form>
-        </div>
 
         <div id="divCategories">
-            <ul id="categories"></ul>
-
             <div id="divDetail"></div>
 
-            <div id="divGames" class="imagenes">
-
-            </div>
+            <div id="divGames" class="imagenes"></div>
 
             <div id="log"></div>
 
         </div>
+
+        <div class="back-panel">
+            <ul class="panel-categorias">
+            </ul>
+        </div>
     </body>
 </html>
+        <div id="navbar" class="navbar invisible"></div>

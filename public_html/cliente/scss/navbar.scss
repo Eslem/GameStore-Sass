@@ -3,27 +3,29 @@
 
 /* ---------------------------------- Barra de navegacion ---------------------------------- */
 
-div.navbar{
+div.navbar {
     background-color:$backNavbar;
     display:block;
     overflow:auto;
     width:100%;
     position:fixed;
     z-index:350;
+    overflow:hidden;
 
     /* Font awesome */
-    *:not(i){
-        font-family:$font-text;
+    *:not(i) {
+        font-family:$font;
     }
-    img.logo{
+    img.logo {
         float:left;
         height:40px;
         margin:5px 0px;
         padding-left:50px;
     }
-    form.navbar-form{
-        padding:{
-            left:50px;
+    form.navbar-form {
+        padding: {
+            //Fix
+            //left:50px;
             top:5px;
             bottom:0px;
         }        
@@ -31,7 +33,7 @@ div.navbar{
         display:inline-block;
         margin:0px;
         float:left;
-        &.navbar-right{
+        &.navbar-right {
             float:right;
             padding-right:50px;
         }
@@ -50,13 +52,13 @@ div.navbar{
 
             @include transition(all .5 linear) ;
 
-            &:hover{
+            &:hover {
                 color:#fff;
             }
-            &.active{
+            &.active {
                 @include animation(infinite-spinning 2s 1);
             }
-            &.inactive{
+            &.inactive {
                 @include animation(infinite-spinning2 2s 1);
             }
         }
@@ -67,7 +69,7 @@ div.navbar{
             position:absolute;
             width:0;
             left:0px;
-            border:{
+            border: {
                 left:17px solid transparent;
                 right:17px solid transparent;  
             }
@@ -84,7 +86,7 @@ div.navbar{
             border-top:9.81px solid #64C7CC;
         }
 
-        input{
+        input {
             display:inline-block;
             text-decoration:none;
             padding:6px 12px;
@@ -105,18 +107,20 @@ div.navbar{
             max-width:100%;
             vertical-align:middle;
 
-            &:focus{
+            &:focus {
                 border-color:$blue-color;
                 box-shadow:0 1px 1px rgba(0, 0, 0, 0.15) inset, 0 0 8px rgba($blue-color, 0.6);
             }
 
-            &.form-slideLeft{
+            &.form-slideLeft {
                 width:0px;
+                padding:0;
                 @include transition(all .5s ease-in);
                 opacity:0;
 
-                &.active{
+                &.active {
                     width:150px;
+                    padding:6px 16px;
                     opacity:1;
                 }
             }
@@ -125,7 +129,7 @@ div.navbar{
 
 
     ul {
-        padding:{
+        padding: {
             left:10px;
             top:0px;
             bottom:0px;
@@ -135,16 +139,16 @@ div.navbar{
         margin:0px;
         float:left;
 
-        &.navbar-right{
+        &.navbar-right {
             float:right;
             padding-right:150px;
         }
 
-        &:after, &:before{
+        &:after, &:before {
             clear:both;
         }
 
-        li{
+        li {
             display:inline-block;
             text-decoration:none;
             padding:15px;
@@ -154,73 +158,116 @@ div.navbar{
             font-size:14px;
             cursor:pointer;
 
-            &:hover{
-                a{
-                    color:#fff;
+            &:hover, &.active {
+                a {
+                    &:before,
+                        &:after {
+                        opacity: 1;
+                        @include transform(translateX(0px));
+                    }   
                 }
             }
 
-            &.active{
+            &.active {
                 background-color:$navbar-black;
-                a{
+                a {
                     color:#fff;
                 }
             }
 
-            &.button{
+            &.button {
                 display:inline-block;
             }
 
-            a{
+            a {
                 text-decoration:none;
+                text-transform: uppercase;
                 color:$navbar-color;
+
+                &::before, &::after {
+                    display: inline-block;
+                    opacity: 0;
+                    @include transition2(transform 0.3s, opacity 0.2s);
+                }
+
+                &::before {
+                    margin-right: 10px;
+                    content: '[';
+                    @include transform(translateX(20px));
+                }
+
+                &::after {
+                    margin-left: 10px;
+                    content: ']';
+                    @include transform(translateX(-20px));
+                }
+
             }
 
-            &.header{
+            &.header {
                 font-size:18px;
             }
-            &.slide-nav{
+            &.slide-nav {
                 display:none;
                 color:$navbar-color;
 
-                &:hover{
+                &:hover {
                     color:#fff;
                 }
             }
 
         }
     }
+
+    .background {
+        height:48px;
+        background:rgba(32,32,32,.5);
+    }
 }
 
 
-div.navbar.invisible{
+div.navbar.invisible {
     background-color:transparent;
 
 
-    ul li{
+    ul li {
 
-        &:hover{
-            a{
-                color:#eee; 
+        &:hover {
+            a {
+                color:#7ed1e2; 
                 font-weight:bold;
             }
         }
 
-        a{
-            color:#777;
+        a {
+            //Cambio de color. No se veía ni sobre el fondo ni sobre las imágenes
+            color: #EEE;
+            text-shadow: 0 0 3px rgba(0,0,0,.5);
         }
 
-        &.active{
+        &.active {
             background-color:transparent;
 
-            a{
-                font:{
+            a {
+                font: {
                     weight:bold;
                     size:1.2em;
                 }
 
                 border-bottom:4px solid #7ed1e2;
-                color:#fff;
+                //color:#fff;
+                //Fix
+                color:#7ed1e2;
+/*
+                &:before, &:after {
+                    color:#fff;                    
+                }
+                &:before {
+                    content: '<';                 
+                }
+                &:after {
+                    content: '>';                 
+                }*/
             }
         }
     }
@@ -228,7 +275,7 @@ div.navbar.invisible{
 
 /* Animación del botón de login */
 
-@-webkit-keyframes infinite-spinning{
+@-webkit-keyframes infinite-spinning {
     from {
         transform:rotate(0deg);
     }
@@ -237,7 +284,7 @@ div.navbar.invisible{
     }
 }
 
-@-webkit-keyframes infinite-spinning2{
+@-webkit-keyframes infinite-spinning2 {
     from {
         transform:rotate(0deg);
     }

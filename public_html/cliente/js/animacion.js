@@ -5,21 +5,22 @@
  */
 var globalmargin;
 
-$(document).ready(function () {
+$(document).ready(function() {
     //$('.main-Slider').append('');
     globalmargin = parseInt($(".gallery1 .imagenes").css("margin-left"));
-    navBar();
 
-    onScroll(".elements", function (el) {
+    onScroll(".elements", function(el) {
         console.log("animate");
     });
 
     setInterval(autoSlider, 1000);
+
+    setUpCategorias();
 });
 
 var active = 0;
 function autoSlider() {
-    
+
     $(".element .elements").eq(active).click();
     active++;
     if (active === 2) {
@@ -28,8 +29,8 @@ function autoSlider() {
 }
 
 function onScroll(elem, funcion) {
-    $(window).scroll(function () {
-        $(elem).each(function () {
+    $(window).scroll(function() {
+        $(elem).each(function() {
             a = $(this).offset().top + $(this).height();
             b = $(window).scrollTop() + $(window).height();
             if (a < b) {
@@ -48,7 +49,7 @@ function changeMain(elem) {
 
 
     $("#mainImg").css("opacity", "0");
-    $("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
+    $("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
         $(elem).find("h3").text(beforeText);
         h1.text(text);
 
@@ -57,7 +58,7 @@ function changeMain(elem) {
     });
 
     $(elem).find("img").css("opacity", "0");
-    $(elem).find("img").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
+    $(elem).find("img").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
         $(elem).find("img").attr("src", beforeImg);
         $(elem).find("img").css("opacity", "1");
     });
@@ -86,16 +87,28 @@ function slide(elem, number, id) {
     }
     $(id).css("margin-left", margin + "%");
 }
+function showForm(elem) {
+    $(elem).toggleClass("active");
+    $(elem).toggleClass("inactive");
 
-function navBar() {
-    $(".show-animate").click(function () {
-        $(this).toggleClass("active");
-        $(this).toggleClass("inactive");
-        
-        $(".form-slideLeft").toggleClass("active");
-    });
+    $(".form-slideLeft").toggleClass("active");
+}
 
-    $(".slide-nav").click(function () {
+function slideNavToggle() {
+    $(".slide-nav").click(function() {
         $(".navbar form, .navbar ul li:not(.slide-nav, .header)").slideToggle();
     });
+}
+
+function setUpCategorias() {
+    $(".back-panel").mouseup(function() {
+        $(this).removeClass("active");
+    });
+    $(".back-panel ul").mouseup(function() {
+        return false;
+    });
+}
+
+function showCategorias() {
+    $(".back-panel").addClass("active");
 }

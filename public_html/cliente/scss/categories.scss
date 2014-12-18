@@ -1,0 +1,136 @@
+@import "mixins";
+@import "navbar";
+@import "vars.scss";
+@import "main.scss";
+
+/* ---------------------------------- Detalle de Producto ---------------------------------- */
+
+#divCategories {
+    margin-top:56px;
+}
+
+.detail{
+    margin:0% 6.25%;
+    position:relative;
+    vertical-align:top;
+    border:3px $color-text solid;
+    font-size:0px;
+    background-color:#383838;
+    .imgDet{
+        width:50%;
+        display:inline-block;}
+    div {
+        display:inline-block;
+        width:50%;
+        color:#888888;
+        text-align:justify;
+        position:absolute;
+        font-size:12.5px;
+        padding:0% 3%;
+        h3{
+            text-align:center;
+            color:white;
+            text-shadow:2px 2px 8px $blue-color;}
+    }
+    .platforms{
+        border:2px $color-text solid;
+        width:auto;
+        bottom:4%;
+        left:53%;
+        padding:1% 1%;}
+    .precio{
+        bottom:7%;
+        left:81%;
+        font-size:16px;
+        color:white;}
+    button{ 
+        position:absolute;
+        bottom:4%;
+        right:3%;
+        padding:1% 1%;
+        color:#005F6B;
+        font-weight:bold;
+        border:none;
+        &:hover{
+            background-color:#005F6B;
+            color:$blue-color;
+            @include transition(all .2s);
+            outline:none;
+            cursor:pointer;
+        }
+    }
+}
+
+.diagnalA {
+    transform:skewX(-25deg);
+    background-color:$blue-color;
+    span, &:before {
+        transform:skewX(25deg);
+        &:hover{
+            outline:none;
+        }
+    }
+    
+    &:before {
+        margin-left:5px;
+    }
+}
+
+/* ----------------------------------  Lista de Productos ---------------------------------- */
+
+.imagenes {
+    .game {
+        margin-left:6.25%;
+        margin-top:2%;
+        -webkit-backface-visibility:hidden;
+        height:250px;
+        width:25%;
+        overflow:hidden;
+        display:inline-block;
+        position:relative;
+        cursor:pointer;
+        &:hover{
+            -webkit-backface-visibility:hidden;
+            .diagnalA{
+                opacity:1;}
+            .imgBack{
+                img{
+                    opacity:.5;}
+            }
+        }
+        .imgBack {
+            -webkit-backface-visibility:hidden;
+            height:100%;
+            width:100%;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            position:absolute;
+            overflow:hidden;
+            img {
+                -webkit-backface-visibility:hidden;
+                height:80%;
+                width:100%;
+                position:absolute;
+            }
+        }
+        .diagnalA{
+            position:absolute;
+            width:20%;
+            left:40%;
+            top:35%;
+            text-align:center;
+            opacity:0;}
+        .info{
+            text-align:center;
+            position:absolute;
+            width:100%;
+            height:15%;
+            bottom:0%;
+            div {
+                @include box-sizing(border-box);
+                width:100%;
+                color:$color-text;
+            }
+        }
+    }
+}
