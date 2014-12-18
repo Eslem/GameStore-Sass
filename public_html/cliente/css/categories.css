@@ -221,6 +221,9 @@ html, body {
   box-sizing: border-box; }
 
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
+#divCategories {
+  margin-top: 56px; }
+
 .detail {
   margin: 0% 6.25%;
   position: relative;
@@ -329,4 +332,4 @@ html, body {
       width: 100%;
       color: #555555; }
 
-/*# sourceMappingURL=categorias.css.map */
+/*# sourceMappingURL=categories.css.map */

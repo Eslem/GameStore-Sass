@@ -7,116 +7,27 @@
 
         <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="libs/CreativeButtons/css/component.css" rel="stylesheet" type="text/css"/>
-        <link href="css/categorias.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/panel.css" rel="stylesheet" type="text/css"/>
+        <link href="css/categories.css" rel="stylesheet" type="text/css"/>
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
-        <script src="js/categories.js" type="text/javascript"></script>
+        <script src="js/categoriesPanel.js" type="text/javascript"></script>
         <script src="js/animacion.js" type="text/javascript"></script>
-
-        <script>
-            var categories;
-
-            function getProductsByCategory(category, callback) {
-                $.ajax({
-                    url: 'php/controller/productoController.php',
-                    type: 'POST',
-                    data: {
-                        query: 'selectJoin',
-                        otherTable: 'producto_categorias',
-                        field: 'id',
-                        otherField: 'idProducto',
-                        condition: 'idCategoria = ' + category
-                    }
-                }).success(function(result) {
-                    callback(result);
-                }).error(function(error) {
-                    $('#log').html(error.responseText);
-                });
-            }
-
-            function findProduct(id, callback) {
-                $.ajax({
-                    url: 'php/controller/productoController.php',
-                    dataType: 'JSON',
-                    type: 'POST',
-                    data: {
-                        query: 'find',
-                        id: id
-                    }
-                }).success(function(result) {
-                    $('#log').html(result);
-                    callback(result);
-                }).error(function(error) {
-                    $('#log').html(error.responseText);
-                });
-            }
-
-            $('document').ready(function() {
-                $('#navbar').load('navbar.html');
-
-
-
-                getCategories(function(categories) {
-                    var strHTML = '';
-                    for (var i = 0; i < categories.length; i++) {
-                        var category = categories[i];
-
-                        if (i % 3 === 0) strHTML += '<li>';
-                        strHTML += '<span class="gameIcon"><img class="genreIcon" src="images/genres/'
-                                + category.nombre + '.svg">' + '<br/>' + category.nombre + '</span>';
-                        if (!i % 3 === 2) strHTML += '</li>';
-                    }
-
-                    $('.panel-categorias').html(strHTML);
-
-                    $('ul#categories li').click(function(ev) {
-                        getProductsByCategory($(ev.currentTarget).attr('data-id'), function(result) {
-                            $('#divGames').html('');
-                            $('#divDetail').html('');
-                            if (result !== '' && result !== null) {
-                                result = JSON.parse(result);
-                                for (var i in result) {
-                                    $('#divGames').append('<div class="game" data-id="' + result[i].id
-                                            + '"><div class="imgBack"><img src="images/games/' + result[i].id
-                                            + '.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
-                                            + result[i].nombre + '</div></div></div>');
-                                }
-                                $('.game').click(function(ev) {
-                                    findProduct($(ev.currentTarget).attr('data-id'), function(result) {
-                                        $('#divDetail').html('<div class="detail"><img class="imgDet" src="images/games/'
-                                                + result.id + '.jpg" alt><div><h3>' + result.nombre
-                                                + '</h3><hr/><p>' + result.descripcion + '</p>'
-                                                + '</div><div class="platforms">Plataformas</div><div class="precio">'
-                                                + result.precio + '€</div><button class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                                                + '<span>Add to cart</span></button>'
-                                                + '</div>');
-                                    });
-                                });
-                            }
-                        });
-                    });
-                });
-            });
-        </script>
+        <script src="js/categories.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="navbar" class="navbar invisible"></div>
 
         <div id="divCategories">
-            <ul id="categories"></ul>
-
             <div id="divDetail"></div>
 
-            <div id="divGames" class="imagenes">
-
-            </div>
+            <div id="divGames" class="imagenes"></div>
 
             <div id="log"></div>
-
         </div>
 
         <div class="back-panel">
