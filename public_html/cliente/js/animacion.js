@@ -8,7 +8,6 @@ var globalmargin;
 $(document).ready(function() {
     //$('.main-Slider').append('');
     globalmargin = parseInt($(".gallery1 .imagenes").css("margin-left"));
-    navBar();
 
     onScroll(".elements", function(el) {
         console.log("animate");
@@ -88,15 +87,14 @@ function slide(elem, number, id) {
     }
     $(id).css("margin-left", margin + "%");
 }
+function showForm(elem) {
+    $(elem).toggleClass("active");
+    $(elem).toggleClass("inactive");
 
-function navBar() {
-    $(".show-animate").click(function() {
-        $(this).toggleClass("active");
-        $(this).toggleClass("inactive");
+    $(".form-slideLeft").toggleClass("active");
+}
 
-        $(".form-slideLeft").toggleClass("active");
-    });
-
+function slideNavToggle() {
     $(".slide-nav").click(function() {
         $(".navbar form, .navbar ul li:not(.slide-nav, .header)").slideToggle();
     });
