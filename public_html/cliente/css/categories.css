@@ -293,7 +293,8 @@ html, body {
   width: 25%;
   overflow: hidden;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   .imagenes .game:hover {
     -webkit-backface-visibility: hidden; }
     .imagenes .game:hover .diagnalA {
