@@ -31,7 +31,7 @@ class Flyway {
     }
 
     function __contruct() {
-
+        
     }
 
     function getDatabaseConnection() {
@@ -45,8 +45,8 @@ class Flyway {
     function error($String) {
         echo $String;
     }
-    
-    function output($string){
+
+    function output($string) {
         echo "<br>$string";
     }
 
@@ -55,36 +55,36 @@ class Flyway {
         $this->output("Checking flyway_schema table");
         if (!$query) {
             //$query->free_result();
-            $this->output( "Flyway_schema doesn't exist");
+            $this->output("Flyway_schema doesn't exist");
             $queryCreateTable = $connection->query($this->createStatement);
-             $this->output( "Creating flyway_schema table");
+            $this->output("Creating flyway_schema table");
             if (!$queryCreateTable) {
                 $this->error("Error creating database");
                 $queryCreateTable->free_result();
                 return false;
             } else {
                 //$queryCreateTable->free_result();
-                 $this->output("Flyway_shema table created");
+                $this->output("Flyway_shema table created");
                 return true;
             }
         } else {
-            $this->output( "Flyway_schema exist");
-                    $query->free_result();
+            $this->output("Flyway_schema exist");
+            $query->free_result();
             return true;
         }
     }
 
     function executeFile($connection, $file) {
-        $this->output( "Reading script $file");
+        $this->output("Reading script $file");
         $statement = file_get_contents($this->folderPath . "/" . $file);
         if (!$statement) {
             die('Error opening file');
         } else {
-            $this->output( "Executing Script..");  
-        
+            $this->output("Executing Script..");
+
             $query = $connection->multi_query($statement);
             if ($query) {
-                 $this->output( "Script successful executed"); 
+                $this->output("Script successful executed");
                 do {
                     if ($res = $connection->store_result()) {
                         var_dump($res->fetch_all(MYSQLI_ASSOC));
@@ -93,7 +93,7 @@ class Flyway {
                 } while ($connection->more_results() && $connection->next_result());
                 $success = 1;
             } else {
-                $this->output( "Script unsuccessful executed"); 
+                $this->output("Script unsuccessful executed");
                 $success = 0;
                 trigger_error('Wrong SQLFile  Error: ' . $connection->errno . ' ' . $connection->error, E_USER_ERROR);
             }
@@ -104,7 +104,7 @@ class Flyway {
     }
 
     function last($connection) {
-        $this->output( "Reading last script executed"); 
+        $this->output("Reading last script executed");
         $version = 0;
         $statements = "SELECT * FROM flyway_schema ORDER BY version_rank DESC LIMIT 1;";
         $result = $connection->query($statements);
@@ -115,12 +115,12 @@ class Flyway {
             }
         }
         $result->free_result();
-       $this->output( "Last script executed: $version"); 
+        $this->output("Last script executed: $version");
         return $version;
     }
 
     public function migrate() {
-       $this->output( "Creating connection...");
+        $this->output("Creating connection...");
         $connection = $this->databaseConnection;
 
         if ($this->checkTable($connection)) {
@@ -147,7 +147,7 @@ class Flyway {
                         if (!$info || $info = "") {
                             $info = "no info";
                         }
-                        $this->output( "Inserting row schema version $intVersion output $success into flyway_schema"); 
+                        $this->output("Inserting row schema version $intVersion output $success into flyway_schema");
 
                         //$success = 0;
 
@@ -163,9 +163,9 @@ class Flyway {
                         $stmt->bind_param("iisssssi", $intVersion, $intVersion, $version, $name, $type, $script, $info, $success);
 
                         $stmt->execute() or die(' Error: ' . $connection->errno . ' ' . $connection->error);
-                        $this->output("Affected rows flyway_schema: ". $stmt->affected_rows);
+                        $this->output("Affected rows flyway_schema: " . $stmt->affected_rows);
 
-                        
+
                         $stmt->close();
                     }
                 }
