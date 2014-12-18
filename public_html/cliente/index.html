@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
 
@@ -12,64 +13,17 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
-        <link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/categories.js" type="text/javascript"></script>
         <script src="js/animacion.js" type="text/javascript"></script>
+        
         <script>
-            function getCategories(callback) {
-                $.ajax({
-                    url: 'php/controller/categoriaController.php',
-                    type: 'POST',
-                    data: {
-                        query: 'select'
-                    }
-                }).success(function(result) {
-                    console.log(result);
-                    categories = JSON.parse(result);
-                    callback(categories);
-                }).error(function(errorHTML) {
-                    $('#log').html(errorHTML);
-                });
-            }
-
             $('document').ready(function() {
-                getCategories(function(categories) {
-                    var strHTML = '';
-                    for (var i = 0; i < categories.length; i++) {
-                        var category = categories[i];
-
-                        if (i % 3 === 0) strHTML += '<li>';
-                        strHTML += '<a href="categorias.html#' + category.id + '">'
-                                + '<img class="genreIcon" src="images/genres/' + category.nombre + '.svg">'
-                                + '<br/>' + category.nombre + '</a>';
-                        if (!i % 3 === 2) strHTML += '</li>';
-                    }
-
-                    $('.panel-categorias').html(strHTML);
-                });
+                $('#navbar').load('navbar.html');
             });
         </script>
     </head>
     <body>
-        <div class="navbar invisible">
-
-            <img src="images/logo1.png" alt="logo" class="logo">
-
-            <ul>
-                <li  class="active"><a href="#">Home</a></li>
-                <li onClick="showCategorias()"><a href="#">Categorias</a></li>
-                <li><a href="#">Perfil</a></li>  
-                <li class="slide-nav"><i class="fa fa-bars"></i></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-slideLeft" placeholder="Login">
-                <input type="text" class="form-slideLeft" placeholder="Password">
-                <div class="hexagon navbar-right show-animate inactive">
-                    <i class="fa fa-sign-in"></i>
-                </div>
-
-            </form>
-            <!-- <div class="background"></div> -->
-        </div>
+        <div id="navbar" class="navbar invisible"></div>
         <div id="main-Slider">
 
             <div class="active">
@@ -552,18 +506,6 @@
 
         <div class="back-panel">
             <ul class="panel-categorias">
-                <!--<li>
-                    <a href="#"><i class="fa fa-gamepad"></i>RPG</a>
-                    <a href="#"><i class="fa fa-gamepad"></i>FPS</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-gamepad"></i>F2P</a>
-                    <a href="#"><i class="fa fa-gamepad"></i>Accion</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-gamepad"></i>Aventura</a>
-                    <a href="#"><i class="fa fa-gamepad"></i>3PS</a>
-                </li> -->
             </ul>
         </div>
 
