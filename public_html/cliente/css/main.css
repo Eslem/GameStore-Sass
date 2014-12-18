@@ -1,39 +1,15 @@
-/*
-Error: Invalid CSS after "@import "navbar"": expected "{", was ";"
-        on line 3 of C:\Users\alumno\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\main.scss
+/* ---------------------------------- Html y body ------------------------ */
+html, body {
+  background-color: #111111;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: "Francois One", sans-serif; }
 
-1: @import "mixins";
-2: <<<<<<< HEAD
-3: @import "navbar";
-4: @import "vars.scss";
-5: =======
-6: @import "vars";
-7: >>>>>>> develop
-8: 
+*:not(i) {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
-Backtrace:
-C:\Users\alumno\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\main.scss:3
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1165:in `expected'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1101:in `expected'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1096:in `tok!'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:641:in `block'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:635:in `ruleset'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:660:in `block_child'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:653:in `block_contents'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:117:in `stylesheet'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:42:in `parse'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:393:in `_to_tree'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
-C:/Ruby21/bin/sass:23:in `load'
-C:/Ruby21/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"@import \"navbar\"\": expected \"{\", was \";\"\A         on line 3 of C:\Users\alumno\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\main.scss\A \A 1: @import \"mixins\";\A 2: <<<<<<< HEAD\A 3: @import \"navbar\";\A 4: @import \"vars.scss\";\A 5: =======\A 6: @import \"vars\";\A 7: >>>>>>> develop\A 8: "; }
+/*# sourceMappingURL=main.css.map */

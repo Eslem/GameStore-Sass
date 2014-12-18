@@ -438,12 +438,8 @@ div.navbar.invisible {
         -webkit-backface-visibility: hidden; }
         #main-Slider .elements .element:hover .text {
           opacity: 1; }
-        #main-Slider .elements .element:hover .imgBack {
-          -webkit-filter: brightness(0.5);
-          -moz-filter: brightness(0.5);
-          -o-filter: brightness(0.5);
-          -ms-filter: brightness(0.5);
-          filter: brightness(0.5); }
+        #main-Slider .elements .element:hover .imgBack img {
+          opacity: .5; }
       #main-Slider .elements .element .imgBack {
         -webkit-backface-visibility: hidden;
         height: 100%;
