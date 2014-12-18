@@ -85,7 +85,9 @@ function getSelectedCategory() {
 }
 
 $('document').ready(function() {
-    $('#navbar').load('navbar.html');
+    $('#navbar').load('navbar.html', function() {
+        $('#navLinkCategories').addClass('active');        
+    });
 
     getCategories(function(categories) {
         var strHTML = '';
