@@ -64,6 +64,17 @@ function loadGames(categoryID) {
     });
 }
 
+function getSelectedCategory() {
+    var url = window.location.toString();
+    if (url.indexOf('#') !== -1) {
+        var categoryID = parseInt(url.slice(url.indexOf('#') + 1));
+        if (!isNaN(categoryID)) loadGames(categoryID);
+        else window.history.pushState({}, "", url.slice(0, url.indexOf('#')));
+    } else {
+        $(".back-panel").addClass("active");
+    }
+}
+
 $('document').ready(function() {
     $('#navbar').load('navbar.html');
 
@@ -88,14 +99,3 @@ $('document').ready(function() {
 
     getSelectedCategory();
 });
-
-function getSelectedCategory() {
-    var url = window.location.toString();
-    if (url.indexOf('#') !== -1) {
-        var categoryID = parseInt(url.slice(url.indexOf('#') + 1));
-        if (!isNaN(categoryID)) loadGames(categoryID);
-        //else window.history.pushState({}, "", url.slice(0, url.indexOf('#')));
-    } else {
-        $(".back-panel").addClass("active");
-    }
-}
