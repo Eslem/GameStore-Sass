@@ -1,5 +1,6 @@
 <?php
 
+header ("location: cliente/index.html");
 
 $username = "adminyGQgBlT";
 $password = "uAZR7FyX8zh9";
@@ -27,4 +28,4 @@ $conn->close();
 
 
 
-header ("location: cliente/index.html");
+
