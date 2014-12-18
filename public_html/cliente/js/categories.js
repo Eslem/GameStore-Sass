@@ -60,6 +60,8 @@ function loadGames(categoryID) {
                             + '</div>');
                 });
             });
+        } else {
+            if (!$(".back-panel").hasClass("active")) $(".back-panel").addClass("active");            
         }
     });
 }
