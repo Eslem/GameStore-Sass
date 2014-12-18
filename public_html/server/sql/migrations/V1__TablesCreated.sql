@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
   `precio` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 
 
 INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
-VALUES (1, 'Dragon Age: Inquisition', 'Texto de Ejemplo', 50);
+VALUES (1, 'Dragon Age: Inquisition', 'Un cataclismo ha sumido las tierras de Thedas en la confusiÃ³n. Los Dragones oscurecen los cielos, invocando a las sombras del terror sobre el reino que en un tiempo fue pacÃ­fico. Los Magos inician una guerra sin cuartel contra los opresivos Templarios. Las naciones se levantan unas contra otras. Depende de ti y de tu grupo de hÃ©roes legendarios restablecer el orden como lider de la inquisiciÃ³n, cazando a los agentes del caos.', 50);
 INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
 VALUES (2, 'Batman Arkham Knigth', 'Texto de Ejemplo', 50);
 INSERT INTO `tienda`.`producto` (`id`, `nombre`, `descripcion`, `precio`) 
