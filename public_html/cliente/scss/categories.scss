@@ -90,38 +90,39 @@
         overflow:hidden;
         display:inline-block;
         position:relative;
-        cursor:pointer;
-        &:hover{
-            -webkit-backface-visibility:hidden;
-            .diagnalA{
-                opacity:1;}
-            .imgBack{
-                img{
-                    opacity:.5;}
-            }
-        }
         .imgBack {
             -webkit-backface-visibility:hidden;
-            height:100%;
+            height:80%;
             width:100%;
             background-size:100% 100%;
             background-repeat:no-repeat;
             position:absolute;
             overflow:hidden;
+            cursor:pointer;
             img {
                 -webkit-backface-visibility:hidden;
-                height:80%;
+                height:100%;
                 width:100%;
                 position:absolute;
+                transition:.2s;
+            }
+            &:hover{
+                -webkit-backface-visibility:hidden;
+                .diagnalA {
+                    opacity:1;}
+                img {
+                    opacity:.5;
+                }
             }
         }
         .diagnalA{
             position:absolute;
             width:20%;
             left:40%;
-            top:35%;
+            top:48%;
             text-align:center;
-            opacity:0;}
+            opacity:0;
+            transition:.2s;}
         .info{
             text-align:center;
             position:absolute;

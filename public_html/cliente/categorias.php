@@ -20,7 +20,7 @@
         <script src="js/categories.js" type="text/javascript"></script>
     </head>
     <body>
-        
+
         <div id="navbar" class="navbar invisible"></div>
 
         <div id="divCategories">

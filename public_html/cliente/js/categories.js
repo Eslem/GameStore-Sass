@@ -1,3 +1,7 @@
+//==============================================================================
+// CATEGORIES
+//==============================================================================
+
 var categories;
 
 function getProductsByCategory(category, callback) {
@@ -11,9 +15,9 @@ function getProductsByCategory(category, callback) {
             otherField: 'idProducto',
             condition: 'idCategoria = ' + category
         }
-    }).success(function(result) {
+    }).success(function (result) {
         callback(result);
-    }).error(function(error) {
+    }).error(function (error) {
         $('#log').html(error.responseText);
     });
 }
@@ -27,16 +31,94 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function(result) {
+    }).success(function (result) {
         $('#log').html(result);
         callback(result);
-    }).error(function(error) {
+    }).error(function (error) {
         $('#log').html(error.responseText);
     });
 }
 
+
+//==============================================================================
+// CART
+//==============================================================================
+
+function getSession(callback) {
+    $.ajax({
+        url: 'php/sessionManager.php',
+        type: 'POST',
+        data: {
+            operation: 'get'
+        }
+    }).success(function (result) {
+        console.log(result);
+        if (callback !== undefined) callback(result);
+        return result;
+    }).error(function (error) {
+        $('#log').html(error.responseText);
+    });
+}
+
+function setSession(session, callback) {
+    if (session !== undefined) {
+        $.ajax({
+            url: 'php/sessionManager.php',
+            type: 'POST',
+            data: {
+                operation: 'set',
+                session: session
+            }
+        }).success(function (result) {
+            callback(result);
+        }).error(function (error) {
+            $('#log').html(error.responseText);
+        });
+    } else console.log('Session is undefined');
+}
+
+function closeSession(callback) {
+    $.ajax({
+        url: 'php/sessionManager.php',
+        type: 'POST',
+        data: {
+            operation: 'close'
+        }
+    }).success(function (result) {
+        if (callback !== undefined) callback(result);
+    }).error(function (error) {
+        $('#log').html(error.responseText);
+    });
+}
+
+function addToCart(id) {
+    var session;
+    
+    getSession(function (result) {
+        session = result;
+
+        var cart = session.cart;
+        if (cart === undefined) cart = {};
+
+        if (cart[id] === undefined) cart[id] = 1;
+        else cart[id]++;
+
+        session.cart = cart;
+        console.log('Session:', session);
+        console.log('Cart:', cart);
+        setSession(session, function (result) {
+            //console.log(result);
+        });
+    });
+}
+
+
+//==============================================================================
+// MAIN
+//==============================================================================
+
 function loadGames(categoryID) {
-    getProductsByCategory(categoryID, function(result) {
+    getProductsByCategory(categoryID, function (result) {
         $('#divGames').html('');
         $('#divDetail').html('');
         if (result !== '' && result !== null && JSON.parse(result) !== null) {
@@ -44,23 +126,23 @@ function loadGames(categoryID) {
             result = JSON.parse(result);
             for (var i in result) {
                 $('#divGames').hide();
-                $('#divGames').append('<div class="game" data-id="' + result[i].id
-                        + '"><div class="imgBack"><img src="images/games/' + result[i].id
-                        + '.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
-                        + result[i].nombre + '</div></div></div>');
+                $('#divGames').append('<div class="game" data-id="' + result[i].id + '">'
+                        + '<div class="imgBack"><img src="images/games/' + result[i].id
+                        + '.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
+                        + '<div>' + result[i].nombre + '</div></div></div>');
                 $('#divGames').fadeIn("slow");
 
             }
-            $('.game').click(function(ev) {
-                findProduct($(ev.currentTarget).attr('data-id'), function(result) {
+            $('.game .imgBack').click(function (ev) {
+                findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
                     $('#divDetail').hide();
-                    $('#divDetail').html('<div class="detail"><img class="imgDet" src="images/games/'
-                            + result.id + '.jpg" alt><div><h3>' + result.nombre
-                            + '</h3><hr/><p>' + result.descripcion + '</p>'
-                            + '</div><div class="platforms">Plataformas</div><div class="precio">'
-                            + result.precio + '€</div><button class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                            + '<span>Add to cart</span></button>'
-                            + '</div>');
+                    $('#divDetail').html('<div class="detail">'
+                            + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
+                            + '<div><h3>' + result.nombre + '</h3><hr/>'
+                            + '<p>' + result.descripcion + '</p></div>' + '<div class="platforms">Plataformas</div>'
+                            + '<div class="precio">' + result.precio + '€</div>'
+                            + '<button onclick="addToCart(' + result.id + ');" class="diagnalA btnCB btnCB-5 btnCB-5b">'
+                            + '<span>Add to cart</span></button></div>');
                     $('#divDetail').fadeIn("slow");
                 });
             });
@@ -84,12 +166,17 @@ function getSelectedCategory() {
     }
 }
 
-$('document').ready(function() {
-    $('#navbar').load('navbar.html', function() {
-        $('#navLinkCategories').addClass('active');        
+
+//==============================================================================
+// ON DOCUMENT READY
+//==============================================================================
+
+$('document').ready(function () {
+    $('#navbar').load('navbar.html', function () {
+        $('#navLinkCategories').addClass('active');
     });
 
-    getCategories(function(categories) {
+    getCategories(function (categories) {
         var strHTML = '';
         for (var i = 0; i < categories.length; i++) {
             var category = categories[i];
@@ -105,10 +192,13 @@ $('document').ready(function() {
 
         $('.panel-categorias').html(strHTML);
 
-        $('.panel-categorias .gameIcon').click(function(ev) {
+        $('.panel-categorias .gameIcon').click(function (ev) {
             loadGames($(ev.currentTarget).attr('data-id'));
         });
     });
 
     getSelectedCategory();
+
+    // Testing
+    addToCart(5);
 });
