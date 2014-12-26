@@ -38,6 +38,18 @@ switch ($_POST['operation']) {
         break;
 
 
+    /* Remove */
+    case 'remove' :
+        $product = $_POST['id'];
+        if (!isset($_SESSION['cart']) || $_SESSION['cart'] == null) {
+            $_SESSION['cart'] = array();
+        } else {
+            unset($_SESSION['cart'][$product]);
+        }
+        echo json_encode($_SESSION['cart']);
+        break;
+
+
     /* Empty */
     case 'empty' :
         $_SESSION['cart'] = array();

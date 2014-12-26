@@ -1,0 +1,28 @@
+@import "mixins";
+
+#divCart {
+    margin-top:56px;}
+
+.detail {
+    .precio {
+        left:78%;
+    }
+    
+    .btnCB-5:before {
+        content:"\e005";
+    }
+}
+
+.imagenes {
+    .game {
+        width:17%;
+        height:168px;
+        margin-left:2.5%;
+
+        .diagnalA {
+            width:30%;
+            left:35%;
+            top:45%;
+        }
+    }
+}

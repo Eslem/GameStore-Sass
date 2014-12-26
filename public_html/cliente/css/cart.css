@@ -1,0 +1,18 @@
+#divCart {
+  margin-top: 56px; }
+
+.detail .precio {
+  left: 78%; }
+.detail .btnCB-5:before {
+  content: "\e005"; }
+
+.imagenes .game {
+  width: 17%;
+  height: 168px;
+  margin-left: 2.5%; }
+  .imagenes .game .diagnalA {
+    width: 30%;
+    left: 35%;
+    top: 45%; }
+
+/*# sourceMappingURL=cart.css.map */

@@ -40,54 +40,6 @@ function findProduct(id, callback) {
 
 
 //==============================================================================
-// CART
-//==============================================================================
-
-function getCart(callback) {
-    $.ajax({
-        url: '../php/cartManager.php',
-        type: 'POST',
-        data: {
-            operation: 'get'
-        }
-    }).success(function (result) {
-        if (callback !== undefined) callback(result);
-    }).error(function (error) {
-        $('#log').html(error.responseText);
-    });
-}
-
-function addToCart(id) {
-    $.ajax({
-        url: '../php/cartManager.php',
-        type: 'POST',
-        data: {
-            operation: 'add',
-            id: id
-        }
-    }).success(function (result) {
-        console.log(result);
-    }).error(function (error) {
-        $('#log').html(error.responseText);
-    });
-}
-
-function emptyCart() {
-    $.ajax({
-        url: '../php/cartManager.php',
-        type: 'POST',
-        data: {
-            operation: 'empty'
-        }
-    }).success(function (result) {
-        //console.log(result);
-    }).error(function (error) {
-        $('#log').html(error.responseText);
-    });    
-}
-
-
-//==============================================================================
 // MAIN
 //==============================================================================
 
@@ -124,6 +76,8 @@ function loadGames(categoryID) {
             if (!$(".back-panel").hasClass("active"))
                 $(".back-panel").addClass("active");
         }
+
+        history.pushState(null, '', 'categorias.html#' + categoryID);
     });
 }
 
