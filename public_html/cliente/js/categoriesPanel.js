@@ -1,6 +1,6 @@
 function getCategories(callback) {
     $.ajax({
-        url: 'php/controller/categoriaController.php',
+        url: '../php/controller/categoriaController.php',
         type: 'POST',
         data: {
             query: 'select'

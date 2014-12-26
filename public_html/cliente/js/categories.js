@@ -6,7 +6,7 @@ var categories;
 
 function getProductsByCategory(category, callback) {
     $.ajax({
-        url: 'php/controller/productoController.php',
+        url: '../php/controller/productoController.php',
         type: 'POST',
         data: {
             query: 'selectJoin',
@@ -24,7 +24,7 @@ function getProductsByCategory(category, callback) {
 
 function findProduct(id, callback) {
     $.ajax({
-        url: 'php/controller/productoController.php',
+        url: '../php/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -32,7 +32,6 @@ function findProduct(id, callback) {
             id: id
         }
     }).success(function (result) {
-        $('#log').html(result);
         callback(result);
     }).error(function (error) {
         $('#log').html(error.responseText);
@@ -46,13 +45,12 @@ function findProduct(id, callback) {
 
 function getCart(callback) {
     $.ajax({
-        url: 'php/cartManager.php',
+        url: '../php/cartManager.php',
         type: 'POST',
         data: {
             operation: 'get'
         }
     }).success(function (result) {
-        console.log(result);
         if (callback !== undefined) callback(result);
     }).error(function (error) {
         $('#log').html(error.responseText);
@@ -61,7 +59,7 @@ function getCart(callback) {
 
 function addToCart(id) {
     $.ajax({
-        url: 'php/cartManager.php',
+        url: '../php/cartManager.php',
         type: 'POST',
         data: {
             operation: 'add',
@@ -76,13 +74,13 @@ function addToCart(id) {
 
 function emptyCart() {
     $.ajax({
-        url: 'php/cartManager.php',
+        url: '../php/cartManager.php',
         type: 'POST',
         data: {
             operation: 'empty'
         }
     }).success(function (result) {
-        console.log(result);
+        //console.log(result);
     }).error(function (error) {
         $('#log').html(error.responseText);
     });    
