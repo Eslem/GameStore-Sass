@@ -44,9 +44,9 @@ function findProduct(id, callback) {
 // CART
 //==============================================================================
 
-function getSession(callback) {
+function getCart(callback) {
     $.ajax({
-        url: 'php/sessionManager.php',
+        url: 'php/cartManager.php',
         type: 'POST',
         data: {
             operation: 'get'
@@ -54,74 +54,38 @@ function getSession(callback) {
     }).success(function (result) {
         console.log(result);
         if (callback !== undefined) callback(result);
-        return result;
     }).error(function (error) {
         $('#log').html(error.responseText);
     });
 }
-/*
-function setSession(session, callback) {
-    if (session !== undefined) {
-        $.ajax({
-            url: 'php/sessionManager.php',
-            type: 'POST',
-            data: {
-                operation: 'set',
-                session: session
-            }
-        }).success(function (result) {
-            callback(result);
-        }).error(function (error) {
-            $('#log').html(error.responseText);
-        });
-    } else console.log('Session is undefined');
-}
-
-function closeSession(callback) {
-    $.ajax({
-        url: 'php/sessionManager.php',
-        type: 'POST',
-        data: {
-            operation: 'close'
-        }
-    }).success(function (result) {
-        if (callback !== undefined) callback(result);
-    }).error(function (error) {
-        $('#log').html(error.responseText);
-    });
-}*/
 
 function addToCart(id) {
-    var session;
     $.ajax({
-        url: 'php/sessionManager.php',
+        url: 'php/cartManager.php',
         type: 'POST',
         data: {
-            operation: 'addToCart',
-            id:id
+            operation: 'add',
+            id: id
         }
     }).success(function (result) {
         console.log(result);
     }).error(function (error) {
         $('#log').html(error.responseText);
     });
-    
-    /*getSession(function (result) {
-        session = result;
+}
 
-        var cart = session.cart;
-        if (cart === undefined) cart = {};
-
-        if (cart[id] === undefined) cart[id] = 1;
-        else cart[id]++;
-
-        session.cart = cart;
-        console.log('Session:', session);
-        console.log('Cart:', cart);
-        setSession(session, function (result) {
-            //console.log(result);
-        });
-});**/
+function emptyCart() {
+    $.ajax({
+        url: 'php/cartManager.php',
+        type: 'POST',
+        data: {
+            operation: 'empty'
+        }
+    }).success(function (result) {
+        console.log(result);
+    }).error(function (error) {
+        $('#log').html(error.responseText);
+    });    
 }
 
 
@@ -139,9 +103,9 @@ function loadGames(categoryID) {
             for (var i in result) {
                 $('#divGames').hide();
                 $('#divGames').append('<div class="game" data-id="' + result[i].id + '">'
-                    + '<div class="imgBack"><img src="images/games/' + result[i].id
-                    + '.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
-                    + '<div>' + result[i].nombre + '</div></div></div>');
+                        + '<div class="imgBack"><img src="images/games/' + result[i].id
+                        + '.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
+                        + '<div>' + result[i].nombre + '</div></div></div>');
                 $('#divGames').fadeIn("slow");
 
             }
@@ -149,12 +113,12 @@ function loadGames(categoryID) {
                 findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
                     $('#divDetail').hide();
                     $('#divDetail').html('<div class="detail">'
-                        + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
-                        + '<div><h3>' + result.nombre + '</h3><hr/>'
-                        + '<p>' + result.descripcion + '</p></div>' + '<div class="platforms">Plataformas</div>'
-                        + '<div class="precio">' + result.precio + '€</div>'
-                        + '<button onclick="addToCart(' + result.id + ');" class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                        + '<span>Add to cart</span></button></div>');
+                            + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
+                            + '<div><h3>' + result.nombre + '</h3><hr/>'
+                            + '<p>' + result.descripcion + '</p></div>' + '<div class="platforms">Plataformas</div>'
+                            + '<div class="precio">' + result.precio + '€</div>'
+                            + '<button onclick="addToCart(' + result.id + ');" class="diagnalA btnCB btnCB-5 btnCB-5b">'
+                            + '<span>Add to cart</span></button></div>');
                     $('#divDetail').fadeIn("slow");
                 });
             });
@@ -196,8 +160,8 @@ $('document').ready(function () {
             if (i % 3 === 0)
                 strHTML += '<li>';
             strHTML += '<span class="gameIcon" data-id="' + category.id + '">' +
-            '<img class="genreIcon" src="images/genres/'
-            + category.nombre + '.svg"><br/>' + category.nombre + '</span>';
+                    '<img class="genreIcon" src="images/genres/'
+                    + category.nombre + '.svg"><br/>' + category.nombre + '</span>';
             if (!i % 3 === 2)
                 strHTML += '</li>';
         }
@@ -210,7 +174,4 @@ $('document').ready(function () {
     });
 
     getSelectedCategory();
-
-    // Testing
-    addToCart(5);
 });
