@@ -46,7 +46,7 @@ function loadGames(categoryID) {
                 $('#divGames').hide();
                 $('#divGames').append('<div class="game" data-id="' + result[i].id
                         + '"><div class="imgBack"><img src="images/games/' + result[i].id
-                        + '.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
+                        + '/categories.jpg" alt></div><div class="diagnalA">Detalle</div><div class="info"><div>'
                         + result[i].nombre + '</div></div></div>');
                 $('#divGames').fadeIn("slow");
 
@@ -55,12 +55,14 @@ function loadGames(categoryID) {
                 findProduct($(ev.currentTarget).attr('data-id'), function(result) {
                     $('#divDetail').hide();
                     $('#divDetail').html('<div class="detail"><img class="imgDet" src="images/games/'
-                            + result.id + '.jpg" alt><div><h3>' + result.nombre
+                            + result.id + '/categories.jpg" alt><div><h3>' + result.nombre
                             + '</h3><hr/><p>' + result.descripcion + '</p>'
                             + '</div><div class="platforms">Plataformas</div><div class="precio">'
                             + result.precio + '€</div><button class="diagnalA btnCB btnCB-5 btnCB-5b">'
                             + '<span>Add to cart</span></button>'
                             + '</div>');
+                    $('body').attr('style','background-image:url("images/games/'
+                            + result.id + '/fondo.jpg");');
                     $('#divDetail').fadeIn("slow");
                 });
             });

@@ -214,7 +214,8 @@ html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  font-family: "Francois One", sans-serif; }
+  font-family: "Francois One", sans-serif;
+  background-size: 100% 100%; }
 
 *:not(i) {
   -moz-box-sizing: border-box;
@@ -300,11 +301,13 @@ html, body {
     -webkit-backface-visibility: hidden; }
     .imagenes .game:hover .diagnalA {
       opacity: 1; }
-    .imagenes .game:hover .imgBack img {
-      opacity: .5; }
+    .imagenes .game:hover .imgBack {
+      background-color: #111111; }
+      .imagenes .game:hover .imgBack img {
+        opacity: .5; }
   .imagenes .game .imgBack {
     -webkit-backface-visibility: hidden;
-    height: 100%;
+    height: 80%;
     width: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -312,7 +315,7 @@ html, body {
     overflow: hidden; }
     .imagenes .game .imgBack img {
       -webkit-backface-visibility: hidden;
-      height: 80%;
+      height: 100%;
       width: 100%;
       position: absolute; }
   .imagenes .game .diagnalA {
