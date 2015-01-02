@@ -1,7 +1,4 @@
 /* ---------------------------------- Responsive Design ---------------------------------- */
-@media screen and (max-width: 1024px) {
-  .skewed .unskewed img {
-    height: 150px; } }
 @media screen and (max-width: 768px) {
   #main-Slider {
     width: 100%; }
@@ -32,7 +29,7 @@
   .game .info {
     margin: 0 10%; }
     .game .info div {
-      display: block; }
+      width: 80%; }
   .game:first-child .details {
     margin-left: 16px; }
   .game:last-child .trailer {
@@ -100,8 +97,6 @@
     .imagenes .game {
       width: 50%;
       display: inline-block; }
-      .imagenes .game img {
-        height: 140px; }
       .imagenes .game .precio {
         text-align: right;
         padding-right: 10%; }
