@@ -3,6 +3,66 @@
 @import "vars.scss";
 @import "main.scss";
 
+/* ----------------------------------  Lista de Productos ---------------------------------- */
+
+.imagenes {
+    .game {
+        margin-left:6.25%;
+        margin-top:2%;
+        -webkit-backface-visibility:hidden;
+        height:250px;
+        width:25%;
+        overflow:hidden;
+        display:inline-block;
+        position:relative;
+        cursor:pointer;
+        &:hover{
+            -webkit-backface-visibility:hidden;
+            .diagnalA{
+                opacity:1;}
+            .imgBack{
+                background-color: #111111;
+                img{
+                    opacity:.5;}
+            }
+        }
+        .imgBack {
+            -webkit-backface-visibility:hidden;
+            height:80%;
+            width:100%;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            position:absolute;
+            overflow:hidden;
+            img {
+                -webkit-backface-visibility:hidden;
+                height:100%;
+                width:100%;
+                position:absolute;
+            }
+        }
+        .diagnalA{
+            position:absolute;
+            width:20%;
+            left:40%;
+            top:35%;
+            text-align:center;
+            opacity:0;}
+        .info{
+            text-align:center;
+            position:absolute;
+            width:100%;
+            height:15%;
+            bottom:0%;
+            div {
+                @include box-sizing(border-box);
+                width:100%;
+                color:$color-text;
+            }
+        }
+    }
+}
+
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
 
 #divCategories {
@@ -77,62 +137,15 @@
     }
 }
 
-/* ----------------------------------  Lista de Productos ---------------------------------- */
+@import "responsive";
 
-.imagenes {
-    .game {
-        margin-left:6.25%;
-        margin-top:2%;
-        -webkit-backface-visibility:hidden;
-        height:250px;
-        width:25%;
-        overflow:hidden;
-        display:inline-block;
-        position:relative;
-        cursor:pointer;
-        &:hover{
-            -webkit-backface-visibility:hidden;
-            .diagnalA{
-                opacity:1;}
-            .imgBack{
-                background-color: #111111;
-                img{
-                    opacity:.5;}
-            }
-        }
-        .imgBack {
-            -webkit-backface-visibility:hidden;
-            height:80%;
-            width:100%;
-            background-size:100% 100%;
-            background-repeat:no-repeat;
-            position:absolute;
-            overflow:hidden;
-            img {
-                -webkit-backface-visibility:hidden;
-                height:100%;
-                width:100%;
-                position:absolute;
-            }
-        }
-        .diagnalA{
-            position:absolute;
-            width:20%;
-            left:40%;
-            top:35%;
-            text-align:center;
-            opacity:0;}
-        .info{
-            text-align:center;
-            position:absolute;
-            width:100%;
-            height:15%;
-            bottom:0%;
-            div {
-                @include box-sizing(border-box);
-                width:100%;
-                color:$color-text;
-            }
+@media screen and (max-width:$width-tablets) {
+
+    .imagenes {
+        .game {
+
+            width: 40.56%;
+            
         }
     }
 }
