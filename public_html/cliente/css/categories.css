@@ -307,9 +307,10 @@ html, body {
     display: none; }
   .detail .precio {
     bottom: 7%;
-    left: 81%;
+    right: 5%;
     font-size: 16px;
-    color: white; }
+    color: white;
+    width: 15%; }
   .detail button {
     position: absolute;
     bottom: 4%;
@@ -494,5 +495,8 @@ html, body {
 @media screen and (max-width: 768px) {
   .imagenes .game {
     width: 40.56%; } }
+@media screen and (max-width: 1026px) {
+  .detail .precio {
+    right: 9%; } }
 
 /*# sourceMappingURL=categories.css.map */
