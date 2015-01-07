@@ -233,7 +233,9 @@ html, body {
   position: relative;
   cursor: pointer; }
   .imagenes .game:hover {
-    -webkit-backface-visibility: hidden; }
+    -webkit-backface-visibility: hidden;
+    text-shadow: 2px 2px 8px #7ed1e2;
+    font-size: 20px; }
     .imagenes .game:hover .diagnalA {
       opacity: 1; }
     .imagenes .game:hover .imgBack {
@@ -270,7 +272,7 @@ html, body {
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       width: 100%;
-      color: #555555; }
+      color: white; }
 
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
 #divCategories {
@@ -497,6 +499,20 @@ html, body {
     width: 40.56%; } }
 @media screen and (max-width: 1026px) {
   .detail .precio {
-    right: 9%; } }
+    right: 9%; }
+
+  .imagenes .game .info {
+    margin: 0%; } }
+@media screen and (max-width: 550px) {
+  .imagenes .game {
+    width: 87.50%; }
+    .imagenes .game .info {
+      margin: 0%; } }
+@media screen and (max-width: 480px) {
+  .imagenes .game {
+    margin-left: 8%;
+    width: 86%; }
+    .imagenes .game .info {
+      margin: 0%; } }
 
 /*# sourceMappingURL=categories.css.map */

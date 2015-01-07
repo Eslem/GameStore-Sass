@@ -18,6 +18,8 @@
         cursor:pointer;
         &:hover{
             -webkit-backface-visibility:hidden;
+            text-shadow:2px 2px 8px $blue-color;
+            font-size:20px;
             .diagnalA{
                 opacity:1;}
             .imgBack{
@@ -57,7 +59,7 @@
             div {
                 @include box-sizing(border-box);
                 width:100%;
-                color:$color-text;
+                color: white;
             }
         }
     }
@@ -156,5 +158,33 @@
             right: 9%;
         }
     }
+    .imagenes {
+        .game {
+            .info{
+                margin: 0%;}
+        }
+    }
 
+}
+
+@media screen and (max-width:550px) {
+
+    .imagenes {
+        .game {
+            width: 87.50%;
+            .info{
+                margin: 0%;}
+        }
+    }
+}
+
+@media screen and (max-width:$width-mobiles) {
+    .imagenes {
+        .game {
+            margin-left: 8%;
+            width: 86%;
+            .info{
+                margin: 0%;}
+        }
+    }
 }
