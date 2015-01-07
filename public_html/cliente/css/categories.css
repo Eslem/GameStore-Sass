@@ -272,45 +272,46 @@ div.navbar.invisible {
     margin-left: 5px; }
 
 /* ----------------------------------  Lista de Productos ---------------------------------- */
-.imagenes .game {
-  display: inline-block;
-  position: relative;
-  width: 25%;
-  margin-left: 6.25%;
-  margin-top: 2%; }
-  .imagenes .game .imgBack {
-    cursor: pointer;
-    font-size: 0;
-    position: relative; }
-    .imagenes .game .imgBack img {
-      width: 100%;
-      height: auto;
+.imagenes {
+  margin: 0 2%; }
+  .imagenes .game {
+    display: inline-block;
+    position: relative;
+    width: 33%;
+    padding: 1% 2%; }
+    .imagenes .game .imgBack {
+      cursor: pointer;
+      font-size: 0;
+      position: relative; }
+      .imagenes .game .imgBack img {
+        width: 100%;
+        height: auto;
+        transition: .2s;
+        -webkit-backface-visibility: hidden; }
+      .imagenes .game .imgBack:hover .diagnalA {
+        opacity: 1; }
+      .imagenes .game .imgBack:hover img {
+        opacity: .5; }
+    .imagenes .game .diagnalA {
+      position: absolute;
+      left: 50%;
+      margin-left: -38px;
+      top: 50%;
+      margin-top: -13px;
+      text-align: center;
+      padding: 2px 16px;
+      opacity: 0;
       transition: .2s;
-      -webkit-backface-visibility: hidden; }
-    .imagenes .game .imgBack:hover .diagnalA {
-      opacity: 1; }
-    .imagenes .game .imgBack:hover img {
-      opacity: .5; }
-  .imagenes .game .diagnalA {
-    position: absolute;
-    left: 50%;
-    margin-left: -38px;
-    top: 50%;
-    margin-top: -13px;
-    text-align: center;
-    padding: 2px 16px;
-    opacity: 0;
-    transition: .2s;
-    font-size: 16px; }
-  .imagenes .game .info {
-    text-align: center;
-    font-size: 1.5vw;
-    width: 100%; }
-    .imagenes .game .info > div {
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      width: 100%;
-      color: #555555;
-      white-space: nowrap; }
+      font-size: 16px; }
+    .imagenes .game .info {
+      text-align: center;
+      font-size: 1.5vw;
+      width: 100%; }
+      .imagenes .game .info > div {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        color: #555555;
+        white-space: nowrap; }
 
 /*# sourceMappingURL=categories.css.map */

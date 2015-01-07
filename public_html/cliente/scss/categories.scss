@@ -80,12 +80,12 @@
 /* ----------------------------------  Lista de Productos ---------------------------------- */
 
 .imagenes {
+    margin:0 2%;
     .game {
         display:inline-block;
         position:relative;
-        width:25%;
-        margin-left:6.25%;
-        margin-top:2%;
+        width:33%;
+        padding:1% 2%;
         .imgBack {
             cursor:pointer;
             font-size:0;
