@@ -94,7 +94,7 @@
                 width:100%;
                 height:auto;
                 transition:.2s;
-            }
+                -webkit-backface-visibility:hidden;}
             &:hover {
                 .diagnalA {
                     opacity:1;}

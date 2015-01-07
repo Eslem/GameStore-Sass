@@ -285,7 +285,8 @@ div.navbar.invisible {
     .imagenes .game .imgBack img {
       width: 100%;
       height: auto;
-      transition: .2s; }
+      transition: .2s;
+      -webkit-backface-visibility: hidden; }
     .imagenes .game .imgBack:hover .diagnalA {
       opacity: 1; }
     .imagenes .game .imgBack:hover img {
