@@ -75,6 +75,7 @@ function loadGames(categoryID) {
         } else {
             if (!$(".back-panel").hasClass("active"))
                 $(".back-panel").addClass("active");
+            alert('No existen juegos bajo esta categoría.');
         }
 
         history.pushState(null, '', 'categorias.html#' + categoryID);
@@ -87,8 +88,10 @@ function getSelectedCategory() {
         var categoryID = parseInt(url.slice(url.indexOf('#') + 1));
         if (!isNaN(categoryID))
             loadGames(categoryID);
-        else
+        else {
+            $(".back-panel").addClass("active");
             window.history.pushState({}, "", url.slice(0, url.indexOf('#')));
+        }
     } else {
         $(".back-panel").addClass("active");
     }
