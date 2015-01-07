@@ -17,3 +17,6 @@ html, body {
     @include box-sizing(border-box);
 }
 
+.diagnalA {
+    -webkit-backface-visibility:hidden;
+}
