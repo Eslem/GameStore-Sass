@@ -7,7 +7,7 @@
     .precio {
         left:78%;
     }
-    
+
     .btnCB-5:before {
         content:"\e005";
     }
@@ -17,5 +17,20 @@
     .game {
         width:20%;
         padding:1% 2%;
+    }
+}
+
+#actions {
+    text-align:center;
+
+    .diagnalA {
+        text-align:center;
+        display:inline-block;
+        padding:2px 16px;
+
+        a {
+            color:black;
+            text-decoration:none;
+        }
     }
 }

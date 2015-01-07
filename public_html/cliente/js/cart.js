@@ -5,9 +5,9 @@ function getCart(callback) {
         data: {
             operation: 'get'
         }
-    }).success(function (result) {
+    }).success(function(result) {
         if (callback !== undefined) callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
@@ -20,9 +20,9 @@ function addToCart(id) {
             operation: 'add',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         console.log(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
@@ -35,10 +35,10 @@ function removeFromCart(id, callback) {
             operation: 'remove',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         //console.log(result);
         if (callback !== undefined) callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
@@ -50,9 +50,10 @@ function emptyCart() {
         data: {
             operation: 'empty'
         }
-    }).success(function (result) {
+    }).success(function(result) {
         //console.log(result);
-    }).error(function (error) {
+        location.reload();
+    }).error(function(error) {
         $('#log').html(error.responseText);
-    });    
+    });
 }

@@ -10,4 +10,14 @@
   width: 20%;
   padding: 1% 2%; }
 
+#actions {
+  text-align: center; }
+  #actions .diagnalA {
+    text-align: center;
+    display: inline-block;
+    padding: 2px 16px; }
+    #actions .diagnalA a {
+      color: black;
+      text-decoration: none; }
+
 /*# sourceMappingURL=cart.css.map */

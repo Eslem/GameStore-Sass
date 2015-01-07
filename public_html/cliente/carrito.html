@@ -22,13 +22,19 @@
         <script src="js/cartView.js" type="text/javascript"></script>
 
         <script>
-            $('document').ready(function () {
-                $('#navbar').load('navbar.html', function () {
+            $('document').ready(function() {
+                $('#navbar').load('navbar.html', function() {
                     $('#navLinkCart').addClass('active');
                     $('#navLinkCart a').attr('href', '#');
                 });
                 loadCategoriesPanel();
             });
+
+            function logCart() {
+                getCart(function(result) {
+                    alert('Carrito:\n' + result);
+                });
+            }
         </script>
     </head>
     <body>
@@ -42,6 +48,15 @@
 
             <div id="log"></div>
 
+
+            <div id="actions">
+                <div class="diagnalA">
+                    <a href="javascript:emptyCart();">Vaciar</a>
+                </div>
+                <div class="diagnalA">
+                    <a href="javascript:logCart();">Realizar Compra</a>
+                </div>
+            </div>
         </div>
 
         <div class="back-panel">

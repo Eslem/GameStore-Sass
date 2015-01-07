@@ -10,5 +10,4 @@ class CategoriaDAO extends GenericDAO {
         $this->propertyNames = ['nombre'];
         $this->propertyTypes = ['s'];
     }
-
 }
