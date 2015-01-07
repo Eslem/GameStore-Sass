@@ -15,9 +15,15 @@
   #actions .diagnalA {
     text-align: center;
     display: inline-block;
-    padding: 2px 16px; }
+    padding: 2px 16px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    transition: 0.2s;
+    opacity: .9; }
     #actions .diagnalA a {
       color: black;
       text-decoration: none; }
+    #actions .diagnalA:hover {
+      opacity: 1; }
 
 /*# sourceMappingURL=cart.css.map */

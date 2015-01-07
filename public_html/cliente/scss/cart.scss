@@ -7,7 +7,6 @@
     .precio {
         left:78%;
     }
-
     .btnCB-5:before {
         content:"\e005";
     }
@@ -31,6 +30,12 @@
         a {
             color:black;
             text-decoration:none;
+        }
+        
+        @include transition(.2s);
+        opacity:.9;
+        &:hover {
+            opacity:1;            
         }
     }
 }
