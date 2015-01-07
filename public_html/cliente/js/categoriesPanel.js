@@ -20,7 +20,7 @@ function loadCategoriesPanel() {
             var category = categories[i];
 
             if (i % 3 === 0) strHTML += '<li>';
-            strHTML += '<a href="categorias.php#' + category.id + '" class="gameIcon">'
+            strHTML += '<a href="categorias.html#' + category.id + '" class="gameIcon">'
                     + '<img class="genreIcon" src="images/genres/' + category.nombre + '.svg">'
                     + '<br/>' + category.nombre + '</a>';
             if (!i % 3 === 2) strHTML += '</li>';

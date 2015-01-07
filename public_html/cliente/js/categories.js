@@ -15,9 +15,9 @@ function getProductsByCategory(category, callback) {
             otherField: 'idProducto',
             condition: 'idCategoria = ' + category
         }
-    }).success(function (result) {
+    }).success(function(result) {
         callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
@@ -31,9 +31,9 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
@@ -44,7 +44,7 @@ function findProduct(id, callback) {
 //==============================================================================
 
 function loadGames(categoryID) {
-    getProductsByCategory(categoryID, function (result) {
+    getProductsByCategory(categoryID, function(result) {
         $('#divGames').html('');
         $('#divDetail').html('');
         if (result !== '' && result !== null && JSON.parse(result) !== null) {
@@ -54,13 +54,13 @@ function loadGames(categoryID) {
                 $('#divGames').hide();
                 $('#divGames').append('<div class="game" data-id="' + result[i].id + '">'
                         + '<div class="imgBack"><img src="images/games/' + result[i].id
-                        + '.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
+                        + '_thumb.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
                         + '<div>' + result[i].nombre + '</div></div></div>');
                 $('#divGames').fadeIn("slow");
 
             }
-            $('.game .imgBack').click(function (ev) {
-                findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
+            $('.game .imgBack').click(function(ev) {
+                findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
                     $('#divDetail').hide();
                     $('#divDetail').html('<div class="detail">'
                             + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
@@ -99,12 +99,12 @@ function getSelectedCategory() {
 // ON DOCUMENT READY
 //==============================================================================
 
-$('document').ready(function () {
-    $('#navbar').load('navbar.html', function () {
+$('document').ready(function() {
+    $('#navbar').load('navbar.html', function() {
         $('#navLinkCategories').addClass('active');
     });
 
-    getCategories(function (categories) {
+    getCategories(function(categories) {
         var strHTML = '';
         for (var i = 0; i < categories.length; i++) {
             var category = categories[i];
@@ -120,7 +120,7 @@ $('document').ready(function () {
 
         $('.panel-categorias').html(strHTML);
 
-        $('.panel-categorias .gameIcon').click(function (ev) {
+        $('.panel-categorias .gameIcon').click(function(ev) {
             loadGames($(ev.currentTarget).attr('data-id'));
         });
     });

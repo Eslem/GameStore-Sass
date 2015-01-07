@@ -25,7 +25,7 @@ function loadCart() {
             findProduct(i, function (result) {
                 $('#divGames').append('<div class="game" data-id="' + result.id + '">'
                         + '<div class="imgBack"><img src="images/games/' + result.id
-                        + '.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
+                        + '_thumb.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
                         + '<div>' + result.nombre + '</div></div></div>');
 
                 $('#divGames .game:last-child .imgBack').click(function (ev) {
