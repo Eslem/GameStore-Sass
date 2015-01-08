@@ -47,22 +47,37 @@ function changeMain(elem) {
     var h1 = $("#mainImg").parent().parent().find("h1");
     var beforeText = h1.text();
 
+    if ($("#mainImg").css("opacity") === "1" ) {
 
-    $("#mainImg").css("opacity", "0");
-    $("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
-        $(elem).find("h3").text(beforeText);
-        h1.text(text);
+        $("#mainImg").css("opacity", "0");
+        /*$("#mainImg").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
+         $(elem).find("h3").text(beforeText);
+         h1.text(text);
+         
+         $("#mainImg").attr("src", img);
+         $("#mainImg").css("opacity", "1");
+         });
+         */
+        setTimeout(function() {
+            $(elem).find("h3").text(beforeText);
+            h1.text(text);
 
-        $("#mainImg").attr("src", img);
-        $("#mainImg").css("opacity", "1");
-    });
+            $("#mainImg").attr("src", img);
+            $("#mainImg").css("opacity", "1");
+        }, 300);
 
-    $(elem).find("img").css("opacity", "0");
-    $(elem).find("img").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
-        $(elem).find("img").attr("src", beforeImg);
-        $(elem).find("img").css("opacity", "1");
-    });
-
+        $(elem).find("img").css("opacity", "0");
+       /*
+        $(elem).find("img").on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
+            $(elem).find("img").attr("src", beforeImg);
+            $(elem).find("img").css("opacity", "1");
+        });
+*/
+        setTimeout(function() {
+            $(elem).find("img").attr("src", beforeImg);
+            $(elem).find("img").css("opacity", "1");
+        }, 300);
+    }
 }
 
 
