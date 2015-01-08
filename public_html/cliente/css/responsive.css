@@ -29,10 +29,8 @@
     height: 32px;
     margin-top: -32px;
     width: 50%; }
-  .game .info {
-    margin: 0 10%; }
-    .game .info div {
-      display: block; }
+  .game .info div {
+    display: block; }
   .game:first-child .details {
     margin-left: 16px; }
   .game:last-child .trailer {

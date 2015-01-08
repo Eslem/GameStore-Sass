@@ -84,8 +84,8 @@
     .game {
         display:inline-block;
         position:relative;
-        width:33%;
-        padding:1% 2%;
+        width:29.33%;
+        margin:1% 2%;
         .imgBack {
             cursor:pointer;
             font-size:0;
@@ -104,25 +104,46 @@
             }
         }
         .diagnalA {
+            @include transition(.1s);
             position:absolute;
+
             left:50%;
             margin-left:-38px;
             top:50%;
             margin-top:-13px;
+
             text-align:center;
             padding:2px 16px;
             opacity:0;
-            transition:.2s;
-            font-size:16px;}
+
+            font-size:16px;
+        }
         .info {
             text-align:center;
             font-size:1.5vw;
             width:100%;
             & > div {
+                @include transition(.1s);
                 @include box-sizing(border-box);
+
                 width:100%;
-                color:$color-text;
+                height:30px;
+                line-height:28px;
+
+                background:black;
+                color:$color-text-light;
                 white-space:nowrap;
+                padding:2px 0;
+            }
+        }
+
+        &:hover {
+            .info > div {
+                font-size:1.075em;
+            }
+
+            .diagnalA {
+                @include transform(skewX(-25deg) scale(1.2));
             }
         }
     }
