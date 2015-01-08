@@ -208,7 +208,7 @@ div.navbar.invisible {
     transform: rotate(-360deg); } }
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
 #divCategories {
-  margin-top: 56px; }
+  margin: 56px 0; }
 
 .detail {
   margin: 0% 6.25% 24px;
