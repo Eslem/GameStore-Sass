@@ -220,46 +220,48 @@ div.navbar.invisible {
   .detail .imgDet {
     width: 50%;
     display: inline-block; }
-  .detail div {
+  .detail .description {
     display: inline-block;
+    vertical-align: top;
+    height: 100%;
     width: 50%;
     color: #888888;
     text-align: justify;
-    position: absolute;
     font-size: 12.5px;
     padding: 0% 3%; }
-    .detail div h3 {
+    .detail .description h3 {
       text-align: center;
       color: white;
       text-shadow: 2px 2px 8px #7ed1e2; }
-  .detail .platforms {
-    border: 2px #555555 solid;
-    width: auto;
-    bottom: 4%;
-    left: 53%;
-    padding: 1% 1%;
-    display: none; }
-  .detail .precio {
-    bottom: 7%;
-    left: 81%;
-    font-size: 16px;
-    color: white; }
-  .detail button {
+  .detail .bottom {
+    display: inline-block;
     position: absolute;
-    bottom: 4%;
-    right: 3%;
-    padding: 1% 1%;
-    color: #005F6B;
-    font-weight: bold;
-    border: none; }
-    .detail button:hover {
-      background-color: #005F6B;
-      color: #7ed1e2;
-      -webkit-transition: all 0.2s;
-      -moz-transition: all 0.2s;
-      transition: all 0.2s;
-      outline: none;
+    bottom: 0;
+    right: 0;
+    margin: 8px 16px; }
+    .detail .bottom div {
+      display: inline-block; }
+    .detail .bottom .platforms {
+      border: 2px #555555 solid;
+      padding: 12px;
+      display: none; }
+    .detail .bottom .precio {
+      margin: 0 48px;
+      font-size: 16px;
+      color: white; }
+    .detail .bottom button {
+      padding: 12px;
+      color: #005F6B;
+      border: none;
+      font-weight: bold;
       cursor: pointer; }
+      .detail .bottom button:hover {
+        background-color: #005F6B;
+        color: #7ed1e2;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        transition: all 0.2s;
+        outline: none; }
 
 .diagnalA {
   transform: skewX(-25deg);

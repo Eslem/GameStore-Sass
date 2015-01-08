@@ -19,12 +19,13 @@
     .imgDet {
         width:50%;
         display:inline-block;}
-    div {
+    .description {
         display:inline-block;
+        vertical-align:top;
+        height:100%;
         width:50%;
         color:#888888;
         text-align:justify;
-        position:absolute;
         font-size:12.5px;
         padding:0% 3%;
         h3 {
@@ -32,32 +33,37 @@
             color:white;
             text-shadow:2px 2px 8px $blue-color;}
     }
-    .platforms {
-        border:2px $color-text solid;
-        width:auto;
-        bottom:4%;
-        left:53%;
-        padding:1% 1%;
-        display:none;}
-    .precio {
-        bottom:7%;
-        left:81%;
-        font-size:16px;
-        color:white;}
-    button { 
+    .bottom {
+        display:inline-block;
         position:absolute;
-        bottom:4%;
-        right:3%;
-        padding:1% 1%;
-        color:#005F6B;
-        font-weight:bold;
-        border:none;
-        &:hover {
-            background-color:#005F6B;
-            color:$blue-color;
-            @include transition(all .2s);
-            outline:none;
+        bottom:0;
+        right:0;
+        margin:8px 16px;
+
+        div {
+            display:inline-block;
+        }
+
+        .platforms {
+            border:2px $color-text solid;
+            padding:12px;
+            display:none;}
+        .precio {
+            margin:0 48px;
+            font-size:16px;
+            color:white;}
+        button {
+            padding:12px;
+            color:#005F6B;
+            border:none;
+            font-weight:bold;
             cursor:pointer;
+            &:hover {
+                background-color:#005F6B;
+                color:$blue-color;
+                @include transition(all .2s);
+                outline:none;
+            }
         }
     }
 }
