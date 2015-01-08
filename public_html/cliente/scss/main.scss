@@ -13,10 +13,43 @@ html, body {
     font-family:$font;
 }
 
+.background {
+    background-size:cover;    
+}
+
 *:not(i){
     @include box-sizing(border-box);
 }
 
 .diagnalA {
     -webkit-backface-visibility:hidden;
+}
+
+.slideButton {
+    cursor:pointer;
+    padding:0;
+    width:96px;
+    height:32px;
+    line-height:32px;
+
+    color:#005F6B;
+    font-size:16px;
+    &:hover {
+        background-color:#005F6B;
+        color:$blue-color;
+        @include transition(all .2s);
+        outline:none;
+    }
+    
+    &.long {
+        width:160px;
+    }
+    
+    &.cart, &.trash {
+        width:160px;
+        
+        &:hover:before {
+            left:-2%;
+        }
+    }
 }

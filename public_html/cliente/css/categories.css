@@ -246,22 +246,11 @@ div.navbar.invisible {
       padding: 12px;
       display: none; }
     .detail .bottom .precio {
+      vertical-align: bottom;
+      padding: 3px;
       margin: 0 48px;
-      font-size: 16px;
+      font-size: 18px;
       color: white; }
-    .detail .bottom button {
-      padding: 12px;
-      color: #005F6B;
-      border: none;
-      font-weight: bold;
-      cursor: pointer; }
-      .detail .bottom button:hover {
-        background-color: #005F6B;
-        color: #7ed1e2;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        transition: all 0.2s;
-        outline: none; }
 
 .diagnalA {
   transform: skewX(-25deg);

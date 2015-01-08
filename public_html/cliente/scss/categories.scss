@@ -49,21 +49,11 @@
             padding:12px;
             display:none;}
         .precio {
+            vertical-align:bottom;
+            padding:3px;
             margin:0 48px;
-            font-size:16px;
-            color:white;}
-        button {
-            padding:12px;
-            color:#005F6B;
-            border:none;
-            font-weight:bold;
-            cursor:pointer;
-            &:hover {
-                background-color:#005F6B;
-                color:$blue-color;
-                @include transition(all .2s);
-                outline:none;
-            }
+            font-size:18px;
+            color:white;
         }
     }
 }

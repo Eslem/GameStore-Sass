@@ -12,15 +12,16 @@ function loadGameDetail(container, gameInfo, inCart) {
             + '<div class="description"><h3>' + gameInfo.nombre + '</h3><hr/>'
             + '<p>' + gameInfo.descripcion + '</p></div>'
             + '<div class="bottom"><div class="platforms">Plataformas</div>'
-            + '<div class="precio">' + gameInfo.precio + '€</div>';
+            + '<div class="precio">' + gameInfo.precio + '€</div>'
+            + '<div class="diagnalA slideButton ';
 
-    if (!inCart) strHTML += '<button onclick="addToCart(' + gameInfo.id + ');" class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                + '<span>Add to cart</span></button></div>';
+    if (!inCart) strHTML += 'cart" onclick="addToCart(' + gameInfo.id + ');">'
+                + '<label>Add to cart</label>';
 
-    else strHTML += '<button onclick="removeFromCart(' + gameInfo.id + ', loadCart);" class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                + '<span>Remove from cart</span></button></div>';
+    else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart);">'
+                + '<label>Remove from cart</label>';
 
-    strHTML += '</div>';
+    strHTML += '</div></div></div>';
 
     container.html(strHTML);
     container.fadeIn("slow");

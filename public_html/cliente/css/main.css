@@ -8,11 +8,36 @@ html, body {
   overflow-x: hidden;
   font-family: "Francois One", sans-serif; }
 
+.background {
+  background-size: cover; }
+
 *:not(i) {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 .diagnalA {
   -webkit-backface-visibility: hidden; }
+
+.slideButton {
+  cursor: pointer;
+  padding: 0;
+  width: 96px;
+  height: 32px;
+  line-height: 32px;
+  color: #005F6B;
+  font-size: 16px; }
+  .slideButton:hover {
+    background-color: #005F6B;
+    color: #7ed1e2;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    outline: none; }
+  .slideButton.long {
+    width: 160px; }
+  .slideButton.cart, .slideButton.trash {
+    width: 160px; }
+    .slideButton.cart:hover:before, .slideButton.trash:hover:before {
+      left: -2%; }
 
 /*# sourceMappingURL=main.css.map */
