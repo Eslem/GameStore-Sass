@@ -20,6 +20,7 @@
             -webkit-backface-visibility:hidden;
             text-shadow:2px 2px 8px $blue-color;
             font-size:20px;
+            @include transition(all .2s);
             .diagnalA{
                 opacity:1;}
             .imgBack{

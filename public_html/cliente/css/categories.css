@@ -235,7 +235,10 @@ html, body {
   .imagenes .game:hover {
     -webkit-backface-visibility: hidden;
     text-shadow: 2px 2px 8px #7ed1e2;
-    font-size: 20px; }
+    font-size: 20px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s; }
     .imagenes .game:hover .diagnalA {
       opacity: 1; }
     .imagenes .game:hover .imgBack {
