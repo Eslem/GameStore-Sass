@@ -7,8 +7,9 @@
   content: "\e005"; }
 
 .imagenes .game {
-  width: 20%;
-  padding: 1% 2%; }
+  width: 248px; }
+  .imagenes .game .info {
+    font-size: 1em; }
 
 #actions {
   text-align: center; }
@@ -16,6 +17,7 @@
     text-align: center;
     display: inline-block;
     padding: 2px 16px;
+    margin: 0 4px;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     transition: 0.2s;

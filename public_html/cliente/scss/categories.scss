@@ -10,7 +10,7 @@
 }
 
 .detail {
-    margin:0% 6.25%;
+    margin:0% 6.25% 24px;
     position:relative;
     vertical-align:top;
     border:3px $color-text solid;
@@ -139,7 +139,7 @@
 
         &:hover {
             .info > div {
-                font-size:1.075em;
+                color:gray;
             }
 
             .diagnalA {

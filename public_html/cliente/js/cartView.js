@@ -7,38 +7,26 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
 
 function loadCart() {
-    getCart(function (result) {
+    getCart(function(result) {
         result = JSON.parse(result);
 
         $('#divGames').hide();
-        $('#divGames').html('');
-        $('#divDetail').html('');
+        $('#divDetail').hide();
         for (var i in result) {
-            findProduct(i, function (result) {
-                $('#divGames').append('<div class="game" data-id="' + result.id + '">'
-                        + '<div class="imgBack"><img src="images/games/' + result.id
-                        + '_thumb.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
-                        + '<div>' + result.nombre + '</div></div></div>');
+            findProduct(i, function(result) {
+                loadThumbnail($('#divGames'), result);
 
-                $('#divGames .game:last-child .imgBack').click(function (ev) {
-                    findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
-                        $('#divDetail').hide();
-                        $('#divDetail').html('<div class="detail">'
-                                + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
-                                + '<div><h3>' + result.nombre + '</h3><hr/>'
-                                + '<p>' + result.descripcion + '</p></div>' + '<div class="platforms">Plataformas</div>'
-                                + '<div class="precio">' + result.precio + '€</div>'
-                                + '<button onclick="removeFromCart(' + result.id + ', loadCart);" class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                                + '<span>Remove from cart</span></button></div>');
-                        $('#divDetail').fadeIn("slow");
+                $('#divGames .game:last-child .imgBack').click(function(ev) {
+                    findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
+                        loadGameDetail($('#divDetail'), result, true);
                     });
                 });
             });
@@ -48,6 +36,6 @@ function loadCart() {
 }
 
 
-$('document').ready(function () {
+$('document').ready(function() {
     loadCart();
 });

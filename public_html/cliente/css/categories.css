@@ -211,7 +211,7 @@ div.navbar.invisible {
   margin-top: 56px; }
 
 .detail {
-  margin: 0% 6.25%;
+  margin: 0% 6.25% 24px;
   position: relative;
   vertical-align: top;
   border: 3px #555555 solid;
@@ -323,7 +323,7 @@ div.navbar.invisible {
         white-space: nowrap;
         padding: 2px 0; }
     .imagenes .game:hover .info > div {
-      font-size: 1.075em; }
+      color: gray; }
     .imagenes .game:hover .diagnalA {
       -webkit-backface-visibility: hidden;
       transform: skewX(-25deg) scale(1.2); }

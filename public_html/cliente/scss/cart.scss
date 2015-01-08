@@ -14,8 +14,11 @@
 
 .imagenes {
     .game {
-        width:20%;
-        padding:1% 2%;
+        width:248px;
+        
+        .info {
+            font-size:1em;
+        }
     }
 }
 
@@ -26,6 +29,7 @@
         text-align:center;
         display:inline-block;
         padding:2px 16px;
+        margin:0 4px;
 
         a {
             color:black;
@@ -38,4 +42,8 @@
             opacity:1;            
         }
     }
+}
+
+@media (max-width:720px) {
+    
 }

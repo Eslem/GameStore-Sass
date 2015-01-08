@@ -45,31 +45,19 @@ function findProduct(id, callback) {
 
 function loadGames(categoryID) {
     getProductsByCategory(categoryID, function(result) {
-        $('#divGames').html('');
-        $('#divDetail').html('');
+        $('#divGames').text('');
+        $('#divDetail').hide();
         if (result !== '' && result !== null && JSON.parse(result) !== null) {
             $(".back-panel").removeClass("active");
             result = JSON.parse(result);
             for (var i in result) {
-                $('#divGames').hide();
-                $('#divGames').append('<div class="game" data-id="' + result[i].id + '">'
-                        + '<div class="imgBack"><img src="images/games/' + result[i].id
-                        + '_thumb.jpg" alt><div class="diagnalA">Detalle</div></div><div class="info">'
-                        + '<div>' + result[i].nombre + '</div></div></div>');
+                loadThumbnail($('#divGames'), result[i]);
                 $('#divGames').fadeIn("slow");
 
             }
             $('.game .imgBack').click(function(ev) {
                 findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
-                    $('#divDetail').hide();
-                    $('#divDetail').html('<div class="detail">'
-                            + '<img class="imgDet" src="images/games/' + result.id + '.jpg" alt>'
-                            + '<div><h3>' + result.nombre + '</h3><hr/>'
-                            + '<p>' + result.descripcion + '</p></div>' + '<div class="platforms">Plataformas</div>'
-                            + '<div class="precio">' + result.precio + '€</div>'
-                            + '<button onclick="addToCart(' + result.id + ');" class="diagnalA btnCB btnCB-5 btnCB-5b">'
-                            + '<span>Add to cart</span></button></div>');
-                    $('#divDetail').fadeIn("slow");
+                    loadGameDetail($('#divDetail'), result, false);
                 });
             });
         } else {
