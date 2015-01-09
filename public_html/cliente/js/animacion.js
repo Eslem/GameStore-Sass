@@ -110,9 +110,7 @@ function showForm(elem) {
 }
 
 function slideNavToggle() {
-    $(".slide-nav").click(function() {
-        $(".navbar form, .navbar ul li:not(.slide-nav, .header)").slideToggle();
-    });
+  $(".navbar form, .navbar ul li:not(.slide-nav, .header)").slideToggle();
 }
 
 function setUpCategorias() {

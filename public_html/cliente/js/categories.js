@@ -6,7 +6,7 @@ var categories;
 
 function getProductsByCategory(category, callback) {
     $.ajax({
-        url: '../php/controller/productoController.php',
+        url: '../server/controller/productoController.php',
         type: 'POST',
         data: {
             query: 'selectJoin',
@@ -24,7 +24,7 @@ function getProductsByCategory(category, callback) {
 
 function findProduct(id, callback) {
     $.ajax({
-        url: '../php/controller/productoController.php',
+        url: '../server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {

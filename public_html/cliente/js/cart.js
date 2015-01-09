@@ -1,6 +1,6 @@
 function getCart(callback) {
     $.ajax({
-        url: '../php/cartManager.php',
+        url: '../server/cartManager.php',
         type: 'POST',
         data: {
             operation: 'get'
@@ -14,7 +14,7 @@ function getCart(callback) {
 
 function addToCart(id) {
     $.ajax({
-        url: '../php/cartManager.php',
+        url: '../server/cartManager.php',
         type: 'POST',
         data: {
             operation: 'add',
@@ -29,7 +29,7 @@ function addToCart(id) {
 
 function removeFromCart(id, callback) {
     $.ajax({
-        url: '../php/cartManager.php',
+        url: '../server/cartManager.php',
         type: 'POST',
         data: {
             operation: 'remove',
@@ -45,7 +45,7 @@ function removeFromCart(id, callback) {
 
 function emptyCart() {
     $.ajax({
-        url: '../php/cartManager.php',
+        url: '../server/cartManager.php',
         type: 'POST',
         data: {
             operation: 'empty'

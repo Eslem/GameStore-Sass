@@ -31,14 +31,15 @@
         display:inline-block;
         padding:2px 16px;
         margin:0 4px;
-
-        a {
-            color:black;
-            text-decoration:none;
+        .normalize {
+        transform:skewX(30deg);
+            a {
+                color:black;
+                text-decoration:none;
+            }
         }
-        
         @include transition(.2s);
-        opacity:.9;
+        opacity:.6;
         &:hover {
             opacity:1;            
         }

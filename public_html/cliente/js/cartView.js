@@ -1,6 +1,6 @@
 function findProduct(id, callback) {
     $.ajax({
-        url: '../php/controller/productoController.php',
+        url: '../server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
