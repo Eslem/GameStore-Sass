@@ -3,69 +3,6 @@
 @import "vars.scss";
 
 
-/* ----------------------------------  Lista de Productos ---------------------------------- */
-
-.imagenes {
-    .game {
-        margin-left:6.25%;
-        margin-top:2%;
-        -webkit-backface-visibility:hidden;
-        height:250px;
-        width:25%;
-        overflow:hidden;
-        display:inline-block;
-        position:relative;
-        cursor:pointer;
-        &:hover{
-            -webkit-backface-visibility:hidden;
-            text-shadow:2px 2px 8px $blue-color;
-            font-size:20px;
-            @include transition(all .2s);
-            .diagnalA{
-                opacity:1;}
-            .imgBack{
-                background-color: #111111;
-                img{
-                    opacity:.5;}
-            }
-        }
-        .imgBack {
-            -webkit-backface-visibility:hidden;
-            height:80%;
-            width:100%;
-            background-size:100% 100%;
-            background-repeat:no-repeat;
-            position:absolute;
-            overflow:hidden;
-            img {
-                -webkit-backface-visibility:hidden;
-                height:100%;
-                width:100%;
-                position:absolute;
-            }
-        }
-        .diagnalA{
-            position:absolute;
-            width:20%;
-            left:40%;
-            top:35%;
-            text-align:center;
-            opacity:0;}
-        .info{
-            text-align:center;
-            position:absolute;
-            width:100%;
-            height:15%;
-            bottom:0%;
-            div {
-                @include box-sizing(border-box);
-                width:100%;
-                color: white;
-            }
-        }
-    }
-}
-
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
 
 #divCategories {
@@ -96,25 +33,8 @@
             color:white;
             text-shadow:2px 2px 8px $blue-color;}
     }
-<<<<<<< HEAD
     .bottom {
         display:inline-block;
-=======
-    .platforms{
-        border:2px $color-text solid;
-        width:auto;
-        bottom:4%;
-        left:53%;
-        padding:1% 1%;
-        display:none;}
-    .precio{
-        bottom:7%;
-        right: 5%;
-        font-size:16px;
-        color:white;
-        width:15%}
-    button{ 
->>>>>>> 9a2c97db9fc676ca4060998d3001044a63fb634b
         position:absolute;
         bottom:0;
         right:0;
@@ -153,9 +73,8 @@
     }
 }
 
-@import "responsive";
+/* ----------------------------------  Lista de Productos ---------------------------------- */
 
-<<<<<<< HEAD
 .imagenes {
     margin:0 2%;
     .game {
@@ -234,51 +153,3 @@
     height:100%;
     background:black;
 }
-=======
-@media screen and (max-width:$width-tablets) {
-
-    .imagenes {
-        .game {
-            width: 40.56%;
-        }
-    }
-}
-
-@media screen and (max-width:1026px) {
-
-    .detail{
-        .precio{
-            right: 9%;
-        }
-    }
-    .imagenes {
-        .game {
-            .info{
-                margin: 0%;}
-        }
-    }
-
-}
-
-@media screen and (max-width:550px) {
-
-    .imagenes {
-        .game {
-            width: 87.50%;
-            .info{
-                margin: 0%;}
-        }
-    }
-}
-
-@media screen and (max-width:$width-mobiles) {
-    .imagenes {
-        .game {
-            margin-left: 8%;
-            width: 86%;
-            .info{
-                margin: 0%;}
-        }
-    }
-}
->>>>>>> 9a2c97db9fc676ca4060998d3001044a63fb634b
