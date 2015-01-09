@@ -15,8 +15,17 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-.diagnalA {
-  -webkit-backface-visibility: hidden; }
+.diagonal {
+  -webkit-backface-visibility: hidden;
+  transform: skewX(-25deg);
+  background-color: #7ed1e2; }
+  .diagonal .normalize, .diagonal:before {
+    -webkit-backface-visibility: hidden;
+    transform: skewX(25deg); }
+    .diagonal .normalize:hover, .diagonal:before:hover {
+      outline: none; }
+  .diagonal:before {
+    margin-left: 5px; }
 
 .slideButton {
   cursor: pointer;

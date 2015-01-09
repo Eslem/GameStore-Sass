@@ -14,7 +14,7 @@
       #main-Slider .elements .element .text {
         padding-top: 5px;
         transform: skewX(15deg); }
-        #main-Slider .elements .element .text .diagnalA {
+        #main-Slider .elements .element .text .diagonal {
           padding: 5px;
           margin: 0 75px; }
         #main-Slider .elements .element .text h3 {
@@ -63,7 +63,7 @@
         height: 75px; }
         #main-Slider .elements .element .text {
           padding-top: 0px; }
-          #main-Slider .elements .element .text .diagnalA {
+          #main-Slider .elements .element .text .diagonal {
             padding: 2px;
             margin: 0 5px;
             font-size: .8em; }

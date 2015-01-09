@@ -43,6 +43,38 @@ function removeFromCart(id, callback) {
     });
 }
 
+function increaseProduct(id, callback) {
+    $.ajax({
+        url: '../server/cartManager.php',
+        type: 'POST',
+        data: {
+            operation: 'increase',
+            id: id
+        }
+    }).success(function(result) {
+        //console.log(result);
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
+        $('#log').html(error.responseText);
+    });
+}
+
+function decreaseProduct(id, callback) {
+    $.ajax({
+        url: '../server/cartManager.php',
+        type: 'POST',
+        data: {
+            operation: 'decrease',
+            id: id
+        }
+    }).success(function(result) {
+        //console.log(result);
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
+        $('#log').html(error.responseText);
+    });
+}
+
 function emptyCart() {
     $.ajax({
         url: '../server/cartManager.php',

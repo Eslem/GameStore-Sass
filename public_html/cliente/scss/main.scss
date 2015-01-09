@@ -21,8 +21,20 @@ html, body {
     @include box-sizing(border-box);
 }
 
-.diagnalA {
-    -webkit-backface-visibility:hidden;
+.diagonal {
+    @include transform(skewX(-25deg));
+    background-color:$blue-color;
+    
+    .normalize, &:before {
+        @include transform(skewX(25deg));
+        &:hover {
+            outline:none;
+        }
+    }
+
+    &:before {
+        margin-left:5px;
+    }
 }
 
 .slideButton {
@@ -40,14 +52,14 @@ html, body {
         @include transition(all .2s);
         outline:none;
     }
-    
+
     &.long {
         width:160px;
     }
-    
+
     &.cart, &.trash {
         width:160px;
-        
+
         &:hover:before {
             left:-2%;
         }

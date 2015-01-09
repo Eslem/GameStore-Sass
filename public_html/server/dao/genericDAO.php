@@ -5,12 +5,15 @@ require_once '../connectionManager.php';
 class GenericDAO {
 
     function __construct() {
-        
-          $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
-          $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
-          $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
-         
-       // $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+
+        if (false) {
+            $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
+            $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
+            $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
+        } else {
+            $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+        }
+
         $this->tableName = '';
         $this->propertyNames = [];
         $this->propertyTypes = [];

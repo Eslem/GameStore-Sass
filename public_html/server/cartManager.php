@@ -36,6 +36,30 @@ switch ($_POST['operation']) {
         }
         echo json_encode($_SESSION['cart']);
         break;
+        
+        
+    /* Increase product count */
+    case 'increase' :
+        $product = $_POST['id'];
+        if (!isset($_SESSION['cart']) || $_SESSION['cart'] == null) {
+            $_SESSION['cart'] = array();
+        } else {
+            $_SESSION['cart'][$product]++;
+        }
+        echo json_encode($_SESSION['cart']);
+        break;
+        
+        
+    /* Decrease product count */
+    case 'decrease' :
+        $product = $_POST['id'];
+        if (!isset($_SESSION['cart']) || $_SESSION['cart'] == null) {
+            $_SESSION['cart'] = array();
+        } else {
+            $_SESSION['cart'][$product]--;
+        }
+        echo json_encode($_SESSION['cart']);
+        break;
 
 
     /* Remove */
