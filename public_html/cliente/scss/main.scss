@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "mixins";
 @import "vars";
 
@@ -53,3 +54,25 @@ html, body {
         }
     }
 }
+=======
+@import "mixins";
+@import "vars";
+
+
+/* ---------------------------------- Html y body ------------------------ */
+html, body {
+    background-color:#111111;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+    font-family:$font;
+    background-size: 100% 100%;
+}
+
+*:not(i){
+    @include box-sizing(border-box);
+}
+
+>>>>>>> 9a2c97db9fc676ca4060998d3001044a63fb634b
