@@ -9,30 +9,32 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         if (callback !== undefined) callback(result);
         return result;
-    }).error(function (error) {
+    }).error(function(error) {
         $('#log').html(error.responseText);
     });
 }
 
-function loadCart() {
+function loadCart(parameters) {
     totalCost = 0;
-    getCart(function (result) {
+    getCart(function(result) {
         result = JSON.parse(result);
 
         $('#divGames').html('');
-        $('#divGames').hide();
-        $('#divDetail').hide();
+        if (parameters.transitionEnabled) {
+            $('#divGames').hide();
+            $('#divDetail').hide();
+        }
 
         function getCartGames(gameIndexes) {
             var gameID = gameIndexes[gameIndexes.length - 1];
-            findProduct(gameID, function (product) {
+            findProduct(gameID, function(product) {
                 loadThumbnail($('#divGames'), product, result[gameIndexes[gameIndexes.length - 1]]);
 
-                $('#divGames .game:last-child .imgBack').click(function (ev) {
-                    findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
+                $('#divGames .game:last-child .imgBack').click(function(ev) {
+                    findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
                         loadGameDetail($('#divDetail'), result, true);
                     });
                 });
@@ -41,11 +43,12 @@ function loadCart() {
                 if (gameIndexes.length > 0) {
                     getCartGames(gameIndexes);
                 } else {
-                    console.log(totalCost);
-                    $('#totalCost').hide();
+                    if (parameters.transitionEnabled) $('#totalCost').hide();
                     $('#totalCost').html('Importe total: ' + totalCost + '€');
-                    $('#totalCost').fadeIn("slow");
-                    $('#divGames').fadeIn("slow");
+                    if (parameters.transitionEnabled) {
+                        $('#totalCost').fadeIn("slow");
+                        $('#divGames').fadeIn("slow");
+                    }
                 }
             });
         }
@@ -53,7 +56,25 @@ function loadCart() {
     });
 }
 
+function updateItems(result) {
+    totalCost = 0;
+    result = JSON.parse(result);
 
-$('document').ready(function () {
-    loadCart();
+    var items = Object.keys(result);
+    for (var i in items) {
+        var itemContainer = $('.game[data-id="' + items[i] + '"]');
+
+        var precio = itemContainer.attr('data-price');
+        itemContainer.find('.price').html(loadQuantity({
+            id: items[i],
+            precio: precio
+        }, result[items[i]]));
+    }
+    $('#totalCost').html('Importe total: ' + totalCost + '€');
+}
+
+$('document').ready(function() {
+    loadCart({
+        transitionEnabled: true
+    });
 });

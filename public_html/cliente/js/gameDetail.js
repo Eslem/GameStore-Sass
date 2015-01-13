@@ -1,16 +1,12 @@
 function loadThumbnail(container, gameInfo, quantity) {
-    var strHTML = '<div class="game" data-id="' + gameInfo.id + '">'
+    var strHTML = '<div class="game" data-id="' + gameInfo.id + '" data-price="' + gameInfo.precio + '">'
             + '<div class="imgBack"><img src="images/games/' + gameInfo.id
             + '_thumb.jpg" alt><div class="diagonal">'
             + '<span class="normalize">Detalle</span></div></div>'
             + '<div class="info"><div>' + gameInfo.nombre;
 
     if (quantity !== undefined) {
-        strHTML += '<br/>' + gameInfo.precio + '€ x ' + quantity
-                + ' (<span class="increase" onclick="increaseProduct(' + gameInfo.id + ', loadCart)">+</span>'
-                + '/<span class="decrease" onclick="decreaseProduct(' + gameInfo.id + ', loadCart)">-</span>) '
-                + '= ' + (gameInfo.precio * quantity) + '€';
-        totalCost += gameInfo.precio * quantity;
+        strHTML += loadQuantity(gameInfo, quantity);
     }
 
     strHTML += '</div></div></div>';
@@ -39,4 +35,12 @@ function loadGameDetail(container, gameInfo, inCart) {
     container.fadeIn("slow");
     $('body').css('background', 'rgba(0,0,0,.75)');
     $('#background').css('background', 'url(images/games/' + gameInfo.id + '.jpg)');
+}
+
+function loadQuantity(gameInfo, quantity) {
+    totalCost += gameInfo.precio * quantity;
+    return '<div class="price">' + gameInfo.precio + '€ x ' + quantity
+            + ' (<span class="increase" onclick="increaseProduct(' + gameInfo.id + ', updateItems)">+</span>'
+            + '/<span class="decrease" onclick="decreaseProduct(' + gameInfo.id + ', updateItems)">-</span>) '
+            + '= ' + (gameInfo.precio * quantity) + '€</div>';
 }
