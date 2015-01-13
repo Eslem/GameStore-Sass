@@ -32,7 +32,7 @@ function loadGameDetail(container, gameInfo, inCart) {
     strHTML += '</div></div></div>';
 
     container.html(strHTML);
-    container.fadeIn("slow");
+    container.fadeIn('slow');
     $('body').css('background', 'rgba(0,0,0,.75)');
     $('#background').css('background', 'url(images/games/' + gameInfo.id + '.jpg)');
 }
