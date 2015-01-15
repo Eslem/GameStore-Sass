@@ -83,6 +83,16 @@ function executeQuery($dao) {
             break;
 
 
+        /* DeleteByCondition */
+        case 'deleteByCondition' :
+            if (!isset($_POST["id"]) || !isset($_POST["condition"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->deleteByCondition($_POST['id'], $_POST["condition"]);
+            }
+            break;
+
+
         default :
             header("HTTP/1.0 400 Request query is invalid");
             break;

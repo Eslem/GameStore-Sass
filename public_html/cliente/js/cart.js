@@ -97,36 +97,12 @@ function emptyCart() {
 }
 
 function saveCart(cart) {
-    function sendLine(id, quantity) {
-        console.log(id, quantity);
-        $.ajax({
-            url: '../server/controller/pedido_lineaController.php',
-            dataType: 'JSON',
-            type: 'POST',
-            data: {
-                query: 'insert',
-                values: [0, id, quantity]
+    deleteOrder(0, function() {
+        insertOrder({id: 0, status: 'Cart'}, function() {
+            var items = Object.keys(cart);
+            for (var i in items) {
+                insertOrderLine({orderIndex: 0, parameters: items[i], quantity: cart[items[i]]});
             }
-        }).error(function(error) {
-            $('#log').html(error.responseText);
         });
-    }
-
-    var items = Object.keys(cart);
-    for (var i in items) {
-        sendLine(items[i], cart[items[i]]);
-    }
-
-    /*$.ajax({
-     url: '../server/dao/pedidoDAO.php',
-     type: 'POST',
-     data: {
-     operation: 'empty'
-     }
-     }).success(function(result) {
-     //console.log(result);
-     location.reload();
-     }).error(function(error) {
-     $('#log').html(error.responseText);
-     });*/
+    });
 }

@@ -36,7 +36,6 @@ class GenericDAO {
     }
 
     function prepareAndExecuteStatement($connection, $query, $values) {
-
         $preparedStatement = $connection->prepare($query);
         if (!!$preparedStatement) {
             $propertyTypes = join('', $this->propertyTypes);
@@ -50,7 +49,16 @@ class GenericDAO {
             $this->connectionManager->closeConnection($connection);
             return $result;
         } else {
-            echo '<br/>Invalid query "' . $query . '".';
+            $errorMsg = '<br/>Invalid query parameters (';
+            for ($i = 0; $i < count($values); $i++) {
+                $errorMsg .= $values[$i];
+                if ($i < count($values) - 1) {
+                    $errorMsg .= ', ';
+                } else {
+                    $errorMsg .= ').';
+                }
+            }
+            echo $errorMsg . '<br/>Original query: ' . $query . '.<br/>';
         }
     }
 
@@ -222,4 +230,20 @@ class GenericDAO {
         }
     }
 
+    function deleteByCondition($id, $condition) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "DELETE FROM producto WHERE " . $condition;
+
+        $preparedStatement = $connection->prepare($query);
+        if (!!$preparedStatement) {
+            $preparedStatement->bind_param("i", $id);
+            $result = $preparedStatement->execute();
+
+            $this->connectionManager->closeConnection($connection);
+            return $result;
+        } else {
+            echo '<br/>Invalid query "' . $query . '".';
+        }
+    }
 }
