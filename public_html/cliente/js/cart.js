@@ -101,7 +101,9 @@ function saveCart(cart) {
         insertOrder({id: 0, status: 'Cart'}, function() {
             var items = Object.keys(cart);
             for (var i in items) {
-                insertOrderLine({orderIndex: 0, parameters: items[i], quantity: cart[items[i]]});
+                insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]}, function() {
+
+                });
             }
         });
     });
