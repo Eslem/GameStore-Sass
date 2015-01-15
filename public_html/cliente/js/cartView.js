@@ -19,7 +19,6 @@ function findProduct(id, callback) {
 function loadCart(parameters) {
     totalCost = 0;
     getCart(function(result) {
-        result = JSON.parse(result);
         $('#divGames').html('');
         if (parameters.transitionEnabled) {
             $('#divGames').hide();
@@ -54,7 +53,6 @@ function loadCart(parameters) {
 
 function updateItems(result) {
     totalCost = 0;
-    result = JSON.parse(result);
     var items = Object.keys(result);
 
     for (var i in items) {

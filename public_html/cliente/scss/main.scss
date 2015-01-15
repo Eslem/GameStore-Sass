@@ -13,6 +13,11 @@ html, body {
     font-family:$font;
 }
 
+#log {
+    color:lightgray;
+    text-shadow:0 0 1px black;
+}
+
 .background {
     background-size:cover;    
 }
