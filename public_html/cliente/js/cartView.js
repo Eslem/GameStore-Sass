@@ -12,7 +12,7 @@ function findProduct(id, callback) {
         if (callback !== undefined) callback(result);
         return result;
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 

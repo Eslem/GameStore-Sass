@@ -230,20 +230,12 @@ class GenericDAO {
         }
     }
 
-    function deleteByCondition($id, $condition) {
+    function deleteByCondition($condition) {
         $connection = $this->connectionManager->getConnection();
 
         $query = "DELETE FROM producto WHERE " . $condition;
 
-        $preparedStatement = $connection->prepare($query);
-        if (!!$preparedStatement) {
-            $preparedStatement->bind_param("i", $id);
-            $result = $preparedStatement->execute();
-
-            $this->connectionManager->closeConnection($connection);
-            return $result;
-        } else {
-            echo '<br/>Invalid query "' . $query . '".';
-        }
+        $result = $connection->query($query);
+        return $result;
     }
 }

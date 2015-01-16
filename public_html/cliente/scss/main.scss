@@ -16,6 +16,13 @@ html, body {
 #log {
     color:lightgray;
     text-shadow:0 0 1px black;
+
+    .xdebug-error {
+        color:black;
+        margin-left:20%;
+        text-shadow:none;
+        @include transform(scale(1.5));
+    }
 }
 
 .background {
@@ -29,7 +36,7 @@ html, body {
 .diagonal {
     @include transform(skewX(-25deg));
     background-color:$blue-color;
-    
+
     .normalize, &:before {
         @include transform(skewX(25deg));
         &:hover {

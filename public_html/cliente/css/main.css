@@ -11,6 +11,12 @@ html, body {
 #log {
   color: lightgray;
   text-shadow: 0 0 1px black; }
+  #log .xdebug-error {
+    color: black;
+    margin-left: 20%;
+    text-shadow: none;
+    -webkit-backface-visibility: hidden;
+    transform: scale(1.5); }
 
 .background {
   background-size: cover; }

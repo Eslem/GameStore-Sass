@@ -9,7 +9,7 @@ function getCart(callback) {
     }).success(function(result) {
         if (callback !== undefined) callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -25,7 +25,7 @@ function addToCart(id) {
     }).success(function(result) {
         saveCart(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -42,7 +42,7 @@ function removeFromCart(id, callback) {
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -59,7 +59,7 @@ function increaseProduct(id, callback) {
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -76,7 +76,7 @@ function decreaseProduct(id, callback) {
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -92,13 +92,15 @@ function emptyCart() {
         saveCart(result);
         location.reload();
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
 function saveCart(cart) {
-    deleteOrder(0, function() {
+    emptyOrder(0, function() {
+        console.log('Order emptied');
         insertOrder({id: 0, status: 'Cart'}, function() {
+            console.log('Order inserted');
             var items = Object.keys(cart);
             for (var i in items) {
                 insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]}, function() {

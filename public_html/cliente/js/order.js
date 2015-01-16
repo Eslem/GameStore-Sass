@@ -4,13 +4,29 @@ function insertOrder(parameters, callback) {
         dataType: 'JSON',
         type: 'POST',
         data: {
-            operation: 'insert',
+            query: 'insert',
             values: [parameters.index, parameters.status]
         }
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
+    });
+}
+    
+function emptyOrder(id, callback) {
+    $.ajax({
+        url: '../server/controller/pedido_lineaController.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            query: 'deleteByCondition',
+            condition: 'id_pedido = ' + id
+        }
+    }).success(function(result) {
+        callback(result);
+    }).error(function(error) {
+        logError(error);
     });
 }
 
@@ -20,28 +36,13 @@ function deleteOrder(id, callback) {
         dataType: 'JSON',
         type: 'POST',
         data: {
-            operation: 'delete',
+            query: 'delete',
             id: id
         }
     }).success(function(result) {
-        callback(result);
+        emptyOrder(id, callback(result));
     }).error(function(error) {
-        $('#log').html(error.responseText);
-    });
-    
-    
-    $.ajax({
-        url: '../server/controller/pedido_lineaController.php',
-        dataType: 'JSON',
-        type: 'POST',
-        data: {
-            operation: 'deleteByCondition',
-            condition: 'id_pedido = ' + id
-        }
-    }).success(function(result) {
-        callback(result);
-    }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -57,6 +58,6 @@ function insertOrderLine(parameters, callback) {
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
