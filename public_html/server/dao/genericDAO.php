@@ -234,8 +234,10 @@ class GenericDAO {
         $connection = $this->connectionManager->getConnection();
 
         $query = "DELETE FROM producto WHERE " . $condition;
-
         $result = $connection->query($query);
+        
+        $this->connectionManager->closeConnection($connection);
         return $result;
     }
+
 }
