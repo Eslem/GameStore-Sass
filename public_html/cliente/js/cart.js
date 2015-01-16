@@ -92,6 +92,7 @@ function emptyCart() {
         saveCart(result);
         location.reload();
     }).error(function(error) {
+        console.log('No hay mensaje!');
         logError(error);
     });
 }
