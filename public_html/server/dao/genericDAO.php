@@ -35,6 +35,17 @@ class GenericDAO {
         return $refs;
     }
 
+    function resultToArray($result) {
+        $resultArray = [];
+        while ($row = $result->fetch_assoc()) {
+            foreach ($row as &$property) {
+                $property = utf8_encode($property);
+            }
+            array_push($resultArray, $row);
+        }
+        return $resultArray;
+    }
+
     function prepareAndExecuteStatement($connection, $query, $values) {
         $preparedStatement = $connection->prepare($query);
         if (!!$preparedStatement) {
@@ -62,16 +73,6 @@ class GenericDAO {
         }
     }
 
-    function resultToArray($result) {
-        $resultArray = [];
-        while ($row = $result->fetch_assoc()) {
-            foreach ($row as &$property)
-                $property = utf8_encode($property);
-            array_push($resultArray, $row);
-        }
-        return $resultArray;
-    }
-
     function insert($values) {
         $connection = $this->connectionManager->getConnection();
 
@@ -85,16 +86,24 @@ class GenericDAO {
         $this->prepareAndExecuteStatement($connection, $query, $values);
     }
 
-    function select() {
+    function genericSelect($condition) {
         $connection = $this->connectionManager->getConnection();
+        if ($condition === null) {
+            $condition = '';
+        }
 
-        $query = "SELECT * FROM " . $this->tableName;
+        $query = "SELECT * FROM " . $this->tableName . $condition;
         $result = $connection->query($query);
         $this->connectionManager->closeConnection($connection);
 
         if (is_object($result) && $result->num_rows > 0) {
-            return $this->resultToArray($result);
+            $resultArray = $this->resultToArray($result);
+            return $resultArray;
         }
+    }
+
+    function select() {
+        return $this->genericSelect(null);
     }
 
     function selectPaginated($index, $quantity) {
@@ -105,7 +114,8 @@ class GenericDAO {
         $this->connectionManager->closeConnection($connection);
 
         if (is_object($result) && $result->num_rows > 0) {
-            return $this->resultToArray($result);
+            $resultArray = $this->resultToArray($result);
+            return $resultArray;
         }
     }
 
@@ -123,18 +133,24 @@ class GenericDAO {
         $this->connectionManager->closeConnection($connection);
 
         if (is_object($result) && $result->num_rows > 0) {
-            return $this->resultToArray($result);
+            $resultArray = $this->resultToArray($result);
+            return $resultArray;
         }
     }
 
-    function genericFind($condition) {
+    function find($id) {
         $connection = $this->connectionManager->getConnection();
 
-        $query = "SELECT * FROM " . $this->tableName . $condition;
+        $query = "SELECT * FROM " . $this->tableName . " WHERE id = " . $id;
         $result = $connection->query($query);
         $this->connectionManager->closeConnection($connection);
-        if (is_object($result) && $result->num_rows > 0) {
-            return $this->resultToArray($result);
+
+        if (is_object($result) && $result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            foreach ($row as &$property) {
+                $property = utf8_encode($property);
+            }
+            return $row;
         }
     }
 
@@ -152,7 +168,7 @@ class GenericDAO {
             }
         }
         array_push($values, $id);
-        $query .= $condition;
+        $query .= " WHERE " . $condition;
 
         $this->prepareAndExecuteStatement($connection, $query, $values);
     }
@@ -167,16 +183,12 @@ class GenericDAO {
         return $result;
     }
 
-    function find($id) {
-        $this->genericFind(" WHERE id = " . $id);
-    }
-
     function update($id, $values) {
-        $this->genericUpdate($id, $values, " WHERE id = " . $id);
+        $this->genericUpdate($id, $values, "id = " . $id);
     }
 
     function delete($id) {
-        $this->genericDelete(" WHERE id = " . $id);
+        $this->genericDelete("id = " . $id);
     }
 
 }

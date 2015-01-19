@@ -2,7 +2,7 @@
 
 require_once 'genericDAO.php';
 
-class AdministradorDAO extends GenericDAO {
+class PedidoDAO extends GenericDAO {
 
     function __construct() {
         parent::__construct();

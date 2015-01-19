@@ -6,6 +6,11 @@ function executeQuery($dao) {
         /* Select */
         case 'select' :
             echo json_encode($dao->select());
+            break;       
+
+        /* Select by condition */
+        case 'selectByCondition' :
+            echo json_encode($dao->selectGeneric());
             break;
 
 
@@ -41,17 +46,7 @@ function executeQuery($dao) {
                 echo json_encode($dao->find($_POST['id']));
             }
             break;
-
-
-        /* Find by condition */
-        case 'findByCondition' :
-            if (!isset($_POST["condition"])) {
-                header("HTTP/1.0 400 Request is missing parameters");
-            } else {
-                echo json_encode($dao->genericFind($_POST['condition']));
-            }
-            break;
-
+            
 
         /* Insert */
         case 'insert' :
@@ -73,7 +68,7 @@ function executeQuery($dao) {
             break;
 
 
-        /* UpdateByCondition */
+        /* Update by condition */
         case 'updateByCondition' :
             if (!isset($_POST["id"]) || !isset($_POST["values"]) || !isset($_POST["condition"])) {
                 header("HTTP/1.0 400 Request is missing parameters");
@@ -93,7 +88,7 @@ function executeQuery($dao) {
             break;
 
 
-        /* DeleteByCondition */
+        /* Delete by condition */
         case 'deleteByCondition' :
             if (!isset($_POST["condition"])) {
                 header("HTTP/1.0 400 Request is missing parameters");

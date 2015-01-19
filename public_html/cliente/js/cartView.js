@@ -1,4 +1,9 @@
+//==============================================================================
+// CART
+//==============================================================================
+
 var totalCost = 0;
+
 function findProduct(id, callback) {
     $.ajax({
         url: '../server/controller/productoController.php',
@@ -9,6 +14,7 @@ function findProduct(id, callback) {
             id: id
         }
     }).success(function(result) {
+        console.log(result);
         if (callback !== undefined) callback(result);
         return result;
     }).error(function(error) {
@@ -31,8 +37,10 @@ function loadCart(parameters) {
                 if (product !== '' && product !== null) {
                     loadThumbnail($('#divGames'), product, result[gameIndexes[gameIndexes.length - 1]]);
                     $('#divGames .game:last-child .imgBack').click(function(ev) {
-                        findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
-                            loadGameDetail($('#divDetail'), result, true);
+                        findProduct($(ev.currentTarget).parent().attr('data-id'), function(game) {
+                            if (game !== '' && game !== null) {
+                                loadGameDetail($('#divDetail'), game, true);
+                            }
                         });
                     });
                     gameIndexes = gameIndexes.slice(0, gameIndexes.length - 1);
@@ -46,7 +54,7 @@ function loadCart(parameters) {
                             $('#divGames').fadeIn('slow');
                         }
                     }
-                } else console.log('Games in cart were not found in the database.');
+                } else console.log('No item with that id found in the table.');
             });
         }
         getCartGames(Object.keys(result));

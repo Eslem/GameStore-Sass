@@ -53,11 +53,12 @@ function loadGames(categoryID) {
             for (var i in result) {
                 loadThumbnail($('#divGames'), result[i]);
                 $('#divGames').fadeIn("slow");
-
             }
             $('.game .imgBack').click(function(ev) {
-                findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
-                    loadGameDetail($('#divDetail'), result, false);
+                findProduct($(ev.currentTarget).parent().attr('data-id'), function(product) {
+                    if (product !== '' && product !== null)
+                        loadGameDetail($('#divDetail'), product, false);
+                    else console.log('No item with that id found in the table.');
                 });
             });
         } else {
