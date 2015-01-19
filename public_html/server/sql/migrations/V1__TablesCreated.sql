@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `linea_pedido` (
 CREATE TABLE IF NOT EXISTS `pedido` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
+  `estado` VARCHAR(10) NULL NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

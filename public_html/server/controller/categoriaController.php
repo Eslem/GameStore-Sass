@@ -1,4 +1,5 @@
 <?php
+
 require 'genericController.php';
 require '../dao/categoriaDAO.php';
 

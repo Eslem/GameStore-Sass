@@ -289,24 +289,24 @@ div.navbar.invisible {
         font-family: "Open Sans", sans-serif;
         color: #fff;
         width: 60%; }
-      #main-Slider .active .description .diagnalA {
+      #main-Slider .active .description .diagonal {
         text-align: center;
         padding: 5px;
         margin-right: 150px;
         margin-left: 0px; }
-        #main-Slider .active .description .diagnalA .normalize a {
+        #main-Slider .active .description .diagonal .normalize a {
           margin: 0px;
           padding: 0px 25px; }
-        #main-Slider .active .description .diagnalA.bordered {
+        #main-Slider .active .description .diagonal.bordered {
           background-color: transparent;
           outline: 2px solid #fff;
           margin-right: 130px;
           -webkit-transition: all 0.5s linear;
           -moz-transition: all 0.5s linear;
           transition: all 0.5s linear; }
-          #main-Slider .active .description .diagnalA.bordered .normalize a {
+          #main-Slider .active .description .diagonal.bordered .normalize a {
             color: #fff; }
-          #main-Slider .active .description .diagnalA.bordered:hover {
+          #main-Slider .active .description .diagonal.bordered:hover {
             background-color: #7ed1e2;
             outline: none; }
   #main-Slider .elements {
@@ -376,14 +376,15 @@ div.navbar.invisible {
           font-weight: 200; }
 
 /* ---------------------------------- Clases ---------------------------------- */
-.diagnalA {
+.diagonal {
+  -webkit-backface-visibility: hidden;
   transform: skewX(-30deg);
-  background-color: #7ed1e2;
   padding: 10px;
   margin: 0 150px; }
-  .diagnalA .normalize {
+  .diagonal .normalize {
+    -webkit-backface-visibility: hidden;
     transform: skewX(30deg); }
-    .diagnalA .normalize a {
+    .diagonal .normalize a {
       margin: 0px;
       text-transform: uppercase;
       text-decoration: none;
@@ -506,7 +507,7 @@ div.navbar.invisible {
       #main-Slider .elements .element .text {
         padding-top: 5px;
         transform: skewX(15deg); }
-        #main-Slider .elements .element .text .diagnalA {
+        #main-Slider .elements .element .text .diagonal {
           padding: 5px;
           margin: 0 75px; }
         #main-Slider .elements .element .text h3 {
@@ -555,7 +556,7 @@ div.navbar.invisible {
         height: 75px; }
         #main-Slider .elements .element .text {
           padding-top: 0px; }
-          #main-Slider .elements .element .text .diagnalA {
+          #main-Slider .elements .element .text .diagonal {
             padding: 2px;
             margin: 0 5px;
             font-size: .8em; }

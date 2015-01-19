@@ -10,11 +10,21 @@
   width: 248px; }
   .imagenes .game .info {
     font-size: 1em; }
+    .imagenes .game .info .increase, .imagenes .game .info .decrease {
+      cursor: pointer; }
+      .imagenes .game .info .increase:hover, .imagenes .game .info .decrease:hover {
+        color: lightgray; }
+    .imagenes .game .info .increase {
+      font-family: sans-serif; }
+
+#totalCost {
+  text-align: center;
+  color: gray; }
 
 #actions {
   text-align: center;
-  margin-bottom: 24px; }
-  #actions .diagnalA {
+  margin: 8px 0 24px; }
+  #actions .diagonal {
     text-align: center;
     display: inline-block;
     padding: 2px 16px;
@@ -23,12 +33,12 @@
     -moz-transition: 0.2s;
     transition: 0.2s;
     opacity: .6; }
-    #actions .diagnalA .normalize {
-      transform: skewX(30deg); }
-      #actions .diagnalA .normalize a {
+    #actions .diagonal .normalize {
+      transform: skewX(25deg); }
+      #actions .diagonal .normalize a {
         color: black;
         text-decoration: none; }
-    #actions .diagnalA:hover {
+    #actions .diagonal:hover {
       opacity: 1; }
 
 /*# sourceMappingURL=cart.css.map */

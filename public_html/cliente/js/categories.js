@@ -7,6 +7,7 @@ var categories;
 function getProductsByCategory(category, callback) {
     $.ajax({
         url: '../server/controller/productoController.php',
+        dataType: 'JSON',
         type: 'POST',
         data: {
             query: 'selectJoin',
@@ -18,7 +19,7 @@ function getProductsByCategory(category, callback) {
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -34,7 +35,7 @@ function findProduct(id, callback) {
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -47,9 +48,8 @@ function loadGames(categoryID) {
     getProductsByCategory(categoryID, function(result) {
         $('#divGames').text('');
         $('#divDetail').hide();
-        if (result !== '' && result !== null && JSON.parse(result) !== null) {
+        if (result !== '' && result !== null) {
             $(".back-panel").removeClass("active");
-            result = JSON.parse(result);
             for (var i in result) {
                 loadThumbnail($('#divGames'), result[i]);
                 $('#divGames').fadeIn("slow");
