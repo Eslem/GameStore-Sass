@@ -28,23 +28,25 @@ function loadCart(parameters) {
         function getCartGames(gameIndexes) {
             var gameID = gameIndexes[gameIndexes.length - 1];
             findProduct(gameID, function(product) {
-                loadThumbnail($('#divGames'), product, result[gameIndexes[gameIndexes.length - 1]]);
-                $('#divGames .game:last-child .imgBack').click(function(ev) {
-                    findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
-                        loadGameDetail($('#divDetail'), result, true);
+                if (product !== '' && product !== null) {
+                    loadThumbnail($('#divGames'), product, result[gameIndexes[gameIndexes.length - 1]]);
+                    $('#divGames .game:last-child .imgBack').click(function(ev) {
+                        findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
+                            loadGameDetail($('#divDetail'), result, true);
+                        });
                     });
-                });
-                gameIndexes = gameIndexes.slice(0, gameIndexes.length - 1);
-                if (gameIndexes.length > 0) {
-                    getCartGames(gameIndexes);
-                } else {
-                    if (parameters.transitionEnabled) $('#totalCost').hide();
-                    $('#totalCost').html('Importe total: ' + totalCost + '€');
-                    if (parameters.transitionEnabled) {
-                        $('#totalCost').fadeIn('slow');
-                        $('#divGames').fadeIn('slow');
+                    gameIndexes = gameIndexes.slice(0, gameIndexes.length - 1);
+                    if (gameIndexes.length > 0) {
+                        getCartGames(gameIndexes);
+                    } else {
+                        if (parameters.transitionEnabled) $('#totalCost').hide();
+                        $('#totalCost').html('Importe total: ' + totalCost + '€');
+                        if (parameters.transitionEnabled) {
+                            $('#totalCost').fadeIn('slow');
+                            $('#divGames').fadeIn('slow');
+                        }
                     }
-                }
+                } else console.log('Games in cart were not found in the database.');
             });
         }
         getCartGames(Object.keys(result));
