@@ -1,12 +1,19 @@
 <?php
 
 class ConnectionManager {    
-
+/*
     function __construct($server, $username, $password, $database) {
         $this->server = $server;
         $this->username = $username;
         $this->password = $password;
         $this->database = $database;
+    }
+*/
+    function __construct(){
+        $this->server = "localhost";
+        $this->username = "root";
+        $this->password = "root";
+        $this->database = "tienda";
     }
 
     public function getConnection() {

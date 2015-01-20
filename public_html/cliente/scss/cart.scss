@@ -1,4 +1,4 @@
-@import "mixins";
+@import "../../scss/mixins"; 
 
 #divCart {
     margin-top:56px;}
@@ -15,7 +15,7 @@
 .imagenes {
     .game {
         width:248px;
-        
+
         .info {
             font-size:1em;
         }
@@ -41,7 +41,7 @@
         @include transition(.2s);
         opacity:.6;
         &:hover {
-            opacity:1;            
+            opacity:1;
         }
     }
 }

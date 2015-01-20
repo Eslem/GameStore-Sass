@@ -38,4 +38,5 @@ function loadCart() {
 
 $('document').ready(function() {
     loadCart();
+    loadNav("navLinkCart");
 });

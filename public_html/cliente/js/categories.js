@@ -15,9 +15,9 @@ function getProductsByCategory(category, callback) {
             otherField: 'idProducto',
             condition: 'idCategoria = ' + category
         }
-    }).success(function(result) {
+    }).success(function (result) {
         callback(result);
-    }).error(function(error) {
+    }).error(function (error) {
         $('#log').html(error.responseText);
     });
 }
@@ -31,9 +31,9 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function(result) {
+    }).success(function (result) {
         callback(result);
-    }).error(function(error) {
+    }).error(function (error) {
         $('#log').html(error.responseText);
     });
 }
@@ -44,7 +44,7 @@ function findProduct(id, callback) {
 //==============================================================================
 
 function loadGames(categoryID) {
-    getProductsByCategory(categoryID, function(result) {
+    getProductsByCategory(categoryID, function (result) {
         $('#divGames').text('');
         $('#divDetail').hide();
         if (result !== '' && result !== null && JSON.parse(result) !== null) {
@@ -55,8 +55,8 @@ function loadGames(categoryID) {
                 $('#divGames').fadeIn("slow");
 
             }
-            $('.game .imgBack').click(function(ev) {
-                findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
+            $('.game .imgBack').click(function (ev) {
+                findProduct($(ev.currentTarget).parent().attr('data-id'), function (result) {
                     loadGameDetail($('#divDetail'), result, false);
                 });
             });
@@ -90,31 +90,7 @@ function getSelectedCategory() {
 // ON DOCUMENT READY
 //==============================================================================
 
-$('document').ready(function() {
-    $('#navbar').load('navbar.html', function() {
-        $('#navLinkCategories').addClass('active');
-    });
-
-    getCategories(function(categories) {
-        var strHTML = '';
-        for (var i = 0; i < categories.length; i++) {
-            var category = categories[i];
-
-            if (i % 3 === 0)
-                strHTML += '<li>';
-            strHTML += '<span class="gameIcon" data-id="' + category.id + '">' +
-                    '<img class="genreIcon" src="images/genres/'
-                    + category.nombre + '.svg"><br/>' + category.nombre + '</span>';
-            if (!i % 3 === 2)
-                strHTML += '</li>';
-        }
-
-        $('.panel-categorias').html(strHTML);
-
-        $('.panel-categorias .gameIcon').click(function(ev) {
-            loadGames($(ev.currentTarget).attr('data-id'));
-        });
-    });
-
+$('document').ready(function () {
+    loadNav("navLinkCategories");
     getSelectedCategory();
 });

@@ -4,7 +4,6 @@
     transition:$arguments;
 }
 
-
 @mixin transition2($arguments, $arg2) {
     -webkit-transition:$arguments, $arg2;
     -moz-transition:$arguments, $arg2;
