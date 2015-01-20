@@ -5,7 +5,7 @@ function insertOrder(parameters, callback) {
         type: 'POST',
         data: {
             query: 'insert',
-            values: [parameters.index, parameters.status]
+            values: [parameters.id, parameters.status]
         }
     }).success(function(result) {
         callback(result);
@@ -36,8 +36,8 @@ function deleteOrder(id, callback) {
         dataType: 'JSON',
         type: 'POST',
         data: {
-            query: 'delete',
-            id: id
+            query: 'deleteByCondition',
+            condition: 'usuario = ' + id
         }
     }).success(function(result) {
         emptyOrder(id, callback(result));

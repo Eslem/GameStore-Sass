@@ -95,6 +95,9 @@ function emptyCart() {
         console.log('No hay mensaje!');
         logError(error);
     });
+    emptyOrder(0, function() {
+        
+    });
 }
 
 function saveCart(cart) {
@@ -104,9 +107,7 @@ function saveCart(cart) {
             console.log('Order inserted');
             var items = Object.keys(cart);
             for (var i in items) {
-                insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]}, function() {
-
-                });
+                insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]});
             }
         });
     });
