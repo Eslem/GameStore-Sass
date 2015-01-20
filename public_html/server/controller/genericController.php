@@ -96,6 +96,13 @@ function executeQuery($dao) {
                 echo $dao->genericDelete($_POST["condition"]);
             }
             break;
+        case 'jqgrid' :
+            if (!isset($_POST["condition"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->jqgrid();
+            }
+            break;
 
 
         default :
