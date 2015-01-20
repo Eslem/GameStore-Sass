@@ -14,7 +14,6 @@ function findProduct(id, callback) {
             id: id
         }
     }).success(function(result) {
-        console.log(result);
         if (callback !== undefined) callback(result);
         return result;
     }).error(function(error) {

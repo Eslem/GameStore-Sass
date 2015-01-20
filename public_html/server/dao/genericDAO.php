@@ -84,6 +84,7 @@ class GenericDAO {
         $query .= ")";
 
         $this->prepareAndExecuteStatement($connection, $query, $values);
+        return true;
     }
 
     function genericSelect($condition) {

@@ -5,15 +5,15 @@ function insertOrder(parameters, callback) {
         type: 'POST',
         data: {
             query: 'insert',
-            values: [parameters.index, parameters.status]
+            values: [parameters.id, parameters.status]
         }
     }).success(function(result) {
-        callback(result);
+        if (callback !== undefined) callback(result);
     }).error(function(error) {
         logError(error);
     });
 }
-    
+
 function emptyOrder(id, callback) {
     $.ajax({
         url: '../server/controller/pedido_lineaController.php',
@@ -24,7 +24,7 @@ function emptyOrder(id, callback) {
             condition: 'id_pedido = ' + id
         }
     }).success(function(result) {
-        callback(result);
+        if (callback !== undefined) callback(result);
     }).error(function(error) {
         logError(error);
     });
@@ -36,8 +36,8 @@ function deleteOrder(id, callback) {
         dataType: 'JSON',
         type: 'POST',
         data: {
-            query: 'delete',
-            id: id
+            query: 'deleteByCondition',
+            condition: 'usuario = ' + id
         }
     }).success(function(result) {
         emptyOrder(id, callback(result));
@@ -56,7 +56,7 @@ function insertOrderLine(parameters, callback) {
             values: [parameters.orderIndex, parameters.id, parameters.quantity]
         }
     }).success(function(result) {
-        callback(result);
+        if (callback !== undefined) callback(result);
     }).error(function(error) {
         logError(error);
     });

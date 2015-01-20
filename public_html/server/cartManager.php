@@ -5,8 +5,8 @@ switch ($_POST['operation']) {
 
     /* Set */
     case 'set' :
-        if (isset($_POST["session"])) {
-            $_SESSION = $_POST["session"];
+        if (isset($_POST['cart'])) {
+            $_SESSION = $_POST['cart'];
         } else {
             header("HTTP/1.0 400 Request is missing session parameter");
         }
@@ -84,7 +84,7 @@ switch ($_POST['operation']) {
     /* Empty */
     case 'empty' :
         $_SESSION['cart'] = array();
-        echo json_encode($_SESSION['cart']);
+        //echo json_encode($_SESSION['cart']);
         break;
 
 
