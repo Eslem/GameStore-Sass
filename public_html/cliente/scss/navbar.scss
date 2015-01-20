@@ -258,16 +258,16 @@ div.navbar.invisible {
                 //color:#fff;
                 //Fix
                 color:#7ed1e2;
-/*
-                &:before, &:after {
-                    color:#fff;                    
-                }
-                &:before {
-                    content: '<';                 
-                }
-                &:after {
-                    content: '>';                 
-                }*/
+                /*
+                                &:before, &:after {
+                                    color:#fff;                    
+                                }
+                                &:before {
+                                    content: '<';                 
+                                }
+                                &:after {
+                                    content: '>';                 
+                                }*/
             }
         }
     }
@@ -302,8 +302,6 @@ div.navbar.invisible {
         transform:rotate(360deg);
     }
 }
-
-
 @keyframes infinite-spinning2 {
     from {
         transform:rotate(0deg);
