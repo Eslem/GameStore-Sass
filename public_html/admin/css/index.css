@@ -1,0 +1,94 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 20, 2015, 1:54:33 PM
+    Author     : eslem
+*/
+.login {
+  margin-top: 5%;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #222;
+  padding: 10px 15px;
+  padding-bottom: 25px;
+  text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 1px 1px #7ed1e2;
+  -moz-box-shadow: 0px 0px 1px 1px #7ed1e2;
+  box-shadow: 0px 0px 1px 1px #7ed1e2; }
+  .login * {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s; }
+  .login form input, .login form button {
+    display: block;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
+  .login form input {
+    margin: 5px 6px;
+    padding: 3px 8px;
+    font-size: 1.1em;
+    width: 80%;
+    line-height: 1.4em;
+    margin-left: 10%;
+    background-color: #222;
+    border: 1px solid #0d0d0d;
+    color: #555;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s; }
+    .login form input:focus {
+      background-color: #555;
+      color: #111; }
+  .login form button {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: 10%;
+    line-height: 1.8em;
+    background-color: #7ed1e2;
+    border: none;
+    padding: 5px 8px;
+    color: #222;
+    font-weight: bold; }
+    .login form button label {
+      position: absolute; }
+    .login form button:hover {
+      background-color: #4090A1; }
+      .login form button:hover:before {
+        left: -2%; }
+      .login form button:hover label {
+        left: 100%; }
+    .login form button:before {
+      content: "Loading...";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      left: -100%; }
+  .login form:after, .login form:before {
+    clear: both; }
+  .login .img {
+    width: 80%;
+    margin-left: 10%;
+    padding: 8px 16px; }
+    .login .img img {
+      width: 100%;
+      opacity: 0.6;
+      filter: alpha(opacity=60); }
+      .login .img img:hover {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-backface-visibility: hidden;
+        transform: rotateY(180deg); }
+
+/*# sourceMappingURL=index.css.map */

@@ -108,6 +108,14 @@ class GenericDAO {
 
     function selectPaginated($index, $quantity) {
         $connection = $this->connectionManager->getConnection();
+        
+        $query = "SELECT COUNT(*) as count FROM ". $this->tableName;
+        $result = $connection->query($query);
+        
+        $count = 0;
+        while($row = $result->fetch_assoc()){
+            $count = $row['count'];
+        }
 
         $query = "SELECT * FROM " . $this->tableName . " LIMIT " . $index . ", " . $quantity;
         $result = $connection->query($query);
@@ -115,6 +123,7 @@ class GenericDAO {
 
         if (is_object($result) && $result->num_rows > 0) {
             $resultArray = $this->resultToArray($result);
+            $resultArray['count'] = $count;
             return $resultArray;
         }
     }
