@@ -14,9 +14,11 @@ function findProduct(id, callback) {
             id: id
         }
     }).success(function(result) {
+        console.log('Found product ' + id);
         if (callback !== undefined) callback(result);
         return result;
     }).error(function(error) {
+        console.log('Could not find product ' + id);
         logError(error);
     });
 }
@@ -56,7 +58,7 @@ function loadCart(parameters) {
                 } else console.log('No item with that id found in the table.');
             });
         }
-        getCartGames(Object.keys(result));
+        if (Object.keys(result).length > 0) getCartGames(Object.keys(result));
     });
 }
 
