@@ -7,8 +7,10 @@ function getCart(callback) {
             operation: 'get'
         }
     }).success(function(result) {
+        console.log('Got $SESSION cart');
         if (callback !== undefined) callback(result);
     }).error(function(error) {
+        console.log('Could not get $SESSION cart');
         logError(error);
     });
 }
@@ -23,8 +25,10 @@ function addToCart(id) {
             id: id
         }
     }).success(function(result) {
+        console.log('Added item to $SESSION cart');
         saveCart(result);
     }).error(function(error) {
+        console.log('Could add item to $SESSION cart');
         logError(error);
     });
 }
@@ -39,9 +43,11 @@ function removeFromCart(id, callback) {
             id: id
         }
     }).success(function(result) {
+        console.log('Removed item from $SESSION cart');
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
+        console.log('Could remove item from $SESSION cart');
         logError(error);
     });
 }
@@ -56,9 +62,11 @@ function increaseProduct(id, callback) {
             id: id
         }
     }).success(function(result) {
+        console.log('Increased item quantity in $SESSION cart');
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
+        console.log('Could increase item quantity in $SESSION cart');
         logError(error);
     });
 }
@@ -73,9 +81,11 @@ function decreaseProduct(id, callback) {
             id: id
         }
     }).success(function(result) {
+        console.log('Decreased item quantity in $SESSION cart');
         saveCart(result);
         if (callback !== undefined) callback(result);
     }).error(function(error) {
+        console.log('Could decrease item quantity in $SESSION cart');
         logError(error);
     });
 }
@@ -89,22 +99,20 @@ function emptyCart() {
             operation: 'empty'
         }
     }).success(function(result) {
-        saveCart(result);
+        console.log('Emptied $SESSION cart');
+        emptyOrder(0);
         location.reload();
     }).error(function(error) {
-        console.log('No hay mensaje!');
+        console.log('Could empty $SESSION cart');
         logError(error);
-    });
-    emptyOrder(0, function() {
-        
     });
 }
 
 function saveCart(cart) {
     emptyOrder(0, function() {
-        console.log('Order emptied');
+        console.log('Emptied database cart');
         insertOrder({id: 0, status: 'Cart'}, function() {
-            console.log('Order inserted');
+            console.log('Inserted database cart');
             var items = Object.keys(cart);
             for (var i in items) {
                 insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]});
