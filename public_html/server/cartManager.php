@@ -15,11 +15,10 @@ switch ($_POST['operation']) {
 
     /* Get */
     case 'get' :
-        if (isset($_SESSION['cart']) || count($_SESSION['cart']) === 0) {
-            echo json_encode($_SESSION['cart']);
-        } else {
-            header("HTTP/1.0 400 Session cart is empty or undefined");
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = Array();
         }
+        echo json_encode($_SESSION['cart']);
         break;
 
 
