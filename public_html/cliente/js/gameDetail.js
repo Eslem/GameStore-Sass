@@ -15,9 +15,12 @@ function loadThumbnail(container, gameInfo, quantity) {
 
 function loadGameDetail(container, gameInfo, inCart) {
     container.hide();
-    var strHTML = '<div class="detail">'
-            + '<img class="imgDet" src="images/games/' + gameInfo.id + '.jpg" alt>'
-            + '<div class="description"><h3>' + gameInfo.nombre + '</h3><hr/>'
+    var strHTML = '<div class="detail">';
+            if (gameInfo.video !== '')
+                strHTML += '<iframe class="video" src="//www.youtube.com/embed/' + gameInfo.video + '?rel=0" frameborder="0" allowfullscreen></iframe>';
+            else
+                strHTML += '<img class="imgDet" src="images/games/' + gameInfo.id + '.jpg" alt>';
+            strHTML += '<div class="description"><h3>' + gameInfo.nombre + '</h3><hr/>'
             + '<p>' + gameInfo.descripcion + '</p></div>'
             + '<div class="bottom"><div class="platforms">Plataformas</div>'
             + '<div class="precio">' + gameInfo.precio + '€</div>'
