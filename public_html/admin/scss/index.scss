@@ -11,6 +11,13 @@ and open the template in the editor.
 @import "mixins";
 @import "vars";
 
+body, html{
+    height:100%;
+    width:100%;
+    padding:0px;
+    margin:0px;
+}
+
 .login{
     margin-top:5%;
     width:20%;
@@ -87,12 +94,16 @@ and open the template in the editor.
         img{
             width: 100%;
             @include opacity(.6);
+            @include transition(all 1s);
             &:hover{
                 @include opacity(1);
                 @include transform(rotateY(180deg));
-            }         
+            }   
 
-
+            &.flip{
+                @include opacity(0);
+            }
+            
         }
 
     }
@@ -100,6 +111,13 @@ and open the template in the editor.
 
 .flip{
     @include animation(infinite-spinning .5s infinite);
+    @include opacity(0);
+    @include transition(opacity 3s);
+}
+
+#error{
+    color:#CC0000;
+    display:none;
 }
 
 @-webkit-keyframes infinite-spinning {
