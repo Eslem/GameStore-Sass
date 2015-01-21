@@ -30,4 +30,3 @@ class usuarioDAO extends GenericDAO {
     }
 }
    
-login($POST['email'], $POST['password']);
