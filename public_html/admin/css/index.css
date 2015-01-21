@@ -7,6 +7,12 @@ and open the template in the editor.
     Created on : Jan 20, 2015, 1:54:33 PM
     Author     : eslem
 */
+body, html {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px; }
+
 .login {
   margin-top: 5%;
   width: 20%;
@@ -71,18 +77,33 @@ and open the template in the editor.
     .login .img img {
       width: 100%;
       opacity: 0.6;
-      filter: alpha(opacity=60); }
+      filter: alpha(opacity=60);
+      -webkit-transition: all 1s;
+      -moz-transition: all 1s;
+      transition: all 1s; }
       .login .img img:hover {
         opacity: 1;
         filter: alpha(opacity=100);
         -webkit-backface-visibility: hidden;
         transform: rotateY(180deg); }
+      .login .img img.flip {
+        opacity: 0;
+        filter: alpha(opacity=0); }
 
 .flip {
   -webkit-animation: infinite-spinning 0.5s infinite;
   -moz-animation: infinite-spinning 0.5s infinite;
   -o-animation: infinite-spinning 0.5s infinite;
-  animation: infinite-spinning 0.5s infinite; }
+  animation: infinite-spinning 0.5s infinite;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 3s;
+  -moz-transition: opacity 3s;
+  transition: opacity 3s; }
+
+#error {
+  color: #CC0000;
+  display: none; }
 
 @-webkit-keyframes infinite-spinning {
   from {
