@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
+  `direccion` varchar(100),
   `telefono` varchar(16) NOT NULL,
   `email` varchar(25) NOT NULL,
   `alias` varchar(16) NOT NULL,
@@ -10,11 +10,30 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=2;
 
 
 INSERT INTO `administrador` (`id`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `alias`, `password`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin');
+(1, 'nombre', 'apellido', 'direccion', 'telefono', 'email', 'alias', 'password');
+
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `direccion` varchar(100),
+  `telefono` varchar(16) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `alias` varchar(16) NOT NULL,
+  `password` varchar(16) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `alias` (`alias`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `alias`, `password`) VALUES
+(1, 'nombre', 'apellido', 'direccion', 'telefono', 'email', 'alias', 'password');
 
 
 CREATE TABLE IF NOT EXISTS `categoria` (
@@ -56,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `linea_pedido` (
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(1000) NOT NULL,
+  `descripcion` varchar(1000),
+  `video` varchar(50),
   `precio` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
@@ -94,27 +114,12 @@ INSERT INTO `producto` (`id`, `nombre`, `descripcion`, `precio`)
 VALUES (10, 'Lord of the Rings Online', 'Lord Of The Rings Online (LOTRO) es el primer MMORPG ambientado en el mundo de El Señor de los Anillos de JRR Tolkien. LOTRO tiene lugar en un mundo online persistente poblado con jugadores reales y NPCs que seguiran funcionando incluso si apagas el juego. Una de las ventajas de jugar LOTRO es la amplia gama de jugadores, que ofrece muchas opciones cuando los jugadores estan buscando disfrutar del juego con otras personas.', 50);
 
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `telefono` varchar(16) NOT NULL,
-  `email` varchar(25) NOT NULL,
-  `alias` varchar(16) NOT NULL,
-  `password` varchar(16) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
 CREATE TABLE IF NOT EXISTS `producto_categorias` (
 	`idProducto` INT(11) NULL DEFAULT NULL,
 	`idCategoria` INT(11) NULL DEFAULT NULL,
 	`idRelacion` INT(11) NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`idRelacion`)
-)ENGINE=InnoDB AUTO_INCREMENT=4;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 
 
 INSERT INTO `producto_categorias` (`idProducto`, `idCategoria`) VALUES (1, 4);
