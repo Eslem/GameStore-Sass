@@ -1,6 +1,6 @@
 function insertOrder(parameters, callback) {
     $.ajax({
-        url: '../server/controller/pedidoController.php',
+        url: rootURL + 'server/controller/pedidoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -18,7 +18,7 @@ function insertOrder(parameters, callback) {
 
 function emptyOrder(id, callback) {
     $.ajax({
-        url: '../server/controller/pedido_lineaController.php',
+        url: rootURL + 'server/controller/pedido_lineaController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -36,7 +36,7 @@ function emptyOrder(id, callback) {
 
 function deleteOrder(id, callback) {
     $.ajax({
-        url: '../server/controller/pedidoController.php',
+        url: rootURL + 'server/controller/pedidoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -54,7 +54,7 @@ function deleteOrder(id, callback) {
 
 function insertOrderLine(parameters, callback) {
     $.ajax({
-        url: '../server/controller/pedido_lineaController.php',
+        url: rootURL + 'server/controller/pedido_lineaController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {

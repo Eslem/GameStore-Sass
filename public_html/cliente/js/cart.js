@@ -1,6 +1,6 @@
 function getCart(callback) {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -17,7 +17,7 @@ function getCart(callback) {
 
 function addToCart(id) {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -35,7 +35,7 @@ function addToCart(id) {
 
 function removeFromCart(id, callback) {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -54,7 +54,7 @@ function removeFromCart(id, callback) {
 
 function increaseProduct(id, callback) {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -73,7 +73,7 @@ function increaseProduct(id, callback) {
 
 function decreaseProduct(id, callback) {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -92,7 +92,7 @@ function decreaseProduct(id, callback) {
 
 function emptyCart() {
     $.ajax({
-        url: '../server/cartManager.php',
+        url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {

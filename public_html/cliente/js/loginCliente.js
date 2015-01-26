@@ -3,7 +3,7 @@ function loginCliente(elem) {
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
-        url: '../server/controller/usuarioController.php',
+        url: rootURL + 'server/controller/usuarioController.php',
         type: 'POST',
         dataType: 'JSON',
         data: data,
