@@ -25,11 +25,11 @@ function loginCliente(elem) {
             }
 
 
-            if (!getSessionUser(function (user) {
+          /*  if (!getSessionUser(function (user) {
                 getSessionUser(function (user) {
                     console.log(user);
                 });
-            }))
+            }))*/
 
 
         },
