@@ -6,7 +6,7 @@ var totalCost = 0;
 
 function findProduct(id, callback) {
     $.ajax({
-        url: '../server/controller/productoController.php',
+        url: rootURL + 'server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
