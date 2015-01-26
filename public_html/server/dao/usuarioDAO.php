@@ -2,11 +2,11 @@
 
 require_once 'genericDAO.php';
 
-class AdministradorDAO extends GenericDAO {
+class usuarioDAO extends GenericDAO {
 
     function __construct() {
         parent::__construct();
-        $this->tableName = 'administrador';
+        $this->tableName = 'usuario';
         $this->propertyNames = ['nombre', 'apellido', 'direccion', 'telefono', 'email', 'alias', 'password'];
         $this->propertyTypes = ['s', 's', 's', 's', 's', 's', 's'];
     }
@@ -28,6 +28,5 @@ class AdministradorDAO extends GenericDAO {
             return false;
         }
     }
-   
-
 }
+   

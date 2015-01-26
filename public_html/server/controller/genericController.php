@@ -6,7 +6,7 @@ function executeQuery($dao) {
         /* Select */
         case 'select' :
             echo json_encode($dao->select());
-            break;       
+            break;
 
         /* Select by condition */
         case 'selectByCondition' :
@@ -46,7 +46,7 @@ function executeQuery($dao) {
                 echo json_encode($dao->find($_POST['id']));
             }
             break;
-            
+
 
         /* Insert */
         case 'insert' :
@@ -84,6 +84,30 @@ function executeQuery($dao) {
                 header("HTTP/1.0 400 Request is missing parameters");
             } else {
                 echo $dao->delete($_POST['id']);
+            }
+            break;
+
+        /* Login */
+        case 'login':
+            if (!isset($_POST['email']) || !isset($_POST['password'])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo json_encode($dao->login($_POST['email'], $_POST['password']));
+            }
+            break;
+
+        /* Login */
+        case 'logout':
+            session_start();
+            unset($_SESSION['user']);
+            break;
+
+        case 'getLogged':
+            session_start();
+            if (isset($_SESSION['user'])) {
+                echo json_encode($_SESSION['user']);
+            } else {
+                header("HTTP/1.0 403 Forbidden");
             }
             break;
 
