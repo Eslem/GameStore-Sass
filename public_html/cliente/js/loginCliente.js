@@ -1,5 +1,4 @@
 function loginCliente(elem) {
-
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
@@ -7,28 +6,29 @@ function loginCliente(elem) {
         type: 'POST',
         dataType: 'JSON',
         data: data,
-        success: function (user) {
-            if (user === "false") {
+        success: function(user) {
+            if (!user) {
                 console.log("Error en usuario o contraseña");
             } else {
-                setUser(user, function () {
+                setSessionUser(user, function() {
                     /*$("#hexagono").toggleClass("inactive");
-                    $(".form-slideLeft").toggleClass("inactive");*/
+                     $(".form-slideLeft").toggleClass("inactive");*/
                     $("#navLinkProfile a").text(user.alias);
-                    $("#emailCliente, #passCliente").each(function (i, element) {
+                    $("#emailCliente, #passCliente").each(function(i, element) {
                         element.value = '';
                     });
                 });
             }
         },
-        error: function (data) {
-            console.log(data);
+        error: function(error) {
+            console.log('Could not get user');
+            logError(error);
         }
     });
 }
 
 
-function setUser(user, callback) {
+function setSessionUser(user, callback) {
     $.ajax({
         url: rootURL + 'server/sessionUserManager.php',
         dataType: 'JSON',
@@ -37,11 +37,40 @@ function setUser(user, callback) {
             operation: 'set',
             user: user
         }
-    }).success(function (result) {
-        if (callback !== undefined)
-            callback(result);
-    }).error(function (error) {
+    }).success(function(result) {
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
         console.log('Could not set $SESSION user');
+        logError(error);
+    });
+}
+
+
+function getSessionUser(callback) {
+    $.ajax({
+        url: rootURL + 'server/sessionUserManager.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            operation: 'get'
+        }
+    }).done(function(result) {
+        callback(result);
+    });
+}
+
+
+function unsetSessionUser(callback) {
+    $.ajax({
+        url: rootURL + 'server/sessionUserManager.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            operation: 'unset'
+        }
+    }).success(function(result) {
+        if(callback !== undefined) callback(result);
+    }).error(function(error) {
         logError(error);
     });
 }

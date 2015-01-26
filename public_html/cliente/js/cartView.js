@@ -98,4 +98,7 @@ function logCart() {
 $('document').ready(function () {
     loadNavbar('Cart');
     loadCategoriesPanel();
+    loadCart({
+        transitionEnabled: true
+    });
 });
