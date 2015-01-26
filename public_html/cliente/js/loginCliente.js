@@ -1,5 +1,4 @@
 function loginCliente(elem) {
-
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
@@ -8,12 +7,10 @@ function loginCliente(elem) {
         dataType: 'JSON',
         data: data,
         success: function (user) {
-            
-
             if (!user) {
                 console.log("Error en usuario o contraseña");
             } else {
-                setUser(user, function () {
+                setSessionUser(user, function () {
                     /*$("#hexagono").toggleClass("inactive");
                      $(".form-slideLeft").toggleClass("inactive");*/
                     $("#navLinkProfile a").text(user.alias);
@@ -29,8 +26,9 @@ function loginCliente(elem) {
             }
 
         },
-        error: function (data) {
-            console.log(data);
+        error: function (error) {
+            console.log('Could not get user');
+            logError(error);
         }
     });
 
@@ -38,7 +36,7 @@ function loginCliente(elem) {
 }
 
 
-function setUser(user, callback) {
+function setSessionUser(user, callback) {
     $.ajax({
         url: rootURL + 'server/sessionUserManager.php',
         dataType: 'JSON',
@@ -55,21 +53,33 @@ function setUser(user, callback) {
         logError(error);
     });
 }
-function clearSession(user, callback) {
+
+function getSessionUser(callback) {
     $.ajax({
         url: rootURL + 'server/sessionUserManager.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
-            operation: 'empty',
-            user: user
+            operation: 'get'
+        }
+    }).done(function (result) {
+        callback(result);
+    });
+}
+
+
+function unsetSessionUser(callback) {
+    $.ajax({
+        url: rootURL + 'server/sessionUserManager.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            operation: 'unset'
         }
     }).success(function (result) {
         if (callback !== undefined)
             callback(result);
     }).error(function (error) {
-        console.log('Could not clear $SESSION user');
         logError(error);
     });
-
 }

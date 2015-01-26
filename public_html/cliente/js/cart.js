@@ -103,20 +103,22 @@ function emptyCart() {
         emptyOrder(0);
         location.reload();
     }).error(function(error) {
-        console.log('Could empty $SESSION cart');
+        console.log('Could not empty $SESSION cart');
         logError(error);
     });
 }
 
 function saveCart(cart) {
-    emptyOrder(0, function() {
-        console.log('Emptied database cart');
-        insertOrder({id: 0, status: 'Cart'}, function() {
-            console.log('Inserted database cart');
-            var items = Object.keys(cart);
-            for (var i in items) {
-                insertOrderLine({orderIndex: 0, id: items[i], quantity: cart[items[i]]});
-            }
+    getSessionUser(function(user) {        
+        emptyOrder(user.id, function() {
+            console.log('Emptied database cart');
+            insertOrder({id: user.id, status: 'Cart'}, function() {
+                console.log('Inserted database cart');
+                var items = Object.keys(cart);
+                for (var i in items) {
+                    insertOrderLine({orderIndex: user.id, id: items[i], quantity: cart[items[i]]});
+                }
+            });
         });
     });
 }

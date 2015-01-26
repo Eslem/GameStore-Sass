@@ -1,8 +1,8 @@
 <?php
 
 session_start();
+//$_SESSION = Array();
 switch ($_POST['operation']) {
-
     /* Set */
     case 'set' :
         if (isset($_POST['user'])) {
@@ -16,12 +16,14 @@ switch ($_POST['operation']) {
 
     /* Get */
     case 'get' :
-        echo json_encode($_SESSION['user']);
+        if (isset($_SESSION['user'])) {
+            echo json_encode($_SESSION['user']);
+        }
         break;
-  
+
 
     /* Empty */
-    case 'empty' :
+    case 'unset' :
         unset($_SESSION['user']);
         break;
     
