@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,iBAAiB;EACb,UAAU,EAAE,MAAM",
+"sources": ["../scss/registro.scss"],
+"names": [],
+"file": "registro.css"
+}

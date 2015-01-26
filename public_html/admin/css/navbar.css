@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ---------------------------------- Barra de navegacion ---------------------------------- */
 div.navbar {
   background-color: #1D1F21;
@@ -185,8 +184,7 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
-    
-/* Animaci├│n del bot├│n de login */
+/* Animación del botón de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
