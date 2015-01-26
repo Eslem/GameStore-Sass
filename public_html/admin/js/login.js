@@ -4,11 +4,30 @@
  * and open the template in the editor.
  */
 
-function login(elem){
-   // alert();
+function login(elem) {
+    // alert();
     $("#logo").addClass("flip");
-    setInterval(function(){
-        
+    setInterval(function () {
+
     });
     $(elem).text("Loading...");
+}
+
+function login() {
+    $.ajax({
+        url: '../../server/session/session.php',
+        type: 'POST',
+        data:
+                {
+                    email: $("#idCliente").val(),
+                    password: $("#passCliente").val()
+                },
+        success: function (data) {
+            console.log(data);
+
+
+        }
+
+    });
+
 }
