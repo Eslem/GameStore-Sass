@@ -85,13 +85,4 @@ switch ($_POST['operation']) {
         $_SESSION['cart'] = array();
         //echo json_encode($_SESSION['cart']);
         break;
-
-
-    /* Close */
-    case 'close' :
-        if (isset($_POST["session"])) {
-            session_unset();
-            session_destroy();
-        }
-        break;
 }
