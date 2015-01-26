@@ -22,11 +22,15 @@ function loginCliente(elem) {
                     $("#hexagono").css("display", "none");
                     $("#hexagono2").css("display", "inline-block");
                 }
-            }      
-            
-            getSessionUser(function (user) {
-                console.log(user);
-            });
+            }
+
+
+            if (!getSessionUser(function (user) {
+                getSessionUser(function (user) {
+                    console.log(user);
+                });
+            }))
+
 
         },
         error: function (error) {
