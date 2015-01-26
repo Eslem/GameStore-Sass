@@ -273,7 +273,10 @@ div.navbar.invisible {
     }
 }
 
-.logout{
+
+
+#hexagono2{
+    display: none;
     background-color:#CC0000 !important;
 
     &:before{
@@ -288,8 +291,8 @@ div.navbar.invisible {
         }
         background-color:#CC0000 !important;
     }
-
 }
+
 /* Animación del botón de login */
 
 @-webkit-keyframes infinite-spinning {

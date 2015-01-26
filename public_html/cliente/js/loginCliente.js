@@ -19,11 +19,14 @@ function loginCliente(elem) {
                     });
                 });
                 if ($("#navLinkProfile a").text() !== "perfil") {
-                    $("#hexagono").toggleClass("logout");
-
+                    $("#hexagono").css("display", "none");
+                    $("#hexagono2").css("display", "inline-block");
                 }
-
-            }
+            }      
+            
+            getSessionUser(function (user) {
+                console.log(user);
+            });
 
         },
         error: function (error) {
@@ -31,8 +34,6 @@ function loginCliente(elem) {
             logError(error);
         }
     });
-
-
 }
 
 
@@ -66,7 +67,6 @@ function getSessionUser(callback) {
         callback(result);
     });
 }
-
 
 function unsetSessionUser(callback) {
     $.ajax({

@@ -185,15 +185,16 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
-.logout {
+#hexagono2 {
+  display: none;
   background-color: #CC0000 !important; }
-  .logout:before {
+  #hexagono2:before {
     border-bottom: 9.81px solid #CC0000 !important; }
-  .logout:after {
+  #hexagono2:after {
     border-top: 9.81px solid #CC0000 !important; }
-  .logout i {
+  #hexagono2 i {
     background-color: #CC0000 !important; }
-    .logout i:hover {
+    #hexagono2 i:hover {
       content: attr(title); }
 
 /* Animaci├│n del bot├│n de login */
