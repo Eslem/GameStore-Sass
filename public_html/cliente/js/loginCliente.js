@@ -1,5 +1,5 @@
 function loginCliente(elem) {
-    
+
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
@@ -10,23 +10,38 @@ function loginCliente(elem) {
         success: function (user) {
             if (user === "false") {
                 console.log("Error en usuario o contraseña");
-                session_unsert();
-                session_destroy();
             } else {
-                $("#hexagono").toggleClass("inactive");
-                $(".form-slideLeft").toggleClass("inactive");
-                $("#navLinkProfile a").text(user.alias);   
-                $("#emailCliente, #passCliente").each(function(i, element){
-                    element.value = '';
+                setUser(user, function () {
+                    /*$("#hexagono").toggleClass("inactive");
+                    $(".form-slideLeft").toggleClass("inactive");*/
+                    $("#navLinkProfile a").text(user.alias);
+                    $("#emailCliente, #passCliente").each(function (i, element) {
+                        element.value = '';
+                    });
                 });
-                
-                
-                
-
             }
         },
         error: function (data) {
             console.log(data);
         }
+    });
+}
+
+
+function setUser(user, callback) {
+    $.ajax({
+        url: rootURL + 'server/sessionUserManager.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            operation: 'set',
+            user: user
+        }
+    }).success(function (result) {
+        if (callback !== undefined)
+            callback(result);
+    }).error(function (error) {
+        console.log('Could not set $SESSION user');
+        logError(error);
     });
 }

@@ -6,7 +6,7 @@ switch ($_POST['operation']) {
     /* Set */
     case 'set' :
         if (isset($_POST['cart'])) {
-            $_SESSION = $_POST['cart'];
+            $_SESSION['cart'] = $_POST['cart'];
         } else {
             header("HTTP/1.0 400 Request is missing session parameter");
         }
