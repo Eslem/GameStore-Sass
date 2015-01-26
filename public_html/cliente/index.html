@@ -14,6 +14,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="libs/jquery-ui-1.11.2/jquery-ui.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/categoriesPanel.js" type="text/javascript"></script>
         <script src="js/animacion.js" type="text/javascript"></script>
@@ -22,19 +23,13 @@
         <script src="js/loginCliente.js" type="text/javascript"></script>
         
         <script src="js/login.js" type="text/javascript"></script>
+        <script src="registro/registro.js" type="text/javascript"></script>
         
-
-        <script>
-            $('document').ready(function () {
-                $('#navbar').load('navbar.html', function () {
-                    $('#navLinkHome').addClass('active');
-                    $('#navLinkHome a').attr('href', '#');
-                });
-                loadCategoriesPanel();
-            });
-        </script>
+        
+        
     </head>
     <body>
+        <div id="registroClientes"></div>
         <div id="navbar" class="navbar invisible"></div>
         <div id="main-Slider">
 

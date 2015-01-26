@@ -6,8 +6,9 @@ function loadNavbar(section) {
         $('#navLink' + section).addClass('active');
         $('#navLink' + section + ' a').removeAttr('href');
         
-        $("#hexagono").click(function () {
+        $("#hexagono, #hexagono2").click(function () {
             if (!$(this).hasClass("active")) loginCliente(this);
         });
     });
 }
+

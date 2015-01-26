@@ -18,6 +18,7 @@ function loginCliente(elem) {
                         element.value = '';
                     });
                 });
+                
                 if ($("#navLinkProfile a").text() !== "perfil") {
                     $("#hexagono").css("display", "none");
                     $("#hexagono2").css("display", "inline-block");
