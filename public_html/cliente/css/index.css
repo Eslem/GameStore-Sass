@@ -185,6 +185,17 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
+.logout {
+  background-color: #CC0000 !important; }
+  .logout:before {
+    border-bottom: 9.81px solid #CC0000 !important; }
+  .logout:after {
+    border-top: 9.81px solid #CC0000 !important; }
+  .logout i {
+    background-color: #CC0000 !important; }
+    .logout i:hover {
+      content: attr(title); }
+
 /* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {

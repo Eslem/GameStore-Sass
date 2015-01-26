@@ -24,4 +24,6 @@ switch ($_POST['operation']) {
     case 'empty' :
         unset($_SESSION['user']);
         break;
+    
+    
 }

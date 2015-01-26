@@ -273,6 +273,23 @@ div.navbar.invisible {
     }
 }
 
+.logout{
+    background-color:#CC0000 !important;
+
+    &:before{
+        border-bottom: 9.81px solid #CC0000 !important;
+    }
+    &:after{
+        border-top: 9.81px solid #CC0000 !important;
+    }
+    i  { 
+        &:hover{
+            content: attr(title);   
+        }
+        background-color:#CC0000 !important;
+    }
+
+}
 /* Animación del botón de login */
 
 @-webkit-keyframes infinite-spinning {
