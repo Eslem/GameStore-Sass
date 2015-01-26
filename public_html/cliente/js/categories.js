@@ -6,7 +6,7 @@ var categories;
 
 function getProductsByCategory(category, callback) {
     $.ajax({
-        url: '../server/controller/productoController.php',
+        url: rootURL + 'server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -25,7 +25,7 @@ function getProductsByCategory(category, callback) {
 
 function findProduct(id, callback) {
     $.ajax({
-        url: '../server/controller/productoController.php',
+        url: rootURL + 'server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -92,9 +92,7 @@ function getSelectedCategory() {
 //==============================================================================
 
 $('document').ready(function() {
-    $('#navbar').load('navbar.html', function() {
-        $('#navLinkCategories').addClass('active');
-    });
+    loadNavbar('Categories');
 
     getCategories(function(categories) {
         var strHTML = '';

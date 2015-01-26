@@ -5,8 +5,8 @@ switch ($_POST['operation']) {
 
     /* Set */
     case 'set' :
-        if (isset($_POST["session"])) {
-            $_SESSION = $_POST["session"];
+        if (isset($_POST['cart'])) {
+            $_SESSION['cart'] = $_POST['cart'];
         } else {
             header("HTTP/1.0 400 Request is missing session parameter");
         }
@@ -15,11 +15,10 @@ switch ($_POST['operation']) {
 
     /* Get */
     case 'get' :
-        if (isset($_SESSION['cart']) || count($_SESSION['cart']) === 0) {
-            echo json_encode($_SESSION['cart']);
-        } else {
-            header("HTTP/1.0 400 Session cart is empty or undefined");
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = Array();
         }
+        echo json_encode($_SESSION['cart']);
         break;
 
 
@@ -84,15 +83,6 @@ switch ($_POST['operation']) {
     /* Empty */
     case 'empty' :
         $_SESSION['cart'] = array();
-        echo json_encode($_SESSION['cart']);
-        break;
-
-
-    /* Close */
-    case 'close' :
-        if (isset($_POST["session"])) {
-            session_unset();
-            session_destroy();
-        }
+        //echo json_encode($_SESSION['cart']);
         break;
 }
