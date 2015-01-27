@@ -6,34 +6,39 @@ function loadRegistro() {
         modal: true,
         title: "Nuevo Usuario",
         resizable: false,
-        /* buttons: {
-         "Crear cuenta": function () {
-         var formularioCliente = $("#registroClientes input").serialize();
-         console.log(formularioCliente);
-         },
-         Close: function () {
-         $("#registroClientes").dialog("close");
-         }
-         }*/
-
+        show:{effect: "blind", duration: 500},
         buttons: [
             {
                 text: "Crear Cuenta",
                 click: function () {
-                    var data=$("#registroClientes").serialize();
-                    
+                    //var userInfo = JSON.stringify($("#registroClientes input").serializeArray());
 
+                    var userInfo = new Array();
+                    /* $("#registroClientes input").each(function(index){
+                     if(index<$("#registroClientes input").length){
+                     userInfo+= $(this).val()+",";
+                     index++;
+                     }else{
+                     userInfo+= $(this).val();                   
+                     }
+                     
+                     });*/
+                    userInfo = $("#registroClientes input").serializeArray();
+                    console.log(userInfo);
                     $.ajax({
                         url: rootURL + 'server/controller/usuarioController.php',
-                        type: 'POST',
                         dataType: 'JSON',
-                        data: data,
-                        succes:function(data){
-                            
+                        type: 'POST',
+                        data: {
+                            query: 'insert'
                         },
-                        error: function(data){
-                          console.log(error);
-                        }
+                        values: userInfo
+                    }).success(function (result) {
+                        console.log("Nuevo usuario registrado");
+                        return result;
+                    }).error(function (error) {
+                        console.log('Error al registrar el usuario ');
+                        logError(error);
                     });
                 }
             },
