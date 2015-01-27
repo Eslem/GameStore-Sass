@@ -1,4 +1,4 @@
-function loginCliente(elem) {
+function loginCliente() {
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
@@ -21,7 +21,7 @@ function loginCliente(elem) {
 
                 if ($("#navLinkProfile a").text() !== "perfil") {
                     $("#hexagono").css("display", "none");
-                    $("#hexagono2").css("display", "inline-block");
+                    $("#hexagono2").fadeIn().css("display", "inline-block");
                 }
                 
             }

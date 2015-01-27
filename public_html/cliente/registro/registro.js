@@ -19,24 +19,34 @@ function loadRegistro() {
         buttons: [
             {
                 text: "Crear Cuenta",
-                icons: {
-                    primary: "ui-icon-check"
-                },
                 click: function () {
-                    $(this).dialog("close");
-                }          
+                    var data=$("#registroClientes").serialize();
+                    
+
+                    $.ajax({
+                        url: rootURL + 'server/controller/usuarioController.php',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: data,
+                        succes:function(data){
+                            
+                        },
+                        error: function(data){
+                          console.log(error);
+                        }
+                    });
+                }
             },
-            
-             {
+            {
                 text: "Cancel",
                 icons: {
                     primary: "ui-icon-cancel"
                 },
                 click: function () {
                     $(this).dialog("close");
-                }          
+                }
             }
-            
+
         ]
     });
 
