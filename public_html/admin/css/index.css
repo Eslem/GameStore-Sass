@@ -119,3 +119,8 @@ body, html {
   to {
     -webkit-backface-visibility: hidden;
     transform: rotateY(180deg); } }
+h1 {
+  color: white;
+  text-shadow: 0px 0px 5px #7ed1e2; }
+
+/*# sourceMappingURL=index.css.map */

@@ -5,7 +5,7 @@
  */
 var baseurl = window.location.pathname;
 var user = null;
-console.log(baseurl);
+
 function login(elem) {
     // alert();
     $("#logo").addClass("flip");
@@ -14,7 +14,7 @@ function login(elem) {
     console.log(data);
     setTimeout(function () {
         $.ajax({
-            url: "../server/controller/administradorController.php",
+            url: baseurl+"../server/controller/administradorController.php",
             data: data,
             type: "POST",
             success: function (data) {

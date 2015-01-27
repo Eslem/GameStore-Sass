@@ -185,7 +185,6 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
-    
 /* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {
@@ -207,3 +206,5 @@ div.navbar.invisible {
     transform: rotate(0deg); }
   to {
     transform: rotate(-360deg); } }
+
+/*# sourceMappingURL=navbar.css.map */

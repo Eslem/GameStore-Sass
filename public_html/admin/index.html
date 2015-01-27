@@ -12,14 +12,25 @@ and open the template in the editor.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
         <link href="css/sidebar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/table.css" rel="stylesheet" type="text/css"/>
+		
+		
 
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-        <script src="../cliente/libs/jquery/jquery.js" type="text/javascript"></script>
+		<link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <script src="libs/jquery/jquery.js" type="text/javascript"></script>
         <script src="js/login.js"></script>
-
+        <script src="js/routes.js"></script>
+		<script>
+		
+			//node-webKit
+			$(document).ready(function(){
+				var gui = require('nw.gui'); 
+				var win = gui.Window.get();
+				win.maximize();
+			});
+		</script>
     </head>
     <body>
         <div class="sideBar">
@@ -28,8 +39,8 @@ and open the template in the editor.
                     <img src="../cliente/images/logo2.png" alt=""/>
                     <label>Dashboard</label>
                 </li>
-                <li><a href="#usuarios"><i class="fa fa-code"></i> Administrador</a></li>
-                <li class="active"><a href="#usuarios"><i class="fa fa-user"></i> Usuarios</a></li>
+                <li><a ><i class="fa fa-code"></i> Administrador</a></li>
+                <li class="active" onclick="showRoute('user')"><a href="#usuarios"><i class="fa fa-user"></i> Usuarios</a></li>
                 <li><a href="#productos"><i class="fa fa-gamepad"></i> Productos</a></li>
                 <li><a href="#productos"> <i class="fa fa-tags"></i>Categorias</a></li>
                 <li><a href="#pedidos"><i class="fa fa-envelope"></i> Pedidos</a></li>
@@ -38,7 +49,7 @@ and open the template in the editor.
 
             </ul>
         </div>
-        <div class="wrap-body">
+        <div class="wrap-body" id="wrap-body">
             <div class="login" id="login">
                 <div class="img">
                     <img id="logo" src="../cliente/images/logo2.png" alt=""/>
