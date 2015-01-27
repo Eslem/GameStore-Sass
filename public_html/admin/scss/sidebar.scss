@@ -98,4 +98,9 @@ and open the template in the editor.
     width:100%;
     position:absolute;
     height:100%;    
+    overflow-y: scroll;
+    
+    *{
+        max-height: 100%;
+    }
 }
