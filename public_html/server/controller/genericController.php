@@ -19,7 +19,10 @@ function executeQuery($dao) {
             if (!isset($_POST["index"]) || !isset($_POST["quantity"])) {
                 header("HTTP/1.0 400 Request is missing parameters");
             } else {
-                echo json_encode($dao->selectPaginated($_POST["index"], $_POST["quantity"]));
+                $direction = $_POST['orientation'];
+                $order = $_POST['order'];
+                //$direction = $_POST['direction'];
+                echo json_encode($dao->selectPaginated($_POST["index"], $_POST["quantity"], $order, $direction));
             }
             break;
 

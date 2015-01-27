@@ -107,26 +107,30 @@ class GenericDAO {
         return $this->genericSelect(null);
     }
 
-    function selectPaginated($index, $quantity) {
+    function selectPaginated($index, $quantity, $order, $orientation) {
         $connection = $this->connectionManager->getConnection();
-        
-        $query = "SELECT COUNT(*) as count FROM ". $this->tableName;
+
+        $query = "SELECT COUNT(*) as count FROM " . $this->tableName;
         $result = $connection->query($query);
-        
+
         $count = 0;
-        while($row = $result->fetch_assoc()){
+        while ($row = $result->fetch_assoc()) {
             $count = $row['count'];
         }
 
-        $query = "SELECT * FROM " . $this->tableName . " LIMIT " . $index . ", " . $quantity;
+        $index = $index * $quantity;
+
+        $query = "SELECT * FROM " . $this->tableName . " ORDER BY $order $orientation LIMIT " . $index . ", " . $quantity;
         $result = $connection->query($query);
         $this->connectionManager->closeConnection($connection);
+        $obj = [];
+        $obj['order'] = $query;
 
         if (is_object($result) && $result->num_rows > 0) {
-            $resultArray = $this->resultToArray($result);
-            $resultArray['count'] = $count;
-            return $resultArray;
+            $obj['elems'] = $this->resultToArray($result);
         }
+        $obj['count'] = $count;
+        return $obj;
     }
 
     function selectJoin($otherTable, $field, $otherField, $condition) {
@@ -202,45 +206,45 @@ class GenericDAO {
     }
 
     function jqgrid() {/*
-        $page = $_GET['page']; // get the requested page
-        $limit = $_GET['rows']; // get how many rows we want to have into the grid
-        $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
-        $sord = $_GET['sord']; // get the direction
-        if (!$sidx)
-            $sidx = 1;
-// connect to the database
-        $db = $this->connectionManager->getConnection();
+      $page = $_GET['page']; // get the requested page
+      $limit = $_GET['rows']; // get how many rows we want to have into the grid
+      $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
+      $sord = $_GET['sord']; // get the direction
+      if (!$sidx)
+      $sidx = 1;
+      // connect to the database
+      $db = $this->connectionManager->getConnection();
 
-       // mysql_select_db($database) or die("Error conecting to db.");
-        $query = "SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id";
-        $result = $connection->query($query);
-        
-       // $result = mysql_query("SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id");
-        $row = mysqli_fetch_array($result, MYSQL_ASSOC);
-        $count = $row['count'];
+      // mysql_select_db($database) or die("Error conecting to db.");
+      $query = "SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id";
+      $result = $connection->query($query);
 
-        if ($count > 0) {
-            $total_pages = ceil($count / $limit);
-        } else {
-            $total_pages = 0;
-        }
-        if ($page > $total_pages)
-            $page = $total_pages;
-        
-        $start = $limit * $page - $limit; // do not put $limit*($page - 1)
-        $SQL = "SELECT a.* FROM invheader a,  " . $this->tableName . " b WHERE a.id=b.id ORDER BY $sidx $sord LIMIT $start , $limit";
-        $result = $connection->query($query);
+      // $result = mysql_query("SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id");
+      $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+      $count = $row['count'];
 
-        $responce->page = $page;
-        $responce->total = $total_pages;
-        $responce->records = $count;
-        $i = 0;
-        while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-            $responce->rows[$i]['id'] = $row[id];
-            $responce->rows[$i]['cell'] = $row;//array($row[id], $row[invdate], $row[name], $row[amount], $row[tax], $row[total], $row[note]);
-            $i++;
-        }
-        echo json_encode($responce);*/
+      if ($count > 0) {
+      $total_pages = ceil($count / $limit);
+      } else {
+      $total_pages = 0;
+      }
+      if ($page > $total_pages)
+      $page = $total_pages;
+
+      $start = $limit * $page - $limit; // do not put $limit*($page - 1)
+      $SQL = "SELECT a.* FROM invheader a,  " . $this->tableName . " b WHERE a.id=b.id ORDER BY $sidx $sord LIMIT $start , $limit";
+      $result = $connection->query($query);
+
+      $responce->page = $page;
+      $responce->total = $total_pages;
+      $responce->records = $count;
+      $i = 0;
+      while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+      $responce->rows[$i]['id'] = $row[id];
+      $responce->rows[$i]['cell'] = $row;//array($row[id], $row[invdate], $row[name], $row[amount], $row[tax], $row[total], $row[note]);
+      $i++;
+      }
+      echo json_encode($responce); */
     }
 
 }
