@@ -18,19 +18,20 @@ function loginCliente(elem) {
                         element.value = '';
                     });
                 });
-                
+
                 if ($("#navLinkProfile a").text() !== "perfil") {
                     $("#hexagono").css("display", "none");
                     $("#hexagono2").css("display", "inline-block");
                 }
+                
             }
 
 
-          /*  if (!getSessionUser(function (user) {
-                getSessionUser(function (user) {
-                    console.log(user);
-                });
-            }))*/
+            /*  if (!getSessionUser(function (user) {
+             getSessionUser(function (user) {
+             console.log(user);
+             });
+             }))*/
 
 
         },
@@ -41,6 +42,11 @@ function loginCliente(elem) {
     });
 }
 
+function logoutCliente() {
+    unsetSessionUser();
+      $("#navLinkProfile a").text("perfil");
+    
+}
 
 function setSessionUser(user, callback) {
     $.ajax({
@@ -85,6 +91,6 @@ function unsetSessionUser(callback) {
         if (callback !== undefined)
             callback(result);
     }).error(function (error) {
-        logError(error);
+      logError(error);
     });
 }

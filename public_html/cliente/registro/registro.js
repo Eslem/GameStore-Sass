@@ -1,18 +1,21 @@
 
 function loadRegistro() {
 
+
     $("#registroClientes").load("registro/registro.html").dialog({
-        autoOpen: true,
         modal: true,
+        title:"Registro",
         buttons: {
-            Cancel: function () {
+            "Crear cuenta": function () {
+                var formularioCliente = $("#registroClientes input").serialize();
+                console.log(formularioCliente);
+                },
+            Close: function () {
                 $("#registroClientes").dialog("close");
             }
-        },
-        close: function () {
-            $("#registroClientes input").text("");
         }
     });
 
-};
+}
+;
 
