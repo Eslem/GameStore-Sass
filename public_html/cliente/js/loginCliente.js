@@ -1,4 +1,4 @@
-function loginCliente(elem) {
+function loginCliente() {
     var data = $("#formLoginCliente").serialize();
 
     $.ajax({
@@ -18,18 +18,17 @@ function loginCliente(elem) {
                         element.value = '';
                     });
                 });
-                if ($("#navLinkProfile a").text() !== "perfil") {
-                    $("#hexagono").css("display", "none");
-                    $("#hexagono2").css("display", "inline-block");
-                }
+
+                $("#hexagono").css("display", "none");
+                $("#hexagono2").fadeIn().css("display", "inline-block");
             }
 
 
-            if (!getSessionUser(function (user) {
-                getSessionUser(function (user) {
-                    console.log(user);
-                });
-            }))
+            /*  if (!getSessionUser(function (user) {
+             getSessionUser(function (user) {
+             console.log(user);
+             });
+             }))*/
 
 
         },
@@ -40,6 +39,12 @@ function loginCliente(elem) {
     });
 }
 
+function logoutCliente() {
+    unsetSessionUser();
+    $("#navLinkProfile a").text("registro");
+
+
+}
 
 function setSessionUser(user, callback) {
     $.ajax({

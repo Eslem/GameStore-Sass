@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,uBAAK;EACA,KAAK,EAAE,KAAK;;AAIrB,UAAU;EACN,OAAO,EAAE,cAAc",
+"sources": ["../scss/registro.scss"],
+"names": [],
+"file": "registro.css"
+}
