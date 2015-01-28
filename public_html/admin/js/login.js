@@ -24,13 +24,12 @@ function login(elem) {
 
     var data = $("#loginForm").serialize();
     console.log(data);
-    setTimeout(function () {
-        $.ajax({
+    $.ajax({
             url: baseurl + "../server/controller/administradorController.php",
             data: data,
             type: "POST",
             success: function (data) {
-
+setTimeout(function () {
                 if (data === "false") {
                     showError("Error en usuario o contraseña");
                 } else {
@@ -40,13 +39,14 @@ function login(elem) {
                     app.routes['admins'].show();
                 }
                 $("#logo").removeClass("flip");
+				}, 1500);
             },
             error: function (data) {
                 $("#logo").removeClass("flip");
                 showError(data);
             }
         });
-    }, 2000);
+    
 }
 
 function showError(text) {
