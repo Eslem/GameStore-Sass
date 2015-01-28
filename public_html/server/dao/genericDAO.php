@@ -11,7 +11,7 @@ class GenericDAO {
             $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
             $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
         } else {
-            $this->connectionManager = new ConnectionManager('localhost', 'root', '', 'tienda');
+            $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
         }
 
         $this->tableName = '';

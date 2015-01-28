@@ -10,7 +10,7 @@ function loadRegistro() {
         closeOnEscape: true,
         show: {effect: "fadeIn", duration: 500},
         width: 325,
-        height: 520,
+        height: 530,
         buttons: [
             {
                 text: "Crear Cuenta",

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ---------------------------------- Barra de navegacion ---------------------------------- */
 div.navbar {
   background-color: #1D1F21;
@@ -196,7 +197,7 @@ div.navbar.invisible {
     #hexagono2 i:hover {
       content: attr(title); }
 
-/* Animación del botón de login */
+/* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
@@ -654,3 +655,5 @@ div.navbar.invisible {
         float: right;
         margin-bottom: 15px;
         margin: 9.81px 0; } }
+
+/*# sourceMappingURL=index.css.map */
