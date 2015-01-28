@@ -10,7 +10,7 @@ function loadRegistro() {
         closeOnEscape: true,
         show: {effect: "fadeIn", duration: 500},
         width: 325,
-        height: 550,
+        height: 520,
         buttons: [
             {
                 text: "Crear Cuenta",
@@ -22,7 +22,6 @@ function loadRegistro() {
                     $("#registroClientes input").each(function (i, input) {
                         userInfo.push($(input).val());
                     });
-                    console.log(userInfo);
                     $.ajax({
                         url: rootURL + 'server/controller/usuarioController.php',
                         dataType: 'JSON',
@@ -32,10 +31,10 @@ function loadRegistro() {
                             values: userInfo
                         }
                     }).success(function (result) {
+                        alert("Nuevo usuario registrado");
                         console.log("Nuevo usuario registrado");
-                        $(this).dialog("close");
+                        $("#registroClientes").dialog("close");
                         return result;
-
                     }).error(function (error) {
                         console.log('Error al registrar el usuario ');
                         logError(error);
@@ -60,6 +59,7 @@ function loadRegistro() {
         $('#registroClientes').dialog("close");
     });
 
-};
+}
+;
 
 
