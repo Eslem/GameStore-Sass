@@ -7,7 +7,7 @@ class usuarioDAO extends GenericDAO {
     function __construct() {
         parent::__construct();
         $this->tableName = 'usuario';
-        $this->propertyNames = ['nombre', 'apellido', 'direccion', 'telefono', 'email', 'alias', 'password'];
+        $this->propertyNames = ['alias', 'nombre','apellido', 'direccion', 'telefono', 'email',  'password'];
         $this->propertyTypes = ['s', 's', 's', 's', 's', 's', 's'];
     }
 
