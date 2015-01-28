@@ -10,37 +10,39 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script src="jqgrid/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="jqgrid/css/ui.jqgrid.css" type="text/css"/>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="jqgrid/js/i18n/grid.locale-es.js" type="text/javascript"></script>
-        <script src="jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-        <link href="jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css"/>
+
+        <script type="text/javascript" src="jqgrid/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="jqgrid/js/i18n/grid.locale-es.js"></script>
+        <script type="text/javascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#jqGrid").jqGrid({
+                    url: 'jqGrid.php',
+                    datatype: "json",
+                    colNames: ['ID', 'Nombre', 'Descripcion', 'Precio'],
+                    colModel: [
+                        {name: 'id', index: 'id', width: 55},
+                        {name: 'nombre', index: 'nombre', width: 90},
+                        {name: 'descripcion', index: 'descripcion', width: 100},
+                        {name: 'precio', index: 'precio', width: 80, align: "right"}
+                    ],
+                    rowNum: 5,
+                    rowList: [5, 10, 20, 30],
+                    pager: '#pager',
+                    sortname: 'id',
+                    viewrecords: true,
+                    sortorder: "desc",
+                    caption: "JQGrid test"
+                });
+                $("#jqGrid").jqGrid('navGrid', '#pager', {edit: false, add: false, del: false});
+            });
+        </script>
     </head>
     <body>
-        <table id="list2"></table>
-        <div id="pager2"></div>
-
-        <script>jQuery("#list2").jqGrid({
-                url: 'http://daw.localhost/Projects/GameStore-Sass/public_html/tests/jqgrid/jqgrid.php',
-                datatype: "json",
-                colNames: ['ID', 'Nombre', 'Descripcion', 'Precio'],
-                colModel: [
-                    {name: 'id', index: 'id', width: 55},
-                    {name: 'nombre', index: 'nombre', width: 90},
-                    {name: 'descripcion', index: 'descripcion', width: 100},
-                    {name: 'precio', index: 'precio', width: 80, align: "right"}
-                ],
-                rowNum: 5,
-                rowList: [5, 10, 20, 30],
-                pager: '#pager2',
-                sortname: 'id',
-                viewrecords: true,
-                sortorder: "desc",
-                caption: "JSON Example"
-            });
-            jQuery("#list2").jqGrid('navGrid', '#pager2', {edit: false, add: false, del: false});
-
-        </script>
+        <table id="jqGrid"></table>
+        <div id="pager"></div>
     </body>
 </html>
