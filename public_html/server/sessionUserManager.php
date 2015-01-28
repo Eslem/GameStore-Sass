@@ -26,4 +26,6 @@ switch ($_POST['operation']) {
     case 'unset' :
         unset($_SESSION['user']);
         break;
+    
+    
 }

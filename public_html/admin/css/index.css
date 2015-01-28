@@ -52,7 +52,8 @@ body, html {
     transition: all 0.4s; }
     .login form input:focus {
       background-color: #555;
-      color: #111; }
+      color: #111;
+      outline: none; }
   .login form button {
     cursor: pointer;
     overflow: hidden;
@@ -78,9 +79,9 @@ body, html {
       width: 100%;
       opacity: 0.6;
       filter: alpha(opacity=60);
-      -webkit-transition: all 1s;
-      -moz-transition: all 1s;
-      transition: all 1s; }
+      -webkit-transition: all 1.5s;
+      -moz-transition: all 1.5s;
+      transition: all 1.5s; }
       .login .img img:hover {
         opacity: 1;
         filter: alpha(opacity=100);
@@ -119,3 +120,8 @@ body, html {
   to {
     -webkit-backface-visibility: hidden;
     transform: rotateY(180deg); } }
+h1 {
+  color: white;
+  text-shadow: 0px 0px 5px #7ed1e2; }
+
+/*# sourceMappingURL=index.css.map */

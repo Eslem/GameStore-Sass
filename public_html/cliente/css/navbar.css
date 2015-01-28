@@ -185,6 +185,18 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
+#hexagono2 {
+  display: none;
+  background-color: #CC0000 !important; }
+  #hexagono2:before {
+    border-bottom: 9.81px solid #CC0000 !important; }
+  #hexagono2:after {
+    border-top: 9.81px solid #CC0000 !important; }
+  #hexagono2 i {
+    background-color: #CC0000 !important; }
+    #hexagono2 i:hover {
+      content: attr(title); }
+
 /* Animaci├│n del bot├│n de login */
 @-webkit-keyframes infinite-spinning {
   from {
@@ -206,3 +218,5 @@ div.navbar.invisible {
     transform: rotate(0deg); }
   to {
     transform: rotate(-360deg); } }
+
+/*# sourceMappingURL=navbar.css.map */

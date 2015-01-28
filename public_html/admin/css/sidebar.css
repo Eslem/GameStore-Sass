@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : eslem
 */
 .sideBar {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
   width: 12%;
   display: inline-block;
   float: left;
@@ -18,6 +21,8 @@ and open the template in the editor.
   border-right: 1px solid #000;
   z-index: 999;
   height: 100%; }
+  .sideBar.sidebar-inactive {
+    margin-left: -12%; }
   .sideBar ul {
     padding: 0px;
     margin: 0px;
@@ -65,8 +70,18 @@ and open the template in the editor.
             color: #7ed1e2; }
 
 .wrap-body {
-  padding-left: 12%;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  padding-left: 13%;
   position: absolute;
   width: 100%;
   position: absolute;
-  height: 100%; }
+  height: 100%;
+  overflow-y: scroll; }
+  .wrap-body.sidebar-inactive {
+    padding-left: 0px; }
+  .wrap-body * {
+    max-height: 100%; }
+
+/*# sourceMappingURL=sidebar.css.map */
