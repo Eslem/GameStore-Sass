@@ -6,7 +6,7 @@ class GenericDAO {
 
     function __construct() {
 
-        if (false) {
+        if (true) {
             $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
             $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
             $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
