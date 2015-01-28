@@ -6,6 +6,18 @@
 var baseurl = window.location.pathname;
 var user = null;
 
+
+//node-webKit
+$(document).ready(function () {
+    var isNodeWebkit = (typeof process == "object");
+    if (isNodeWebkit) {
+        var gui = require('nw.gui');
+        var win = gui.Window.get();
+        win.maximize();
+        baseurl = "http://daw.localhost/Projects/GameStore-Sass/public_html/admin/";
+    }
+});
+
 function login(elem) {
     // alert();
     $("#logo").addClass("flip");
@@ -34,7 +46,7 @@ function login(elem) {
                 showError(data);
             }
         });
-    }, 1000);
+    }, 2000);
 }
 
 function showError(text) {
