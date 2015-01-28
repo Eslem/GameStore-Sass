@@ -19,11 +19,8 @@ function loginCliente() {
                     });
                 });
 
-                if ($("#navLinkProfile a").text() !== "perfil") {
-                    $("#hexagono").css("display", "none");
-                    $("#hexagono2").fadeIn().css("display", "inline-block");
-                }
-                
+                $("#hexagono").css("display", "none");
+                $("#hexagono2").fadeIn().css("display", "inline-block");
             }
 
 
@@ -44,8 +41,9 @@ function loginCliente() {
 
 function logoutCliente() {
     unsetSessionUser();
-      $("#navLinkProfile a").text("perfil");
-    
+    $("#navLinkProfile a").text("registro");
+
+
 }
 
 function setSessionUser(user, callback) {
@@ -91,6 +89,6 @@ function unsetSessionUser(callback) {
         if (callback !== undefined)
             callback(result);
     }).error(function (error) {
-      logError(error);
+        logError(error);
     });
 }

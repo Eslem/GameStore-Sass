@@ -13,7 +13,6 @@ function loadNavbar(section) {
 
         $("#hexagono2").click(function () {
             logoutCliente(this);
-
             $("#hexagono").css("display", "inline-block");
             $("#hexagono2").css("display", "none");
 
