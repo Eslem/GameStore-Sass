@@ -52,7 +52,8 @@ body, html {
     transition: all 0.4s; }
     .login form input:focus {
       background-color: #555;
-      color: #111; }
+      color: #111;
+      outline: none; }
   .login form button {
     cursor: pointer;
     overflow: hidden;

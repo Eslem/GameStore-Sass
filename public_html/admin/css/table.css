@@ -104,7 +104,8 @@ and open the template in the editor.
       transition: all 0.4s; }
       .serviceTable div input:focus {
         background-color: #555;
-        color: #111; }
+        color: #111;
+        outline: none; }
     .serviceTable div span {
       margin: 5px;
       opacity: 0.4;
@@ -206,7 +207,8 @@ and open the template in the editor.
       .modal .modal-body input:focus, .modal .modal-body textarea:focus {
         background-color: #555;
         color: #111;
-        border-color: #18525E; }
+        border-color: #18525E;
+        outline: none; }
   .modal .modal-footer {
     text-align: right;
     padding: 10px;

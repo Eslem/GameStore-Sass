@@ -14,15 +14,18 @@ function login(elem) {
     console.log(data);
     setTimeout(function () {
         $.ajax({
-            url: baseurl+"../server/controller/administradorController.php",
+            url: baseurl + "../server/controller/administradorController.php",
             data: data,
             type: "POST",
             success: function (data) {
-                console.log(data);
+
                 if (data === "false") {
                     showError("Error en usuario o contraseña");
                 } else {
                     user = data;
+                    $("#login").hide();
+                    onlogin();
+                    app.routes['admins'].show();
                 }
                 $("#logo").removeClass("flip");
             },
@@ -43,3 +46,50 @@ function showError(text) {
 
 }
 
+function logout() {
+    $.ajax({
+        url: baseurl + "../server/controller/administradorController.php",
+        data: {
+            query: "logout"
+        },
+        type: "POST",
+        success: function (data) {
+            $("#login").fadeIn();
+            onnologin();
+        },
+        error: function (data) {
+            $("#logo").removeClass("flip");
+            showError(data);
+        }
+    });
+}
+
+function getSession(callback) {
+    $.ajax({
+        url: baseurl + "../server/controller/administradorController.php",
+        data: {
+            query: "getLogged"
+        },
+        type: "POST",
+        success: function (data) {
+            console.log(data);
+            callback();
+        },
+        error: function (data) {
+            onnologin();
+        }
+    });
+}
+
+function onlogin() {
+    $(".sidebar-inactive").removeClass("sidebar-inactive");
+    $("#login").hide();
+}
+
+function onnologin() {
+    $("#login").fadeIn();
+    $("#login").addClass("sidebar-inactive");
+    $("#wrap-body").addClass("sidebar-inactive");
+    $("#wrap-body").html("");
+    $(".sideBar").addClass("sidebar-inactive");
+};

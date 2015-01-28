@@ -108,6 +108,7 @@ and open the template in the editor.
             &:focus {
                 background-color: #555;
                 color: #111;
+                outline: none;
             }
         }
         span {
@@ -223,6 +224,7 @@ and open the template in the editor.
                 background-color: #555;
                 color: #111;
                 border-color: $bluedark2;
+                outline: none;
             }
         }
     }

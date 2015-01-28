@@ -62,9 +62,10 @@ function App() {
         route.name = name;
         this.routes[name] = route;
         var path = window.location.hash.split("#")[1];
-        if(path === route.name){
-            $(document).ready(function(){
+        if (path === route.name) {
+            getSession(function () {
                 route.show();
+                onlogin();
             });
         }
     };
