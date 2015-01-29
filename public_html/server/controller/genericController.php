@@ -59,6 +59,14 @@ function executeQuery($dao) {
                 echo $dao->insert($_POST['values']);
             }
             break;
+        /* Insert */
+        case 'insertJSON' :
+            if (!isset($_POST["values"])) {
+                header("HTTP/1.0 400 Request is missing parameters");
+            } else {
+                echo $dao->insertJSON($_POST['values']);
+            }
+            break;
 
 
         /* Update */

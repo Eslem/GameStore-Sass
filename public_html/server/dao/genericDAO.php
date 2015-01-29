@@ -6,7 +6,7 @@ class GenericDAO {
 
     function __construct() {
 
-        if (true) {
+        if (false) {
             $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
             $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
             $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
@@ -168,23 +168,77 @@ class GenericDAO {
         }
     }
 
+    function getIndexFromValue($value, $array) {
+        for ($i = 0; $i < count($array); $i++) {
+            if ($value === $array[$i]) {
+                return $i;
+            }
+        }
+    }
+
+    function getTypeFromName($key) {
+        return $this->propertyTypes[$this->getIndexFromValue($key, $this->propertyNames)];
+    }
+
     function genericUpdate($id, $values, $condition) {
         $connection = $this->connectionManager->getConnection();
 
+        $valuesJSON = json_decode($values, true);
+        unset($valuesJSON['id']);
+        unset($valuesJSON['query']);
+
         $query = "UPDATE " . $this->tableName . " SET ";
-        for ($i = 0; $i < count($values); $i++) {
-            if ($this->propertyTypes[$i] === 's') {
-                $values[$i] = "'" . $values[$i] . "'";
-            }
-            $query .= $this->propertyNames[$i] . " = ?";
-            if ($i < count($values) - 1) {
-                $query .= ", ";
+        foreach ($valuesJSON as $key => $value) {
+            $query.= "$key = ";
+            $type = $this->getTypeFromName($key);
+            if ($type == 's') {
+                $query.= "'" . $value . "',";
+            } else {
+                $query.= $value . ",";
             }
         }
-        array_push($values, $id);
+        $query = substr($query, 0, -1);
+        //array_push($values, $id);
         $query .= " WHERE " . $condition;
 
-        $this->prepareAndExecuteStatement($connection, $query, $values);
+        if ($connection->query($query) === TRUE) {
+            echo "Ok";
+        } else {
+            echo "Error updating record: $query : " . $connection->error;
+        }
+        $connection->close();
+    }
+
+    function insertJSON($values) {
+        $connection = $this->connectionManager->getConnection();
+
+        $valuesJSON = json_decode($values, true);
+        unset($valuesJSON['query']);
+
+        $query = "INSERT INTO " . $this->tableName . "( ";
+        foreach ($valuesJSON as $key => $value) {
+            $query.= "$key,";
+        }
+        $query = substr($query, 0, -1);
+        $query.=" ) VALUES(";
+        foreach ($valuesJSON as $key => $value) {
+            $type = $this->getTypeFromName($key);
+            if ($type == 's') {
+                $query.= "'" . $value . "',";
+            } else {
+                $query.= $value . ",";
+            }
+        }
+        $query = substr($query, 0, -1) . ")";
+
+        echo $query;
+
+        if ($connection->query($query) === TRUE) {
+            echo "Ok";
+        } else {
+            echo "Error updating record: $query : " . $connection->error;
+        }
+        $connection->close();
     }
 
     function genericDelete($condition) {

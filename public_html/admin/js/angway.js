@@ -3,6 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+Element.prototype.remove = function () {
+    this.parentElement.removeChild(this);
+};
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
+    for (var i = 0, len = this.length; i < len; i++) {
+        if (this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+};
 
 function modalConfig() {
     $("[data-function='launchModal']").click(function () {
@@ -14,7 +24,8 @@ function modalConfig() {
     $(document).mouseup(function () {
         $(".modal").each(function () {
             var modal = $(this).attr('data-autoClose');
-            if (modal != 'false') $(this).fadeOut();
+            if (modal != 'false')
+                $(this).fadeOut();
         });
     });
     $(".modal-content").mouseup(function () {
@@ -29,6 +40,20 @@ function showModal(id) {
     $("#" + id).fadeIn();
 }
 
+function clone(obj) {
+    if (obj == null || typeof (obj) != 'object')
+        return obj;
+
+    var temp = obj.constructor(); // changed
+
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            temp[key] = clone(obj[key]);
+        }
+    }
+    return temp;
+}
+
 function getElementsByClassName(node, classname) {
     if (node.getElementsByClassName) { // use native implementation if available
         return node.getElementsByClassName(classname);
@@ -37,10 +62,10 @@ function getElementsByClassName(node, classname) {
             if (node == null)
                 node = document;
             var classElements = [],
-                els = node.getElementsByTagName("*"),
-                elsLen = els.length,
-                pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)"),
-                i, j;
+                    els = node.getElementsByTagName("*"),
+                    elsLen = els.length,
+                    pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)"),
+                    i, j;
 
             for (i = 0, j = 0; i < elsLen; i++) {
                 if (pattern.test(els[i].className)) {
@@ -127,7 +152,7 @@ function Error(title, message, type) {
     };
 }
 
-function ServicePaginanted(id, header, controller, index, callback) {
+function ServicePaginanted(id, header, controller, index, callback, hasPass) {
     this.id = id;
     this.header = header;
     this.controller = controller;
@@ -139,40 +164,97 @@ function ServicePaginanted(id, header, controller, index, callback) {
     this.callback = callback;
     var service = this;
 
+    this.removeCallback = function (obj) {
+        return function () {
+            service.remove(obj);
+        };
+    };
 
-    this.edit = function (data) {
+    this.addinputs = function (data) {
         var modal = document.getElementById("modal-form");
         modal.innerHTML = "";
+        var isEdit = data !== undefined;
         for (var x in service.header) {
-            if (data[x].length > 25) {
-
+            if (isEdit && data[x].length > 25) {
                 var input = document.createElement("textarea");
             } else {
-
                 var input = document.createElement("input");
             }
             input.setAttribute("placeholder", service.header[x]);
             input.setAttribute("name", x);
-            input.value = data[x];
+            if (isEdit)
+                input.value = data[x];
             modal.appendChild(input);
         }
 
-        var input = document.createElement("input");
-        input.setAttribute("name", "id");
-        input.value = data.id;
-        input.setAttribute("type", "hidden");
-        modal.appendChild(input);
-        var input = document.createElement("input");
-        input.setAttribute("name", "query");
-        input.value = "query";
-        input.setAttribute("type", "hidden");
-        modal.appendChild(input);
-        $(".modal.edit").slideDown();
-    };
-    this.remove = function (data) {
-        console.log(data);
+
+        var inputQuery = document.createElement("input");
+        inputQuery.setAttribute("name", "query");
+        inputQuery.setAttribute("type", "hidden");
+        modal.appendChild(inputQuery);
+        if (isEdit) {
+            inputQuery.value = "update";
+            var inputName = document.createElement("input");
+            inputName.setAttribute("name", "id");
+            inputName.setAttribute("type", "hidden");
+            modal.appendChild(inputName);
+            inputName.value = data.id;
+
+            document.getElementById("sendModalForm").onclick = function () {
+                sendModalForm(service);
+            };
+
+        } else {
+            inputQuery.value = "insertJSON";
+
+            document.getElementById("sendModalForm").onclick = function () {
+                addObj(service);
+            };
+        }
+
+        if (!isEdit && hasPass) {
+            var input = document.createElement("input");
+            input.setAttribute("name", "password");
+            input.setAttribute("type", "password");
+            input.setAttribute("id", "modal-password");
+            input.setAttribute("placeholder", "contraseña");
+            modal.appendChild(input);
+            var inputName = document.createElement("input");
+            inputName.setAttribute("name", "password2");
+            inputName.setAttribute("type", "password");
+            inputName.setAttribute("id", "modal-password2");
+            inputName.setAttribute("placeholder", "repite contraseña");
+            modal.appendChild(inputName);
+        }
+
+
     };
 
+    this.remove = function (data) {
+        var modal = document.getElementById("modal-form");
+        modal.innerHTML = "Seguro quieres eliminar a " + data['nombre'];
+        document.getElementById("sendModalForm").onclick = function () {
+            removeObj(service, data.id);
+        };
+        document.getElementById("sendModalForm").innerHTML = "Eliminar <i class='fa fa-trash-o'></i>";
+        $(".modal.edit").slideDown();
+    };
+
+    this.editCallback = function (obj) {
+        return function () {
+            service.edit(obj);
+        };
+    };
+
+    this.edit = function (data) {
+        service.addinputs(data);
+        $(".modal.edit").slideDown();
+    };
+
+    this.add = function () {
+        service.addinputs();
+        $(".modal.edit").slideDown();
+    };
 
     this.get = function () {
 
@@ -188,11 +270,12 @@ function ServicePaginanted(id, header, controller, index, callback) {
             },
             success: function (data) {
                 data = JSON.parse(data);
+                service.pages = Math.ceil(parseInt(data.count) / service.quantity);
                 service.show(data);
                 if (typeof (service.callback) === 'function') {
                     service.callback(data);
                 }
-                service.pages = 10 % parseInt(data.count);
+
             },
             error: function (data) {
                 new Error("Error", "Error request", null).show();
@@ -202,7 +285,11 @@ function ServicePaginanted(id, header, controller, index, callback) {
 
 
     this.show = function (json) {
-        document.getElementById(id).innerHTML = "";
+        if (document.getElementById(id) !== null)
+            document.getElementById(id).innerHTML = "";
+
+        if (document.getElementById("modal-edit") !== null)
+            document.getElementById("modal-edit").remove();
 
         if (json.elems === undefined) {
             var div = document.createElement("div");
@@ -213,9 +300,8 @@ function ServicePaginanted(id, header, controller, index, callback) {
 
             var table = document.createElement("table");
             var maintr = document.createElement("tr");
-            if (document.getElementById("modal-form") === null) {
-                var div = document.createElement("div");
-                div.innerHTML = '<div class="modal sm edit" id="modal-edit">\
+            var modalDiv = document.createElement("div");
+            modalDiv.innerHTML = '<div class="modal sm edit" id="modal-edit">\
                 <div class="modal-content">\
                     <div class="modal-header">\
                         <button type="button" class="bt modal-close noStyle" data-function="closeModal">×</button>\
@@ -229,13 +315,9 @@ function ServicePaginanted(id, header, controller, index, callback) {
                         <button type="button" class="bt primary" id="sendModalForm">Guardar</button>\
                     </div>\
                 </div>\
-            </div>'
-                document.body.appendChild(div);
-                document.getElementById("sendModalForm").onclick = function () {
-                    sendModalForm(service);
-                }
-                modalConfig();
-            }
+            </div>';
+            document.body.appendChild(modalDiv);
+            modalConfig();
 
             var modal = document.getElementById("modal-form");
 
@@ -285,25 +367,28 @@ function ServicePaginanted(id, header, controller, index, callback) {
                     row.appendChild(col);
                 }
                 var col = document.createElement("td");
-
                 var button = document.createElement("button");
-                button.onclick = function () {
-                    service.edit(obj);
-                };
+                button.onclick = service.editCallback(obj);
                 button.innerHTML = "<i class='fa fa-gear'></i>";
                 col.appendChild(button);
 
-                var button = document.createElement("button");
-                button.onclick = function () {
-                    service.remove(obj);
-                };
-                col.appendChild(button);
-                button.innerHTML = "<i class='fa fa-trash-o'></i>";
+                var buttonRemove = document.createElement("button");
+                buttonRemove.onclick = service.removeCallback(obj);
+                buttonRemove.innerHTML = "<i class='fa fa-trash-o'></i>";
+
+                col.appendChild(buttonRemove);
                 row.appendChild(col);
                 table.appendChild(row);
             }
 
             var div = document.createElement("div");
+
+            var buttonAdd = document.createElement("button");
+            buttonAdd.onclick = function () {
+                service.add();
+            };
+            buttonAdd.innerHTML = "<i class='fa fa-plus-square'></i>";
+            div.appendChild(buttonAdd);
 
             var first = document.createElement("button");
 
@@ -335,7 +420,7 @@ function ServicePaginanted(id, header, controller, index, callback) {
             div.appendChild(input);
 
             var label = document.createElement("span");
-            label.textContent = service.pages + 1;
+            label.textContent = service.pages;
             div.appendChild(label);
 
             var buttonMore = document.createElement("button");
@@ -371,21 +456,80 @@ function ServicePaginanted(id, header, controller, index, callback) {
 }
 
 function sendModalForm(service) {
-    var data = $("#modal-form").serializeArray();
+    var data = $('#modal-form').serializeArray();
+    var values = {};
+    for (var x in data) {
+        var obj = data[x];
+        values[obj.name] = obj.value;
+    }
     data.push({
-        "values": $("#modal-form").serialize()
+        name: 'values',
+        value: JSON.stringify(values)
     });
-    console.log(data);
     $.ajax({
         url: baseurl + "../server/controller/" + service.controller + ".php",
         type: "POST",
         data: data,
         success: function (data) {
-            console.log(data);
             $("#modal-edit").slideUp();
+            service.get();
         },
         error: function (data) {
             new Error("Error", "Error request", null).show();
         }
     });
+
+}
+
+function removeObj(service, data) {
+    $.ajax({
+        url: baseurl + "../server/controller/" + service.controller + ".php",
+        type: "POST",
+        data: {
+            query: "delete",
+            id: data
+        },
+        success: function (data) {
+            $("#modal-edit").slideUp();
+            service.get();
+        },
+        error: function (data) {
+            new Error("Error", "Error request", null).show();
+        }
+    });
+
+}
+
+function addObj(service, data) {
+    var data = $('#modal-form').serializeArray();
+    var values = {};
+    for (var x in data) {
+        var obj = data[x];
+        if (obj.name !== 'password2')
+            values[obj.name] = obj.value;
+    }
+    data.push({
+        name: 'values',
+        value: JSON.stringify(values)
+    });
+
+    $.ajax({
+        url: baseurl + "../server/controller/" + service.controller + ".php",
+        type: "POST",
+        data: data,
+        success: function (data) {
+            $("#modal-edit").slideUp();
+            service.get();
+        },
+        error: function (data) {
+            new Error("Error", "Error request", null).show();
+        }
+    });
+
+}
+
+function createCallback(i) {
+    return function () {
+        alert('you clicked' + i);
+    };
 }
