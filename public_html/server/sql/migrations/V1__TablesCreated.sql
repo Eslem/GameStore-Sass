@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `alias`, `password`) VALUES
 (1, 'nombre', 'apellido', 'direccion', 'telefono', 'email', 'alias', 'password');
-
+ 
 
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,

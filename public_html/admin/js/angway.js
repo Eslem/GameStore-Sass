@@ -275,6 +275,8 @@ function ServicePaginanted(id, header, controller, index, callback) {
 
                 for (var x in service.header) {
                     var col = document.createElement("td");
+                    console.log(x);
+                    console.log(obj);
                     if (obj[x].length > 65) {
                         var div = document.createElement("div");
                         div.textContent = obj[x];

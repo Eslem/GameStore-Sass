@@ -197,7 +197,7 @@ div.navbar.invisible {
     #hexagono2 i:hover {
       content: attr(title); }
 
-/* Animaci├│n del bot├│n de login */
+/* AnimaciÃ³n del botÃ³n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }

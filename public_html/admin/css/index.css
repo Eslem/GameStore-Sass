@@ -87,17 +87,14 @@ body, html {
         filter: alpha(opacity=100);
         -webkit-backface-visibility: hidden;
         transform: rotateY(180deg); }
-      .login .img img.flip {
-        opacity: 0;
-        filter: alpha(opacity=0); }
 
 .flip {
   -webkit-animation: infinite-spinning 0.5s infinite;
   -moz-animation: infinite-spinning 0.5s infinite;
   -o-animation: infinite-spinning 0.5s infinite;
   animation: infinite-spinning 0.5s infinite;
-  opacity: 0;
-  filter: alpha(opacity=0);
+  opacity: 0.3;
+  filter: alpha(opacity=30);
   -webkit-transition: opacity 3s;
   -moz-transition: opacity 3s;
   transition: opacity 3s; }
