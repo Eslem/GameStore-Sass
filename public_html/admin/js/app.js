@@ -69,6 +69,19 @@ var pedidosController = new Controller("pedidosController", "pedidos", function 
 var pedidosRoute = new Route("views/pedidos.html", pedidosController);
 app.addRoute("pedidos", pedidosRoute);
 
+var lineapedidosController = new Controller("lineapedidosController", "lineapedidos", function ($scope) {
+    $scope.index = 0;
+    $scope.headers = {
+        "id_pedido": "Pedido",
+        "id_producto": "Producto",
+        "cantidad": "Cantidad"
+    };
+    var service = new ServicePaginanted("lineapedidosServiceTable", $scope.headers, "pedido_lineaController", $scope.index, null);
+    service.get();
+});
+var lineapedidosRoute = new Route("views/lineasPedido.html", lineapedidosController);
+app.addRoute("lineapedidos", lineapedidosRoute);
+
 
 function flyway(){
     $("#modal-flyway").fadeIn();
