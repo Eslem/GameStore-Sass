@@ -59,4 +59,29 @@ html, body {
     .slideButton.cart:hover:before, .slideButton.trash:hover:before {
       left: -2%; }
 
+.dropContainer {
+  border: 2px dashed #444;
+  height: 224px;
+  width: 355px;
+  border-radius: 5px;
+  z-index: 22222;
+  position: relative;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto; }
+  .dropContainer #imgBefore {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: .2; }
+  .dropContainer.over {
+    border-color: #eee; }
+    .dropContainer.over h1 {
+      opacity: 1; }
+  .dropContainer h1 {
+    margin-left: auto;
+    margin-top: 25%;
+    text-align: center;
+    opacity: 0.4; }
+
 /*# sourceMappingURL=main.css.map */

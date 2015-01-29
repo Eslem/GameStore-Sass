@@ -3,86 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-Element.prototype.remove = function () {
-    this.parentElement.removeChild(this);
-};
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
-    for (var i = 0, len = this.length; i < len; i++) {
-        if (this[i] && this[i].parentElement) {
-            this[i].parentElement.removeChild(this[i]);
-        }
-    }
-};
-
-function modalConfig() {
-    $("[data-function='launchModal']").click(function () {
-        showModal($(this).attr("data-modalId"));
-    })
-    $("[data-function='closeModal']").click(function () {
-        $(".modal").fadeOut();
-    })
-    $(document).mouseup(function () {
-        $(".modal").each(function () {
-            var modal = $(this).attr('data-autoClose');
-            if (modal != 'false')
-                $(this).fadeOut();
-        });
-    });
-    $(".modal-content").mouseup(function () {
-        return false;
-    });
-    $(".modal-form").mouseup(function () {
-        return false;
-    });
-}
-
-function showModal(id) {
-    $("#" + id).fadeIn();
-}
-
-function clone(obj) {
-    if (obj == null || typeof (obj) != 'object')
-        return obj;
-
-    var temp = obj.constructor(); // changed
-
-    for (var key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            temp[key] = clone(obj[key]);
-        }
-    }
-    return temp;
-}
-
-function getElementsByClassName(node, classname) {
-    if (node.getElementsByClassName) { // use native implementation if available
-        return node.getElementsByClassName(classname);
-    } else {
-        return (function getElementsByClass(searchClass, node) {
-            if (node == null)
-                node = document;
-            var classElements = [],
-                    els = node.getElementsByTagName("*"),
-                    elsLen = els.length,
-                    pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)"),
-                    i, j;
-
-            for (i = 0, j = 0; i < elsLen; i++) {
-                if (pattern.test(els[i].className)) {
-                    classElements[j] = els[i];
-                    j++;
-                }
-            }
-            return classElements;
-        })(classname, node);
-    }
-}
 
 function App() {
     this.controllers = {};
     this.routes = {};
     var app = this;
-
     this.addRoute = function (name, route) {
         route.name = name;
         this.routes[name] = route;
@@ -94,11 +19,9 @@ function App() {
             });
         }
     };
-
     this.addController = function (controller) {
         controllers[controller.name] = controller;
     };
-
 }
 
 function Controller(name, elemHTML, funct) {
@@ -106,17 +29,19 @@ function Controller(name, elemHTML, funct) {
     this.name = name;
     this.func = funct;
     this.elemName = elemHTML;
-
-
 }
 
 function Route(viewPath, controller) {
     this.viewPath = viewPath;
     this.controller = controller;
     var route = this;
-
     this.show = function () {
-        window.location.replace("#" + route.name)
+        window.location.replace("#" + route.name);
+        var li = document.getElementById(route.name + "-li");
+        if (li !== null) {
+            $("li.active").removeClass("active");
+            li.className = "active";
+        }
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", this.viewPath + '?_=' + new Date().getTime(), false);
         rawFile.onreadystatechange = function () {
@@ -125,7 +50,6 @@ function Route(viewPath, controller) {
                     var allText = rawFile.responseText;
                     document.getElementById("wrap-body").innerHTML = allText
                     modalConfig();
-
                     controller.func(controller.$scope);
                     return allText;
                 }
@@ -133,7 +57,6 @@ function Route(viewPath, controller) {
         };
         rawFile.send(null);
     };
-
 }
 
 
@@ -163,13 +86,11 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
     this.orientation = "ASC";
     this.callback = callback;
     var service = this;
-
     this.removeCallback = function (obj) {
         return function () {
             service.remove(obj);
         };
     };
-
     this.addinputs = function (data) {
         var modal = document.getElementById("modal-form");
         modal.innerHTML = "";
@@ -192,6 +113,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
         inputQuery.setAttribute("name", "query");
         inputQuery.setAttribute("type", "hidden");
         modal.appendChild(inputQuery);
+
         if (isEdit) {
             inputQuery.value = "update";
             var inputName = document.createElement("input");
@@ -199,17 +121,43 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             inputName.setAttribute("type", "hidden");
             modal.appendChild(inputName);
             inputName.value = data.id;
-
             document.getElementById("sendModalForm").onclick = function () {
                 sendModalForm(service);
             };
-
         } else {
             inputQuery.value = "insertJSON";
+            document.getElementById("sendModalForm").onclick = function () {
+                addObj(service);
+            };
 
             document.getElementById("sendModalForm").onclick = function () {
                 addObj(service);
             };
+
+        }
+
+        if (service.controller === "productoController") {
+            var canvasDiv = document.createElement("div");
+            canvasDiv.className = "dropContainer";
+            canvasDiv.id = "dropZone";
+            canvasDiv.innerHTML = '<h1 class="primary">Drop Image Here</h1>\
+                <div id = "canvas" >\
+                </div>';
+
+            if (isEdit) {
+                var imgUrl = "../cliente/images/games/"+data.id+"_thumb.jpg";
+                if(!imageExists(imgUrl))
+                   imgUrl = "../cliente/images/games/"+data.id+"_thumb.png";
+               
+                imgUrl+= '?_='+ new Date().getTime();
+                canvasDiv.innerHTML = '\
+                <div id = "canvas" >\
+                <img id="imgBefore" src="'+imgUrl+'" >\
+                </div>';
+            }
+            modal.appendChild(canvasDiv);
+            loadDropZone();
+            $("#modal-edit").removeClass("sm");
         }
 
         if (!isEdit && hasPass) {
@@ -229,7 +177,6 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
 
 
     };
-
     this.remove = function (data) {
         var modal = document.getElementById("modal-form");
         modal.innerHTML = "Seguro quieres eliminar a " + data['nombre'];
@@ -239,23 +186,19 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
         document.getElementById("sendModalForm").innerHTML = "Eliminar <i class='fa fa-trash-o'></i>";
         $(".modal.edit").slideDown();
     };
-
     this.editCallback = function (obj) {
         return function () {
             service.edit(obj);
         };
     };
-
     this.edit = function (data) {
         service.addinputs(data);
         $(".modal.edit").slideDown();
     };
-
     this.add = function () {
         service.addinputs();
         $(".modal.edit").slideDown();
     };
-
     this.get = function () {
 
         $.ajax({
@@ -282,15 +225,11 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             }
         });
     };
-
-
     this.show = function (json) {
         if (document.getElementById(id) !== null)
             document.getElementById(id).innerHTML = "";
-
         if (document.getElementById("modal-edit") !== null)
             document.getElementById("modal-edit").remove();
-
         if (json.elems === undefined) {
             var div = document.createElement("div");
             div.className = "noresults"
@@ -318,22 +257,15 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             </div>';
             document.body.appendChild(modalDiv);
             modalConfig();
-
             var modal = document.getElementById("modal-form");
-
             for (var x in service.header) {
                 var header = document.createElement("th");
                 header.setAttribute("data-header", x);
-
                 header.textContent = service.header[x];
-
-
                 var input = document.createElement("input");
                 input.setAttribute("placeholder", service.header[x]);
                 input.setAttribute("name", x);
                 modal.appendChild(input);
-
-
                 header.onclick = function () {
                     if (service.order === this.getAttribute("data-header")) {
                         if (service.orientation === "ASC") {
@@ -350,11 +282,9 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 maintr.appendChild(header);
             }
             table.appendChild(maintr);
-
             for (var elem in json.elems) {
                 var obj = json.elems[elem];
                 var row = document.createElement("tr");
-
                 for (var x in service.header) {
                     var col = document.createElement("td");
                     if (obj[x].length > 65) {
@@ -371,34 +301,28 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 button.onclick = service.editCallback(obj);
                 button.innerHTML = "<i class='fa fa-gear'></i>";
                 col.appendChild(button);
-
                 var buttonRemove = document.createElement("button");
                 buttonRemove.onclick = service.removeCallback(obj);
                 buttonRemove.innerHTML = "<i class='fa fa-trash-o'></i>";
-
                 col.appendChild(buttonRemove);
                 row.appendChild(col);
                 table.appendChild(row);
             }
 
             var div = document.createElement("div");
-
             var buttonAdd = document.createElement("button");
             buttonAdd.onclick = function () {
                 service.add();
             };
             buttonAdd.innerHTML = "<i class='fa fa-plus-square'></i>";
             div.appendChild(buttonAdd);
-
             var first = document.createElement("button");
-
             first.onclick = function () {
                 service.index = 0;
                 service.get();
             };
             first.textContent = "<<";
             div.appendChild(first);
-
             var buttonMinus = document.createElement("button");
             buttonMinus.onclick = function () {
                 service.index--;
@@ -418,11 +342,9 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 service.get();
             };
             div.appendChild(input);
-
             var label = document.createElement("span");
             label.textContent = service.pages;
             div.appendChild(label);
-
             var buttonMore = document.createElement("button");
             buttonMore.onclick = function () {
                 service.index++;
@@ -430,7 +352,6 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             };
             buttonMore.textContent = ">";
             div.appendChild(buttonMore);
-
             var last = document.createElement("button");
             last.onclick = function () {
                 service.index = service.pages;
@@ -473,12 +394,13 @@ function sendModalForm(service) {
         success: function (data) {
             $("#modal-edit").slideUp();
             service.get();
+            if (service.controller === "productoController" && thumbnail !== null)
+                uploadImg(values["id"]);
         },
         error: function (data) {
             new Error("Error", "Error request", null).show();
         }
     });
-
 }
 
 function removeObj(service, data) {
@@ -497,7 +419,6 @@ function removeObj(service, data) {
             new Error("Error", "Error request", null).show();
         }
     });
-
 }
 
 function addObj(service, data) {
@@ -512,12 +433,13 @@ function addObj(service, data) {
         name: 'values',
         value: JSON.stringify(values)
     });
-
     $.ajax({
         url: baseurl + "../server/controller/" + service.controller + ".php",
         type: "POST",
         data: data,
         success: function (data) {
+            if (service.controller === "productoController" && thumbnail !== null)
+                uploadImg(data);
             $("#modal-edit").slideUp();
             service.get();
         },
@@ -525,7 +447,6 @@ function addObj(service, data) {
             new Error("Error", "Error request", null).show();
         }
     });
-
 }
 
 function createCallback(i) {

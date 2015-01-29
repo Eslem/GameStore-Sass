@@ -46,7 +46,7 @@ setTimeout(function () {
                 showError(data);
             }
         });
-    
+    return false;
 }
 
 function showError(text) {

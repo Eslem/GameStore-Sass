@@ -68,3 +68,9 @@ var pedidosController = new Controller("pedidosController", "pedidos", function 
 });
 var pedidosRoute = new Route("views/pedidos.html", pedidosController);
 app.addRoute("pedidos", pedidosRoute);
+
+
+function flyway(){
+    $("#modal-flyway").fadeIn();
+    $("#flyway-frame").attr("src", baseurl+"../server/sql/migrate.php");
+}

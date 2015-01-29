@@ -231,10 +231,8 @@ class GenericDAO {
         }
         $query = substr($query, 0, -1) . ")";
 
-        echo $query;
-
         if ($connection->query($query) === TRUE) {
-            echo "Ok";
+            echo mysqli_insert_id($connection);
         } else {
             echo "Error updating record: $query : " . $connection->error;
         }
