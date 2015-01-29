@@ -100,7 +100,10 @@ body, html{
                 @include opacity(1);
                 @include transform(rotateY(180deg));
             }   
-        
+            &.flip{
+                @include opacity(.1);
+            }
+            
         }
 
     }
@@ -108,7 +111,7 @@ body, html{
 
 .flip{
     @include animation(infinite-spinning .5s infinite);
-    @include opacity(.3); 
+    @include opacity(.1);
     @include transition(opacity 3s);
 }
 

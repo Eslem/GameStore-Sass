@@ -46,7 +46,7 @@ setTimeout(function () {
                 showError(data);
             }
         });
-    
+    return false;
 }
 
 function showError(text) {
@@ -84,7 +84,6 @@ function getSession(callback) {
         },
         type: "POST",
         success: function (data) {
-            console.log(data);
             callback();
         },
         error: function (data) {

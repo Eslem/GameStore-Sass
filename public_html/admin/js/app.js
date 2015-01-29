@@ -9,7 +9,7 @@ var userController = new Controller("userController", "usuarios", function ($sco
         "telefono": "Telefono",
         "alias": "Alias"
     };
-    var service = new ServicePaginanted("userServiceTable", $scope.headers, "usuarioController", $scope.index, null);
+    var service = new ServicePaginanted("userServiceTable", $scope.headers, "usuarioController", $scope.index, null, true);
     service.get();
 });
 var userRoute = new Route("views/user.html", userController);
@@ -25,7 +25,7 @@ var adminsController = new Controller("adminsController", "admins", function ($s
         "telefono": "Telefono",
         "alias": "Alias"
     };
-    var service = new ServicePaginanted("adminsServiceTable", $scope.headers, "administradorController", $scope.index, null);
+    var service = new ServicePaginanted("adminsServiceTable", $scope.headers, "administradorController", $scope.index, null, true);
     service.get();
 });
 var adminsRoute = new Route("views/administradores.html", adminsController);
@@ -48,7 +48,6 @@ app.addRoute("products", productsRoute);
 var categoriesController = new Controller("categoriesController", "categories", function ($scope) {
     $scope.index = 0;
     $scope.headers = {
-        "id": "Id",
         "nombre": "Nombre"
     };
     var service = new ServicePaginanted("categoriesServiceTable", $scope.headers, "categoriaController", $scope.index, null);
@@ -69,3 +68,9 @@ var pedidosController = new Controller("pedidosController", "pedidos", function 
 });
 var pedidosRoute = new Route("views/pedidos.html", pedidosController);
 app.addRoute("pedidos", pedidosRoute);
+
+
+function flyway(){
+    $("#modal-flyway").fadeIn();
+    $("#flyway-frame").attr("src", baseurl+"../server/sql/migrate.php");
+}

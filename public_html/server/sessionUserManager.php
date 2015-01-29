@@ -25,6 +25,7 @@ switch ($_POST['operation']) {
     /* Empty */
     case 'unset' :
         unset($_SESSION['user']);
+        session_destroy();
         break;
     
     
