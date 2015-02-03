@@ -1,7 +1,4 @@
-
 function loadRegistro() {
-
-
 
     $("#registroClientes").load("registro/registro.html").dialog({
         modal: true,
@@ -39,6 +36,7 @@ function loadRegistro() {
                         console.log('Error al registrar el usuario ');
                         logError(error);
                     });
+
                 }
             },
             {
@@ -61,5 +59,4 @@ function loadRegistro() {
 
 }
 ;
-
 
