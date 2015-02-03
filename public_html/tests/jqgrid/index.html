@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="jqgrid/css/ui.jqgrid.css" type="text/css"/>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+        <script type="text/javascript" src="jqgrid/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="jqgrid/js/i18n/grid.locale-es.js"></script>
+        <script type="text/javascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#jqGrid").jqGrid({
+                    url: 'jqGrid.php',
+                    datatype: "json",
+                    colNames: ['ID', 'Nombre', 'Descripcion', 'Precio'],
+                    colModel: [
+                        {name: 'id', index: 'id', width: 55},
+                        {name: 'nombre', index: 'nombre', width: 90},
+                        {name: 'descripcion', index: 'descripcion', width: 100},
+                        {name: 'precio', index: 'precio', width: 80, align: "right"}
+                    ],
+                    rowNum: 5,
+                    rowList: [5, 10, 20, 30],
+                    pager: '#pager',
+                    sortname: 'id',
+                    viewrecords: true,
+                    sortorder: "desc",
+                    caption: "JQGrid test"
+                });
+                $("#jqGrid").jqGrid('navGrid', '#pager', {edit: false, add: false, del: false});
+            });
+        </script>
+    </head>
+    <body>
+        <table id="jqGrid"></table>
+        <div id="pager"></div>
+    </body>
+</html>

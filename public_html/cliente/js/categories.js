@@ -6,7 +6,8 @@ var categories;
 
 function getProductsByCategory(category, callback) {
     $.ajax({
-        url: '../server/controller/productoController.php',
+        url: rootURL + 'server/controller/productoController.php',
+        dataType: 'JSON',
         type: 'POST',
         data: {
             query: 'selectJoin',
@@ -18,13 +19,13 @@ function getProductsByCategory(category, callback) {
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
 function findProduct(id, callback) {
     $.ajax({
-        url: '../server/controller/productoController.php',
+        url: rootURL + 'server/controller/productoController.php',
         dataType: 'JSON',
         type: 'POST',
         data: {
@@ -34,7 +35,7 @@ function findProduct(id, callback) {
     }).success(function(result) {
         callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 
@@ -47,17 +48,17 @@ function loadGames(categoryID) {
     getProductsByCategory(categoryID, function(result) {
         $('#divGames').text('');
         $('#divDetail').hide();
-        if (result !== '' && result !== null && JSON.parse(result) !== null) {
+        if (result !== '' && result !== null) {
             $(".back-panel").removeClass("active");
-            result = JSON.parse(result);
             for (var i in result) {
                 loadThumbnail($('#divGames'), result[i]);
                 $('#divGames').fadeIn("slow");
-
             }
             $('.game .imgBack').click(function(ev) {
-                findProduct($(ev.currentTarget).parent().attr('data-id'), function(result) {
-                    loadGameDetail($('#divDetail'), result, false);
+                findProduct($(ev.currentTarget).parent().attr('data-id'), function(product) {
+                    if (product !== '' && product !== null)
+                        loadGameDetail($('#divDetail'), product, false);
+                    else console.log('No item with that id found in the table.');
                 });
             });
         } else {
@@ -91,9 +92,7 @@ function getSelectedCategory() {
 //==============================================================================
 
 $('document').ready(function() {
-    $('#navbar').load('navbar.html', function() {
-        $('#navLinkCategories').addClass('active');
-    });
+    loadNavbar('Categories');
 
     getCategories(function(categories) {
         var strHTML = '';

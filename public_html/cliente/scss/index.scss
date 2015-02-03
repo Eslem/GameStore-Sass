@@ -113,7 +113,7 @@
                 color:#fff;
                 width:60%;
             }
-            .diagnalA {
+            .diagonal {
                 text-align:center;
                 padding:5px;
                 margin-right:150px;
@@ -221,13 +221,13 @@
 
 //Clase que usamos para darle el efecto diente de sierra al texto de dentro de las imagenes de las galerias
 
-.diagnalA {
-    transform:skewX(-30deg);
-    background-color:$blue-color;
+.diagonal {
+    @include transform(skewX(-30deg));
     padding:10px;
     margin:0 150px;
+    
     .normalize {
-        transform:skewX(30deg);
+        @include transform(skewX(30deg));
         a {
             margin:0px;
             text-transform:uppercase;

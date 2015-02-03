@@ -185,7 +185,19 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
-/* Animaci├│n del bot├│n de login */
+#hexagono2 {
+  display: none;
+  background-color: #CC0000 !important; }
+  #hexagono2:before {
+    border-bottom: 9.81px solid #CC0000 !important; }
+  #hexagono2:after {
+    border-top: 9.81px solid #CC0000 !important; }
+  #hexagono2 i {
+    background-color: #CC0000 !important; }
+    #hexagono2 i:hover {
+      content: attr(title); }
+
+/* AnimaciÃ³n del botÃ³n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }
@@ -220,6 +232,9 @@ div.navbar.invisible {
   .detail .imgDet {
     width: 50%;
     display: inline-block; }
+  .detail .video {
+    width: 50%;
+    height: 340px; }
   .detail .description {
     display: inline-block;
     vertical-align: top;
@@ -252,16 +267,6 @@ div.navbar.invisible {
       font-size: 18px;
       color: white; }
 
-.diagnalA {
-  transform: skewX(-25deg);
-  background-color: #7ed1e2; }
-  .diagnalA span, .diagnalA:before {
-    transform: skewX(25deg); }
-    .diagnalA span:hover, .diagnalA:before:hover {
-      outline: none; }
-  .diagnalA:before {
-    margin-left: 5px; }
-
 /* ----------------------------------  Lista de Productos ---------------------------------- */
 .imagenes {
   margin: 0 2%; }
@@ -280,11 +285,11 @@ div.navbar.invisible {
         height: auto;
         transition: .2s;
         -webkit-backface-visibility: hidden; }
-      .imagenes .game .imgBack:hover .diagnalA {
+      .imagenes .game .imgBack:hover .diagonal {
         opacity: 1; }
       .imagenes .game .imgBack:hover img {
         opacity: .5; }
-    .imagenes .game .diagnalA {
+    .imagenes .game .diagonal {
       -webkit-transition: 0.1s;
       -moz-transition: 0.1s;
       transition: 0.1s;
@@ -308,15 +313,14 @@ div.navbar.invisible {
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         width: 100%;
-        height: 30px;
-        line-height: 28px;
+        line-height: 26px;
         background: black;
         color: #707070;
         white-space: nowrap;
         padding: 2px 0; }
     .imagenes .game:hover .info > div {
       color: gray; }
-    .imagenes .game:hover .diagnalA {
+    .imagenes .game:hover .diagonal {
       -webkit-backface-visibility: hidden;
       transform: skewX(-25deg) scale(1.2); }
 

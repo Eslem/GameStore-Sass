@@ -1,15 +1,15 @@
 function getCategories(callback) {
     $.ajax({
-        url: '../server/controller/categoriaController.php',
+        url: rootURL + 'server/controller/categoriaController.php',
+        dataType: 'JSON',
         type: 'POST',
         data: {
             query: 'select'
         }
     }).success(function(result) {
-        categories = JSON.parse(result);
-        callback(categories);
+        callback(result);
     }).error(function(error) {
-        $('#log').html(error.responseText);
+        logError(error);
     });
 }
 

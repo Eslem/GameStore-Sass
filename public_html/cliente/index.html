@@ -9,25 +9,29 @@
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
         <link href="css/panel.css" rel="stylesheet" type="text/css"/>
-
+        <link href="css/registro.css" rel="stylesheet" type="text/css"/>
         <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <script src="libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="js/main.js" type="text/javascript"></script>
         <script src="js/categoriesPanel.js" type="text/javascript"></script>
         <script src="js/animacion.js" type="text/javascript"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/errorLog.js" type="text/javascript"></script>
+        <script src="js/loginCliente.js" type="text/javascript"></script>
 
-        <script>
-            $('document').ready(function () {
-                $('#navbar').load('navbar.html', function () {
-                    $('#navLinkHome').addClass('active');
-                    $('#navLinkHome a').attr('href', '#');
-                });
-                loadCategoriesPanel();
-            });
-        </script>
+        <script src="js/login.js" type="text/javascript"></script>
+        <script src="libs/jquery-ui-1.11.2/jquery-ui.js" type="text/javascript"></script>
+        <link href="libs/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="libs/jquery-outside-events/jquery.ba-outside-events.min.js" type="text/javascript"></script>
+        <script src="registro/registro.js" type="text/javascript"></script>
+
+
+
     </head>
     <body>
+        <div id="registroClientes"></div>
         <div id="navbar" class="navbar invisible"></div>
         <div id="main-Slider">
 
@@ -37,7 +41,7 @@
                 </div>
 
                 <div class="description">
-                    <div class="diagnalA">
+                    <div class="diagonal">
                         <div class="normalize">
                             <a href="#">Introducing</a>
                         </div>
@@ -47,7 +51,7 @@
                         "One of the best games anyones ever played hands down!"
                     </p>
 
-                    <div class="diagnalA bordered">
+                    <div class="diagonal bordered">
                         <div class="normalize">
                             <a href="#">Pre order</a>
                         </div>
@@ -83,7 +87,7 @@
                     </div>
 
                     <div class="text">
-                        <div class="diagnalA">
+                        <div class="diagonal">
                             <div class="normalize">
                                 <a href="#">Studio</a>
                             </div>
@@ -94,7 +98,7 @@
                     <div class="imgBack">
                         <img src="images/games/3.jpg" alt="">
                     </div>                <div class="text">
-                        <div class="diagnalA">
+                        <div class="diagonal">
                             <div class="normalize">
                                 <a href="#">Studio</a>
                             </div>
@@ -106,7 +110,7 @@
                         <img src="images/games/4.jpg" alt="">
                     </div>                <div class="text">
 
-                        <div class="diagnalA">
+                        <div class="diagonal">
                             <div class="normalize">
                                 <a href="#">Studio</a>
                             </div>

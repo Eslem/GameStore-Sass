@@ -1,6 +1,7 @@
 @import "mixins";
 
 #divCart {
+    
     margin-top:56px;}
 
 .detail {
@@ -15,24 +16,41 @@
 .imagenes {
     .game {
         width:248px;
-        
+
         .info {
             font-size:1em;
+
+            .increase, .decrease {
+                cursor:pointer;
+
+                &:hover {
+                    color:lightgray;
+                }
+            }
+
+            .increase {
+                font-family:sans-serif;
+            }
         }
     }
 }
 
+#totalCost {
+    text-align:center;
+    color:gray;
+}
+
 #actions {
     text-align:center;
-    margin-bottom:24px;
+    margin:8px 0 24px;
 
-    .diagnalA {
+    .diagonal {
         text-align:center;
         display:inline-block;
         padding:2px 16px;
         margin:0 4px;
         .normalize {
-        transform:skewX(30deg);
+            transform:skewX(25deg);
             a {
                 color:black;
                 text-decoration:none;

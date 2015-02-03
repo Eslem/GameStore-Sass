@@ -1,14 +1,30 @@
-<?php
+<html>
+    <head>
+        <style>
+            *{
+                background-color: #111;
+                color:#eee;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <?php
+        require "flyway.php";
+        require "../connectionManager.php";
 
-require "flyway.php";
+        if (false) {
+            $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
+            $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
+            $connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
+        } else {
+            $connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+        }
+        $flyway = new Flyway($connectionManager->getConnection());
+        $flyway->migrate();
+        ?>
+    </body>
 
-$openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
-$openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
-echo 'mysql://' . $openshiftHost . ':' . $openshiftPort;
-$link = mysqli_connect($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro')
-        or die("Error link" . mysqli_error($link));
-
-$flyway = new Flyway($link);
-$flyway->migrate();
+</html>
 
 

@@ -1,0 +1,11 @@
+{
+    "name": "MetroAdministration",
+    "main": "splash.html",
+    "window": {   
+	"toolbar": false, 
+	"frame":true,
+	"icon":"img/logo2.png",
+
+	"width": 450,
+    "height": 480  }
+}

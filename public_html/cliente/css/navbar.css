@@ -185,7 +185,19 @@ div.navbar.invisible {
                           content: '>';                 
                       }*/ }
 
-/* Animaci├│n del bot├│n de login */
+#hexagono2 {
+  display: none;
+  background-color: #CC0000 !important; }
+  #hexagono2:before {
+    border-bottom: 9.81px solid #CC0000 !important; }
+  #hexagono2:after {
+    border-top: 9.81px solid #CC0000 !important; }
+  #hexagono2 i {
+    background-color: #CC0000 !important; }
+    #hexagono2 i:hover {
+      content: attr(title); }
+
+/* AnimaciÃ³n del botÃ³n de login */
 @-webkit-keyframes infinite-spinning {
   from {
     transform: rotate(0deg); }

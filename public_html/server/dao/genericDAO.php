@@ -5,12 +5,15 @@ require_once '../connectionManager.php';
 class GenericDAO {
 
     function __construct() {
-        
-          $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
-          $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
-          $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
-         
-       // $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+
+        if (false) {
+            $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
+            $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
+            $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
+        } else {
+            $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
+        }
+
         $this->tableName = '';
         $this->propertyNames = [];
         $this->propertyTypes = [];
@@ -32,8 +35,18 @@ class GenericDAO {
         return $refs;
     }
 
-    function prepareAndExecuteStatement($connection, $query, $values) {
+    function resultToArray($result) {
+        $resultArray = [];
+        while ($row = $result->fetch_assoc()) {
+            foreach ($row as &$property) {
+                $property = utf8_encode($property);
+            }
+            array_push($resultArray, $row);
+        }
+        return $resultArray;
+    }
 
+    function prepareAndExecuteStatement($connection, $query, $values) {
         $preparedStatement = $connection->prepare($query);
         if (!!$preparedStatement) {
             $propertyTypes = join('', $this->propertyTypes);
@@ -47,126 +60,16 @@ class GenericDAO {
             $this->connectionManager->closeConnection($connection);
             return $result;
         } else {
-            echo '<br/>Invalid query "' . $query . '".';
-        }
-    }
-
-    function select() {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "SELECT * FROM " . $this->tableName;
-        $result = $connection->query($query);
-
-        if (is_object($result) && $result->num_rows > 0) {
-            $resultArray = [];
-            while ($row = $result->fetch_assoc()) {
-                foreach ($row as &$property)
-                    $property = utf8_encode($property);
-                array_push($resultArray, $row);
-            }
-
-            $this->connectionManager->closeConnection($connection);
-            return $resultArray;
-        } else {
-            echo false;
-        }
-    }
-
-    function selectPaginated($index, $quantity) {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "SELECT * FROM " . $this->tableName . " LIMIT " . $index . ", " . $quantity;
-        $result = $connection->query($query);
-
-        if (is_object($result) && $result->num_rows > 0) {
-            $resultArray = [];
-            while ($row = $result->fetch_assoc()) {
-                foreach ($row as &$property)
-                    $property = utf8_encode($property);
-                array_push($resultArray, $row);
-            }
-
-            $this->connectionManager->closeConnection($connection);
-            return $resultArray;
-        } else {
-            echo false;
-        }
-    }
-
-    function selectJoin($otherTable, $field, $otherField, $condition) {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "SELECT * FROM " . $this->tableName . ", " . $otherTable
-                . " WHERE " . $this->tableName . "." . $field . " = "
-                . $otherTable . "." . $otherField;
-
-
-
-        if ($condition !== null) {
-            $query = $query . " AND " . $condition;
-        }
-
-        //echo $query;
-        $result = $connection->query($query);
-
-        if (is_object($result) && $result->num_rows > 0) {
-            $resultArray = [];
-            while ($row = $result->fetch_assoc()) {
-                foreach ($row as &$property)
-                    $property = utf8_encode($property);
-                array_push($resultArray, $row);
-            }
-
-            $this->connectionManager->closeConnection($connection);
-            return $resultArray;
-        } else {
-            echo false;
-        }
-    }
-
-    function find($id) {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "SELECT * FROM " . $this->tableName . " WHERE id = ?";
-        $preparedStatement = $connection->prepare($query);
-        if (!!$preparedStatement) {
-            $preparedStatement->bind_param("i", $id);
-            $preparedStatement->execute();
-            $result = $preparedStatement->get_result();
-            $preparedStatement->close();
-            $this->connectionManager->closeConnection($connection);
-
-            if (is_object($result) && $result->num_rows === 1) {
-                $row = $result->fetch_assoc();
-                foreach ($row as &$property) {
-                    $property = utf8_encode($property);
+            $errorMsg = '<br/>Invalid query parameters (';
+            for ($i = 0; $i < count($values); $i++) {
+                $errorMsg .= $values[$i];
+                if ($i < count($values) - 1) {
+                    $errorMsg .= ', ';
+                } else {
+                    $errorMsg .= ').';
                 }
-                return $row;
-            } else {
-                echo false;
             }
-        } else {
-            echo '<br/>Invalid query "' . $query . '".';
-        }
-    }
-
-    function findByCondition($condition) {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "SELECT * FROM " . $this->tableName . " WHERE " . $condition;
-        $result = $connection->query($query);
-        if (is_object($result) && $result->num_rows > 0) {
-            $resultArray = [];
-            while ($row = $result->fetch_assoc()) {
-                foreach ($row as &$property)
-                    $property = utf8_encode($property);
-                array_push($resultArray, $row);
-            }
-
-            $this->connectionManager->closeConnection($connection);
-            echo $resultArray;
-        } else {
-            echo false;
+            echo $errorMsg . '<br/>Original query: ' . $query . '.<br/>';
         }
     }
 
@@ -181,42 +84,219 @@ class GenericDAO {
         $query .= ")";
 
         $this->prepareAndExecuteStatement($connection, $query, $values);
+        return true;
+    }
+
+    function genericSelect($condition) {
+        $connection = $this->connectionManager->getConnection();
+        if ($condition === null) {
+            $condition = '';
+        }
+
+        $query = "SELECT * FROM " . $this->tableName . $condition;
+        $result = $connection->query($query);
+        $this->connectionManager->closeConnection($connection);
+
+        if (is_object($result) && $result->num_rows > 0) {
+            $resultArray = $this->resultToArray($result);
+            return $resultArray;
+        }
+    }
+
+    function select() {
+        return $this->genericSelect(null);
+    }
+
+    function selectPaginated($index, $quantity, $order, $orientation) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "SELECT COUNT(*) as count FROM " . $this->tableName;
+        $result = $connection->query($query);
+
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            $count = $row['count'];
+        }
+
+        $index = $index * $quantity;
+
+        $query = "SELECT * FROM " . $this->tableName . " ORDER BY $order $orientation LIMIT " . $index . ", " . $quantity;
+        $result = $connection->query($query);
+        $this->connectionManager->closeConnection($connection);
+        $obj = [];
+        $obj['order'] = $query;
+
+        if (is_object($result) && $result->num_rows > 0) {
+            $obj['elems'] = $this->resultToArray($result);
+        }
+        $obj['count'] = $count;
+        return $obj;
+    }
+
+    function selectJoin($otherTable, $field, $otherField, $condition) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "SELECT * FROM " . $this->tableName . ", " . $otherTable
+                . " WHERE " . $this->tableName . "." . $field . " = "
+                . $otherTable . "." . $otherField;
+
+        if ($condition !== null) {
+            $query = $query . " AND " . $condition;
+        }
+        $result = $connection->query($query);
+        $this->connectionManager->closeConnection($connection);
+
+        if (is_object($result) && $result->num_rows > 0) {
+            $resultArray = $this->resultToArray($result);
+            return $resultArray;
+        }
+    }
+
+    function find($id) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "SELECT * FROM " . $this->tableName . " WHERE id = " . $id;
+        $result = $connection->query($query);
+        $this->connectionManager->closeConnection($connection);
+
+        if (is_object($result) && $result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            foreach ($row as &$property) {
+                $property = utf8_encode($property);
+            }
+            return $row;
+        }
+    }
+
+    function getIndexFromValue($value, $array) {
+        for ($i = 0; $i < count($array); $i++) {
+            if ($value === $array[$i]) {
+                return $i;
+            }
+        }
+    }
+
+    function getTypeFromName($key) {
+        return $this->propertyTypes[$this->getIndexFromValue($key, $this->propertyNames)];
+    }
+
+    function genericUpdate($id, $values, $condition) {
+        $connection = $this->connectionManager->getConnection();
+
+        $valuesJSON = json_decode($values, true);
+        unset($valuesJSON['id']);
+        unset($valuesJSON['query']);
+
+        $query = "UPDATE " . $this->tableName . " SET ";
+        foreach ($valuesJSON as $key => $value) {
+            $query.= "$key = ";
+            $type = $this->getTypeFromName($key);
+            if ($type == 's') {
+                $query.= "'" . $value . "',";
+            } else {
+                $query.= $value . ",";
+            }
+        }
+        $query = substr($query, 0, -1);
+        //array_push($values, $id);
+        $query .= " WHERE " . $condition;
+
+        if ($connection->query($query) === TRUE) {
+            echo "Ok";
+        } else {
+            echo "Error updating record: $query : " . $connection->error;
+        }
+        $connection->close();
+    }
+
+    function insertJSON($values) {
+        $connection = $this->connectionManager->getConnection();
+
+        $valuesJSON = json_decode($values, true);
+        unset($valuesJSON['query']);
+
+        $query = "INSERT INTO " . $this->tableName . "( ";
+        foreach ($valuesJSON as $key => $value) {
+            $query.= "$key,";
+        }
+        $query = substr($query, 0, -1);
+        $query.=" ) VALUES(";
+        foreach ($valuesJSON as $key => $value) {
+            $type = $this->getTypeFromName($key);
+            if ($type == 's') {
+                $query.= "'" . $value . "',";
+            } else {
+                $query.= $value . ",";
+            }
+        }
+        $query = substr($query, 0, -1) . ")";
+
+        if ($connection->query($query) === TRUE) {
+            echo mysqli_insert_id($connection);
+        } else {
+            echo "Error updating record: $query : " . $connection->error;
+        }
+        $connection->close();
+    }
+
+    function genericDelete($condition) {
+        $connection = $this->connectionManager->getConnection();
+
+        $query = "DELETE FROM " . $this->tableName . " WHERE " . $condition;
+        $result = $connection->query($query);
+
+        $this->connectionManager->closeConnection($connection);
+        return $result;
     }
 
     function update($id, $values) {
-        $connection = $this->connectionManager->getConnection();
-
-        $query = "UPDATE " . $this->tableName . " SET ";
-        for ($i = 0; $i < count($values); $i++) {
-            if ($this->propertyTypes[$i] === 's') {
-                $values[$i] = "'" . $values[$i] . "'";
-            }
-            $query .= $this->propertyNames[$i] . " = ?";
-            if ($i < count($values) - 1) {
-                $query .= ", ";
-            }
-        }
-        array_push($values, $id);
-        $query .= " WHERE id = ?";
-
-        $this->prepareAndExecuteStatement($connection, $query, $values);
+        $this->genericUpdate($id, $values, "id = " . $id);
     }
 
     function delete($id) {
-        $connection = $this->connectionManager->getConnection();
+        $this->genericDelete("id = " . $id);
+    }
 
-        $query = "DELETE FROM producto WHERE id = ?";
+    function jqgrid() {/*
+      $page = $_GET['page']; // get the requested page
+      $limit = $_GET['rows']; // get how many rows we want to have into the grid
+      $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
+      $sord = $_GET['sord']; // get the direction
+      if (!$sidx)
+      $sidx = 1;
+      // connect to the database
+      $db = $this->connectionManager->getConnection();
 
-        $preparedStatement = $connection->prepare($query);
-        if (!!$preparedStatement) {
-            $preparedStatement->bind_param("i", $id);
-            $result = $preparedStatement->execute();
+      // mysql_select_db($database) or die("Error conecting to db.");
+      $query = "SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id";
+      $result = $connection->query($query);
 
-            $this->connectionManager->closeConnection($connection);
-            return $result;
-        } else {
-            echo '<br/>Invalid query "' . $query . '".';
-        }
+      // $result = mysql_query("SELECT COUNT(*) AS count FROM invheader a, " . $this->tableName . " b WHERE a.id=b.id");
+      $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+      $count = $row['count'];
+
+      if ($count > 0) {
+      $total_pages = ceil($count / $limit);
+      } else {
+      $total_pages = 0;
+      }
+      if ($page > $total_pages)
+      $page = $total_pages;
+
+      $start = $limit * $page - $limit; // do not put $limit*($page - 1)
+      $SQL = "SELECT a.* FROM invheader a,  " . $this->tableName . " b WHERE a.id=b.id ORDER BY $sidx $sord LIMIT $start , $limit";
+      $result = $connection->query($query);
+
+      $responce->page = $page;
+      $responce->total = $total_pages;
+      $responce->records = $count;
+      $i = 0;
+      while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+      $responce->rows[$i]['id'] = $row[id];
+      $responce->rows[$i]['cell'] = $row;//array($row[id], $row[invdate], $row[name], $row[amount], $row[tax], $row[total], $row[note]);
+      $i++;
+      }
+      echo json_encode($responce); */
     }
 
 }
