@@ -88,7 +88,16 @@ function updateItems(result) {
 
 function logCart() {
     getCart(function (result) {
-        alert('Carrito:\n' + result);
+        var game = Object.keys(result);
+        var cantidad = result[game[game.length - 1]];
+        var gameID = game[game.length - 1];
+    
+        findProduct(gameID, function (product) {
+            if (product !== '' && product !== null) {
+                alert('Carrito:\n' + product.precio * cantidad);
+            }
+        });
+        
     });
     loadCart({
         transitionEnabled: true
