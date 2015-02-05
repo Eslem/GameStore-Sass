@@ -88,16 +88,35 @@ function updateItems(result) {
 
 function logCart() {
     getCart(function (result) {
-        var game = Object.keys(result);
-        var cantidad = result[game[game.length - 1]];
-        var gameID = game[game.length - 1];
-    
-        findProduct(gameID, function (product) {
-            if (product !== '' && product !== null) {
-                alert('Carrito:\n' + product.precio * cantidad);
-            }
+        var games = Object.keys(result);
+        var total = 0;
+        $(games).each(function (i, game) {
+            var gameID = games[i];
+            var cantidad = result[gameID];
+            findProduct(gameID, function (product) {
+                if (product !== '' && product !== null) {
+                    total += parseInt(product.precio * cantidad);
+                }
+                console.log(total);
+            });
         });
-        
+        $.ajax({
+            url: 'urlapi',
+            dataType: 'JSON',
+            type: 'POST',
+            data: {
+                operation: 'DEBER',
+                cuentaOrigen: 'cuentaorigen',
+                cuentaDestino: 'cuentadestino',
+                cantidad: 'cantidad',
+                contraseña: 'contraseña'
+            }
+        }).success(function (result) {
+            alert("Compra realizada con exito");
+        }).error(function (error) {
+            alert("Error en la transacción");
+            logError(error);
+        });
     });
     loadCart({
         transitionEnabled: true
