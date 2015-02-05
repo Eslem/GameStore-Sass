@@ -17,7 +17,7 @@
     .imagenes .game .info .increase {
       font-family: sans-serif; }
 
-#totalCost {
+#totalCost, h2 {
   text-align: center;
   color: gray; }
 

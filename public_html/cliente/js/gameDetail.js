@@ -26,7 +26,7 @@ function loadGameDetail(container, gameInfo, inCart) {
             + '<div class="precio">' + gameInfo.precio + '€</div>'
             + '<div class="diagonal slideButton ';
 
-    if (!inCart) strHTML += 'cart" onclick="addToCart(' + gameInfo.id + '); $(\'#divDetail\').fadeOut()">'
+    if (!inCart) strHTML += 'cart" onclick="addToCart(' + gameInfo.id + ');">'
                 + '<label class="normalize">Añadir al carro</label>';
 
     else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart); $(\'#divDetail\').fadeOut()">'
@@ -37,7 +37,7 @@ function loadGameDetail(container, gameInfo, inCart) {
     container.html(strHTML);
     container.fadeIn('slow');
     $('body').css('background', 'rgba(0,0,0,.75)');
-    $('#background').css('background', 'url(images/games/' + gameInfo.id + '.jpg)');
+    $('#background').css('background-image', 'url(images/games/' + gameInfo.id + '.jpg)');
 }
 
 function loadQuantity(gameInfo, quantity) {
