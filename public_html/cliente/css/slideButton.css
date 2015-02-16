@@ -19,6 +19,8 @@
     left: 0%; }
   .slideButton:hover label {
     left: 100%; }
+  .slideButton:active {
+    top: 2px; }
   .slideButton.cart:before {
     font-family: FontAwesome;
     content: '\f07a'; }

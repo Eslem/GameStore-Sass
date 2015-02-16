@@ -29,6 +29,10 @@
         }
     }
 
+    &:active {
+        top:2px;
+    }
+
     &.cart:before {
         font-family:FontAwesome;
         content:'\f07a';
