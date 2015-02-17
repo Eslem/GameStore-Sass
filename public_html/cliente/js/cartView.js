@@ -3,6 +3,7 @@
 //==============================================================================
 
 var totalCost = 0;
+var total = 0;
 
 function findProduct(id, callback) {
     $.ajax({
@@ -86,39 +87,66 @@ function updateItems(result) {
         $('.game[data-id="' + result.toDelete + '"]').fadeOut('slow');
 }
 
-function logCart() {
-    getCart(function (result) {
-        var games = Object.keys(result);
-        var total = 0;
-        $(games).each(function (i, game) {
-            var gameID = games[i];
-            var cantidad = result[gameID];
-            findProduct(gameID, function (product) {
-                if (product !== '' && product !== null) {
-                    total += parseInt(product.precio * cantidad);
-                }
-                console.log(total);
-            });
-        });
-        $.ajax({
-            url: 'urlapi',
-            dataType: 'JSON',
-            type: 'POST',
-            data: {
-                operation: 'DEBER',
-                cuentaOrigen: 'cuentaorigen',
-                cuentaDestino: 'cuentadestino',
-                cantidad: 'cantidad',
-                contraseña: 'contraseña'
+function cartTotal(result) {
+    var deferred = Q.defer();
+    var error = false;
+    var total = 0;
+
+    var gameIDs = Object.keys(result);
+
+    function getTotalProductPrice() {
+        var gameID = gameIDs[gameIDs.length - 1];
+        findProduct(gameID, function (product) {
+            if (product !== '' && product !== null) {
+                var cantidad = result[gameID];
+                total += parseFloat(product.precio * cantidad);
+            } else {
+                error = true;
             }
-        }).success(function (result) {
-            alert("Compra realizada con exito");
-        }).error(function (error) {
-            alert("Error en la transacción");
+            gameIDs.pop();
+            if (gameIDs.length > 0)
+                getTotalProductPrice(gameIDs.length - 1);
+            else if (!error && total > 0) {
+                deferred.resolve(total);
+            } else {
+                console.log("Error en el calculo del total");
+                deferred.reject("Error en el calculo del total");
+            }
+        });
+    }
+
+    getTotalProductPrice();
+    return deferred.promise;
+}
+
+function placeOrder() {
+    getSessionUser(function (user) {
+        console.log(user);
+        getCart(function (result) {
+            cartTotal(result).then(function (result) {
+                console.log('Procediendo a realizar pago.');
+                $.ajax({
+                    url: rootURL + 'server/cartPay.php',
+                    dataType: 'JSON',
+                    type: 'POST',
+                    data: {
+                        cuentaOrigen: 1,
+                        cuentaDestino: 2,
+                        cantidad: parseFloat(result),
+                        concepto: 'Prueba desde tienda',
+                        pin: '1111'
+                    }
+                }).complete(function (result) {
+                    insertOrder({id: user.id, status: 'Paid'}, function () {
+                        alert("Compra realizada con exito");
+                    });
+                });
+            });
+            loadCart();
+        }, function (error) {
             logError(error);
         });
     });
-    loadCart();
 }
 
 $('document').ready(function () {
