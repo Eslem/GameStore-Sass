@@ -76,7 +76,7 @@ function insertCartLine(parameters, callback) {
 
 // GUI //
 
-function getCart(callback) {
+function getSessionCart(callback) {
     $.ajax({
         url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
@@ -168,18 +168,20 @@ function decreaseProduct(id, callback) {
     });
 }
 
-function emptyCart() {
+function emptySessionCart() {
     $.ajax({
         url: rootURL + 'server/cartManager.php',
-        dataType: 'JSON',
         type: 'POST',
         data: {
             operation: 'empty'
         }
-    }).success(function(result) {
+    }).success(function() {
         console.log('Emptied $SESSION cart');
-        emptyCart(0);
-        location.reload();
+        getSessionUser(function(user) {
+        console.log('User: ', user);
+            //emptyCart(0);
+        });
+        //location.reload();
     }).error(function(error, type) {
         console.log('Could not empty $SESSION cart');
         logError(error, type);
@@ -187,7 +189,8 @@ function emptyCart() {
 }
 
 function saveCart(cart) {
-    getSessionUser(function(user) {        
+    getSessionUser(function(user) {
+        console.log('User: ', user);
         emptyCart(user.id, function() {
             console.log('Emptied database cart');
             insertCart({id: user.id, status: 'Cart'}, function() {

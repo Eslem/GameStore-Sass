@@ -1,9 +1,9 @@
 function logError(headers, info) {
-    var message = headers.responseText;
-    if (message === '') message = '(no error message)';
-    message = 'Error ' + headers.status;
+    var response = headers.responseText;
+    if (response !== '') response = ': ' + response;
+    var message = 'Error ' + headers.status;
     if (info !== undefined) message += ' (' + info + ')';
-    message += ': ' + message;
+    message += response;
 
     console.log(message);
     if (headers.status !== 200)

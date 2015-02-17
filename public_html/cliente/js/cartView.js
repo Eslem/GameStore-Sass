@@ -28,11 +28,11 @@ function findProduct(id, callback) {
 function loadCart() {
     totalCost = 0;
     $('#totalCost').html('');
-    getCart(function (result) {
+    getSessionCart(function (result) {
         $('#divGames').html('');
         $('#divGames, #divDetail').hide();
 
-        function getCartGames(gameIndexes) {
+        function getSessionCartGames(gameIndexes) {
             if (gameIndexes.length > 0) {
                 var gameID = gameIndexes[gameIndexes.length - 1];
                 findProduct(gameID, function (product) {
@@ -47,7 +47,7 @@ function loadCart() {
                         });
                         gameIndexes = gameIndexes.slice(0, gameIndexes.length - 1);
                         if (gameIndexes.length > 0) {
-                            getCartGames(gameIndexes);
+                            getSessionCartGames(gameIndexes);
                         } else {
                             $('#totalCost').html('Importe total: ' + totalCost + '€');
                             $('#divGames').fadeIn('slow');
@@ -63,7 +63,7 @@ function loadCart() {
             }
         }
         if (Object.keys(result).length > 0)
-            getCartGames(Object.keys(result));
+            getSessionCartGames(Object.keys(result));
     });
 }
 
@@ -122,7 +122,7 @@ function cartTotal(result) {
 function placeOrder() {
     getSessionUser(function (user) {
         console.log(user);
-        getCart(function (result) {
+        getSessionCart(function (result) {
             cartTotal(result).then(function (result) {
                 console.log('Procediendo a realizar pago.');
                 $.ajax({
