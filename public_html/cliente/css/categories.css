@@ -219,7 +219,7 @@ div.navbar.invisible {
   to {
     transform: rotate(-360deg); } }
 /* ---------------------------------- Detalle de Producto ---------------------------------- */
-#divCategories {
+#mainContent {
   margin: 56px 0; }
 
 .detail {
@@ -329,6 +329,7 @@ div.navbar.invisible {
   z-index: -1;
   width: 100%;
   height: 100%;
-  background: black; }
+  background-color: black;
+  background-size: cover; }
 
 /*# sourceMappingURL=categories.css.map */
