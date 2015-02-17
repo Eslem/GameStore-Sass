@@ -180,9 +180,9 @@ function emptyCart() {
         console.log('Emptied $SESSION cart');
         emptyCart(0);
         location.reload();
-    }).error(function(error, status) {
+    }).error(function(error, type) {
         console.log('Could not empty $SESSION cart');
-        logError(error);
+        logError(error, type);
     });
 }
 
