@@ -57,7 +57,7 @@ function loadGames(categoryID) {
             $('.game .imgBack').click(function(ev) {
                 findProduct($(ev.currentTarget).parent().attr('data-id'), function(product) {
                     if (product !== '' && product !== null)
-                        loadGameDetail($('#divDetail'), product, false);
+                        loadGameDetail($('#divDetail'), product, false, true);
                     else console.log('No item with that id found in the table.');
                 });
             });

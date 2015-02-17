@@ -13,23 +13,20 @@ function loadThumbnail(container, gameInfo, quantity) {
     container.append(strHTML);
 }
 
-function loadGameDetail(container, gameInfo, inCart) {
+function loadGameDetail(container, gameInfo, inCart, permanent) {
     container.hide();
     var strHTML = '<div class="detail">';
-            if (gameInfo.video !== '')
-                strHTML += '<iframe class="video" src="//www.youtube.com/embed/' + gameInfo.video + '?rel=0" frameborder="0" allowfullscreen></iframe>';
-            else
-                strHTML += '<img class="imgDet" src="images/games/' + gameInfo.id + '.jpg" alt>';
-            strHTML += '<div class="description"><h3>' + gameInfo.nombre + '</h3><hr/>'
+    if (gameInfo.video !== '')
+        strHTML += '<iframe class="video" src="//www.youtube.com/embed/' + gameInfo.video + '?rel=0" frameborder="0" allowfullscreen></iframe>';
+    else
+        strHTML += '<img class="imgDet" src="images/games/' + gameInfo.id + '.jpg" alt>';
+    strHTML += '<div class="description"><h3>' + gameInfo.nombre + '</h3><hr/>'
             + '<p>' + gameInfo.descripcion + '</p></div>'
             + '<div class="bottom"><div class="platforms">Plataformas</div>'
             + '<div class="precio">' + gameInfo.precio + '€</div>'
             + '<div class="diagonal slideButton ';
-
     if (!inCart) strHTML += 'cart" onclick="addToCart(' + gameInfo.id + ');">'
-                + '<label class="normalize">Añadir al carro</label>';
-
-    else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart); $(\'#divDetail\').fadeOut()">'
+                + '<label class="normalize">Añadir al carro</label>';else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart); $(\'#divDetail\').fadeOut()">'
                 + '<label class="normalize">Eliminar del carro</label>';
 
     strHTML += '</div></div></div>';
