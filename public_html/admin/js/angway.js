@@ -145,14 +145,14 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 </div>';
 
             if (isEdit) {
-                var imgUrl = "../cliente/images/games/"+data.id+"_thumb.jpg";
-                if(!imageExists(imgUrl))
-                   imgUrl = "../cliente/images/games/"+data.id+"_thumb.png";
-               
-                imgUrl+= '?_='+ new Date().getTime();
+                var imgUrl = "../cliente/images/games/" + data.id + "_thumb.jpg";
+                if (!imageExists(imgUrl))
+                    imgUrl = "../cliente/images/games/" + data.id + "_thumb.png";
+
+                imgUrl += '?_=' + new Date().getTime();
                 canvasDiv.innerHTML = '\
                 <div id = "canvas" >\
-                <img id="imgBefore" src="'+imgUrl+'" >\
+                <img id="imgBefore" src="' + imgUrl + '" >\
                 </div>';
             }
             modal.appendChild(canvasDiv);
@@ -312,6 +312,14 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             }
 
             var div = document.createElement("div");
+            if (service.controller === "pedido_lineaController") {
+                var buttonPDF = document.createElement("button");
+                buttonPDF.onclick = function () {
+                    
+                };
+                buttonPDF.innerHTML = "<i class='fa fa-file-pdf-o'></i>";
+                div.appendChild(buttonPDF);
+            }
             var buttonAdd = document.createElement("button");
             buttonAdd.onclick = function () {
                 service.add();
