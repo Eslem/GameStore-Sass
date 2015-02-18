@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -20,22 +15,23 @@ and open the template in the editor.
         <script>
             $(document).ready(function() {
                 $("#jqGrid").jqGrid({
-                    url: 'jqGrid.php',
+                    url: 'jqgrid.php',
                     datatype: "json",
-                    colNames: ['ID', 'Nombre', 'Descripcion', 'Precio'],
+                    colNames: ['ID', 'Nombre'],
                     colModel: [
-                        {name: 'id', index: 'id', width: 55},
-                        {name: 'nombre', index: 'nombre', width: 90},
-                        {name: 'descripcion', index: 'descripcion', width: 100},
-                        {name: 'precio', index: 'precio', width: 80, align: "right"}
+                        {name: 'id', index: 'id', width: 100},
+                        {name: 'nombre', index: 'nombre', width: 500}
                     ],
-                    rowNum: 5,
-                    rowList: [5, 10, 20, 30],
+                    rowNum: 4,
+                    rowList: [4, 8, 16, 32],
                     pager: '#pager',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption: "JQGrid test"
+                    caption: "JQGrid test",
+                    loadComplete: function(data) {
+                        console.log('Data: ' + data);
+                    }
                 });
                 $("#jqGrid").jqGrid('navGrid', '#pager', {edit: false, add: false, del: false});
             });
