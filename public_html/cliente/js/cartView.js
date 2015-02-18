@@ -14,12 +14,12 @@ function findProduct(id, callback) {
             query: 'find',
             id: id
         }
-    }).success(function (result) {
+    }).success(function(result) {
         console.log('Found product ' + id);
         if (callback !== undefined)
             callback(result);
         return result;
-    }).error(function (error) {
+    }).error(function(error) {
         console.log('Could not find product ' + id);
         logError(error);
     });
@@ -28,18 +28,18 @@ function findProduct(id, callback) {
 function loadCart() {
     totalCost = 0;
     $('#totalCost').html('');
-    getSessionCart(function (result) {
+    getSessionCart(function(result) {
         $('#divGames').html('');
         $('#divGames, #divDetail').hide();
 
         function getSessionCartGames(gameIndexes) {
             if (gameIndexes.length > 0) {
                 var gameID = gameIndexes[gameIndexes.length - 1];
-                findProduct(gameID, function (product) {
+                findProduct(gameID, function(product) {
                     if (product !== '' && product !== null) {
                         loadThumbnail($('#divGames'), product, result[gameIndexes[gameIndexes.length - 1]]);
-                        $('#divGames .game:last-child .imgBack').click(function (ev) {
-                            findProduct($(ev.currentTarget).parent().attr('data-id'), function (game) {
+                        $('#divGames .game:last-child .imgBack').click(function(ev) {
+                            findProduct($(ev.currentTarget).parent().attr('data-id'), function(game) {
                                 if (game !== '' && game !== null) {
                                     loadGameDetail($('#divDetail'), game, true);
                                 }
@@ -96,7 +96,7 @@ function cartTotal(result) {
 
     function getTotalProductPrice() {
         var gameID = gameIDs[gameIDs.length - 1];
-        findProduct(gameID, function (product) {
+        findProduct(gameID, function(product) {
             if (product !== '' && product !== null) {
                 var cantidad = result[gameID];
                 total += parseFloat(product.precio * cantidad);
@@ -120,10 +120,10 @@ function cartTotal(result) {
 }
 
 function placeOrder() {
-    getSessionUser(function (user) {
+    getSessionUser(function(user) {
         console.log(user);
-        getSessionCart(function (result) {
-            cartTotal(result).then(function (result) {
+        getSessionCart(function(cart) {
+            cartTotal(cart).then(function(result) {
                 console.log('Procediendo a realizar pago.');
                 $.ajax({
                     url: rootURL + 'server/cartPay.php',
@@ -136,20 +136,24 @@ function placeOrder() {
                         concepto: 'Prueba desde tienda',
                         pin: '1111'
                     }
-                }).complete(function (result) {
-                    insertOrder({id: user.id, status: 'Paid'}, function () {
+                }).complete(function(result) {
+                    insertOrder({id: user.id, status: 'Paid'}, function() {
+                        var items = Object.keys(cart);
+                        for (var i in items) {
+                            insertOrderLine({cartIndex: user.id, id: items[i], quantity: cart[items[i]]});
+                        }
                         alert("Compra realizada con exito");
                     });
                 });
             });
             loadCart();
-        }, function (error) {
+        }, function(error) {
             logError(error);
         });
     });
 }
 
-$('document').ready(function () {
+$('document').ready(function() {
     $('#totalCost, #actions').hide();
     loadNavbar('Cart');
     loadCategoriesPanel();
