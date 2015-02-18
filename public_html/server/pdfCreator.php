@@ -185,7 +185,7 @@ var_dump(json_decode("[1,2,3]"));*/
 
 // P D F //
 
-/*$pdf = new PDF();
+$pdf = new PDF();
 // T�tulos de las columnas
 $header = array(utf8_decode('Producto'), utf8_decode('Descripción'), utf8_decode('Cantidad'), utf8_decode('Prec. por Uni.'),
     utf8_decode('Prec. Tot.'));
@@ -207,5 +207,5 @@ $pdf->Ln(20);
 
 
 $pdf->FancyTable($header, $data);
-$pdf->Output();*/
+$pdf->Output();
 
