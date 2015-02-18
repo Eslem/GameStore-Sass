@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="jqgrid/css/ui.jqgrid.css" type="text/css"/>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+        <script type="text/javascript" src="jqgrid/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="jqgrid/js/i18n/grid.locale-es.js"></script>
+        <script type="text/javascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#jqGrid").jqGrid({
+                    url: 'jqgrid.php',
+                    datatype: "json",
+                    colNames: ['ID', 'Nombre'],
+                    colModel: [
+                        {name: 'id', index: 'id', width: 100},
+                        {name: 'nombre', index: 'nombre', width: 500}
+                    ],
+                    rowNum: 4,
+                    rowList: [4, 8, 16, 32],
+                    pager: '#pager',
+                    sortname: 'id',
+                    viewrecords: true,
+                    sortorder: "desc",
+                    caption: "JQGrid test",
+                    loadComplete: function(data) {
+                        console.log('Data: ' + data);
+                    }
+                });
+                $("#jqGrid").jqGrid('navGrid', '#pager', {edit: false, add: false, del: false});
+            });
+        </script>
+    </head>
+    <body>
+        <table id="jqGrid"></table>
+        <div id="pager"></div>
+    </body>
+</html>

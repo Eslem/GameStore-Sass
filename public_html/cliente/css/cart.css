@@ -1,44 +1,50 @@
-#divCart {
-  margin-top: 56px; }
+/*
+Error: Invalid CSS after "...xt-align:center": expected "{", was ";"
+        on line 43 of C:\Users\David\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\cart.scss
 
-.detail .precio {
-  left: 78%; }
-.detail .btnCB-5:before {
-  content: "\e005"; }
+38: <<<<<<< HEAD
+39: #totalCost {
+40: =======
+41: #totalCost, h2 {
+42: >>>>>>> develop
+43:     text-align:center;
+44:     color:gray;
+45: }
+46: 
+47: #actions {
+48:     text-align:center;
 
-.imagenes .game {
-  width: 248px; }
-  .imagenes .game .info {
-    font-size: 1em; }
-    .imagenes .game .info .increase, .imagenes .game .info .decrease {
-      cursor: pointer; }
-      .imagenes .game .info .increase:hover, .imagenes .game .info .decrease:hover {
-        color: lightgray; }
-    .imagenes .game .info .increase {
-      font-family: sans-serif; }
-
-#totalCost {
-  text-align: center;
-  color: gray; }
-
-#actions {
-  text-align: center;
-  margin: 8px 0 24px; }
-  #actions .diagonal {
-    text-align: center;
-    display: inline-block;
-    padding: 2px 16px;
-    margin: 0 4px;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    transition: 0.2s;
-    opacity: .6; }
-    #actions .diagonal .normalize {
-      transform: skewX(25deg); }
-      #actions .diagonal .normalize a {
-        color: black;
-        text-decoration: none; }
-    #actions .diagonal:hover {
-      opacity: 1; }
-
-/*# sourceMappingURL=cart.css.map */
+Backtrace:
+C:\Users\David\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\cart.scss:43
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1165:in `expected'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1101:in `expected'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:1096:in `tok!'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:641:in `block'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:661:in `block_child'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:650:in `block_contents'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:642:in `block'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:661:in `block_child'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:650:in `block_contents'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:642:in `block'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:635:in `ruleset'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:660:in `block_child'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:653:in `block_contents'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:117:in `stylesheet'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/scss/parser.rb:42:in `parse'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:393:in `_to_tree'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+C:/Ruby21-x64/bin/sass:23:in `load'
+C:/Ruby21-x64/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...xt-align:center\": expected \"{\", was \";\"\A         on line 43 of C:\Users\David\Documents\NetBeansProjects\GameStore-Sass\public_html\cliente\scss\cart.scss\A \A 38: <<<<<<< HEAD\A 39: #totalCost {\A 40: =======\A 41: #totalCost, h2 {\A 42: >>>>>>> develop\A 43:     text-align:center;\A 44:     color:gray;\A 45: }\A 46: \A 47: #actions {\A 48:     text-align:center;"; }

@@ -258,18 +258,38 @@ div.navbar.invisible {
                 //color:#fff;
                 //Fix
                 color:#7ed1e2;
-/*
-                &:before, &:after {
-                    color:#fff;                    
-                }
-                &:before {
-                    content: '<';                 
-                }
-                &:after {
-                    content: '>';                 
-                }*/
+                /*
+                                &:before, &:after {
+                                    color:#fff;                    
+                                }
+                                &:before {
+                                    content: '<';                 
+                                }
+                                &:after {
+                                    content: '>';                 
+                                }*/
             }
         }
+    }
+}
+
+
+
+#hexagono2{
+    display: none;
+    background-color:#CC0000 !important;
+
+    &:before{
+        border-bottom: 9.81px solid #CC0000 !important;
+    }
+    &:after{
+        border-top: 9.81px solid #CC0000 !important;
+    }
+    i  { 
+        &:hover{
+            content: attr(title);   
+        }
+        background-color:#CC0000 !important;
     }
 }
 
@@ -302,8 +322,6 @@ div.navbar.invisible {
         transform:rotate(360deg);
     }
 }
-
-
 @keyframes infinite-spinning2 {
     from {
         transform:rotate(0deg);

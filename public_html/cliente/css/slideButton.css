@@ -1,7 +1,8 @@
 .slideButton {
   display: inline-block;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  top: 0; }
   .slideButton:before, .slideButton label {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
@@ -19,6 +20,8 @@
     left: 0%; }
   .slideButton:hover label {
     left: 100%; }
+  .slideButton:active {
+    top: 2px; }
   .slideButton.cart:before {
     font-family: FontAwesome;
     content: '\f07a'; }

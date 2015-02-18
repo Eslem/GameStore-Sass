@@ -1,6 +1,7 @@
 @import "mixins";
 
 #divCart {
+    
     margin-top:56px;}
 
 .detail {
@@ -34,7 +35,7 @@
     }
 }
 
-#totalCost {
+#totalCost, h2 {
     text-align:center;
     color:gray;
 }

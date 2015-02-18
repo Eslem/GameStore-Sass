@@ -4,6 +4,7 @@
     display:inline-block;
     overflow:hidden;
     position:relative;
+    top:0;
 
     &:before, label {
         @include transition(.2s);
@@ -27,6 +28,10 @@
         label {
             left:100%;
         }
+    }
+
+    &:active {
+        top:2px;
     }
 
     &.cart:before {
