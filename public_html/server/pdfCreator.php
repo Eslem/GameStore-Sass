@@ -3,6 +3,9 @@
 header('Content-Type: text/html; charset=UTF-8'); 
 require('../admin/libs/fpdf17/fpdf.php');
 
+$datos = $_POST['datos'];
+echo $datos;
+
 class PDF extends FPDF {
 
     var $B;
@@ -54,8 +57,8 @@ class PDF extends FPDF {
             $this->Cell($tam, 6, utf8_decode($row[2]), 'LR', 0, 'C', $fill);
             $this->Cell($tam, 6, number_format($row[3]), 'LR', 0, 'C', $fill);
             $this->Cell($tam, 6, number_format($row[4]), 'LR', 0, 'C', $fill);
-            $this->Cell($tam, 6, number_format($row[5]), 'LR', 0, 'C', $fill);
-            $tot += number_format($row[5]);
+            $this->Cell($tam, 6, number_format($row[4]*$row[3]), 'LR', 0, 'C', $fill);
+            $tot += number_format($row[4]*$row[3]);
             $this->Ln();
             $fill = !$fill;
         }
