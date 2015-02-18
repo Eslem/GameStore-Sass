@@ -325,17 +325,19 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                     }).success(function(result) {
                         var array = result;
                         var datos = [];
-                        for (var dat in array) {
+                        array.forEach(function(dat) {
                             delete dat["id"];
                             delete dat["id_pedido"];
+                            delete dat["descripcion"];
                             delete dat["nombre"];
+                            delete dat["video"];
                             datos.push(dat);
-                        }
+                        });
 
+                        datos = JSON.stringify(datos).replace(/"/g, "'");
                         console.log(datos);
-                        console.log(JSON.stringify(datos));
                         var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
-                                + '<input type="text" name="datos" value="' + JSON.stringify(datos) + '">'
+                                + '<input type="text" name="datos" value="' + datos + '">'
                                 + '<input type="submit">'
                                 + '</form>';
                         $(div).append(form);
