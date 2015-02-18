@@ -302,66 +302,66 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 buttonRemove.onclick = service.removeCallback(obj);
                 buttonRemove.innerHTML = "<i class='fa fa-trash-o'></i>";
                 col.appendChild(buttonRemove);
+                if (service.controller === "pedidoController") {
+                    var buttonPDF = document.createElement("button");
+                    buttonPDF.onclick = function () {
+                        var id = 1;
+                        $.ajax({
+                            url: rootURL + 'server/controller/pedido_lineaController.php',
+                            dataType: 'JSON',
+                            type: 'POST',
+                            data: {
+                                query: 'selectJoin',
+                                field: 'id_producto',
+                                otherTable: 'producto',
+                                otherField: 'id',
+                                condition: 'linea_pedido.id_pedido = ' + id
+                            }
+                        }).success(function (result) {
+                            var array = result;
+                            var datos = [];
+                            array.forEach(function (dat) {
+                                delete dat["id"];
+                                delete dat["descripcion"];
+                                delete dat["nombre"];
+                                delete dat["video"];
+                                datos.push(dat);
+                            });
+
+                            datos = JSON.stringify(datos).replace(/"/g, "'");
+                            console.log(datos);
+                            var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
+                                    + '<input type="text" name="datos" value="' + datos + '">'
+                                    + '<input type="text" name="query" value="selectJoin">'
+                                    + '<input type="text" name="idPedido" value="' + id + '">'
+                                    + '<input type="submit">'
+                                    + '</form>';
+                            $(div).append(form);
+                            $('#postPDF input[type="submit"]').click();
+                            $('#postPDF').remove();
+
+                            /*$.ajax({
+                             url: rootURL + 'server/pdfCreator.php',
+                             dataType: 'JSON',
+                             type: 'POST',
+                             data: datos
+                             }).success(function(result) {
+                             console.log("hecho");
+                             }).error(function(error) {
+                             console.log(error.message, error.title);
+                             });*/
+                        }).error(function (error) {
+                            console.log(error);
+                        });
+                    };
+                    buttonPDF.innerHTML = "<i class='fa fa-file-pdf-o'></i>";
+                    col.appendChild(buttonPDF);
+                }
                 row.appendChild(col);
                 table.appendChild(row);
             }
 
             var div = document.createElement("div");
-            if (service.controller === "pedido_lineaController") {
-                var buttonPDF = document.createElement("button");
-                buttonPDF.onclick = function () {
-                    var id = 1;
-                    $.ajax({
-                        url: rootURL + 'server/controller/pedido_lineaController.php',
-                        dataType: 'JSON',
-                        type: 'POST',
-                        data: {
-                            query: 'selectJoin',
-                            field: 'id_producto',
-                            otherTable: 'producto',
-                            otherField: 'id',
-                            condition: 'linea_pedido.id_pedido = ' + id
-                        }
-                    }).success(function (result) {
-                        var array = result;
-                        var datos = [];
-                        array.forEach(function (dat) {
-                            delete dat["id"];
-                            delete dat["descripcion"];
-                            delete dat["nombre"];
-                            delete dat["video"];
-                            datos.push(dat);
-                        });
-
-                        datos = JSON.stringify(datos).replace(/"/g, "'");
-                        console.log(datos);
-                        var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
-                                + '<input type="text" name="datos" value="' + datos + '">'
-                                + '<input type="text" name="query" value="selectJoin">'
-                                + '<input type="text" name="idPedido" value="' + id + '">'
-                                + '<input type="submit">'
-                                + '</form>';
-                        $(div).append(form);
-                        $('#postPDF input[type="submit"]').click();
-                        $('#postPDF').remove();
-
-                        /*$.ajax({
-                         url: rootURL + 'server/pdfCreator.php',
-                         dataType: 'JSON',
-                         type: 'POST',
-                         data: datos
-                         }).success(function(result) {
-                         console.log("hecho");
-                         }).error(function(error) {
-                         console.log(error.message, error.title);
-                         });*/
-                    }).error(function (error) {
-                        console.log(error);
-                    });
-                };
-                buttonPDF.innerHTML = "<i class='fa fa-file-pdf-o'></i>";
-                div.appendChild(buttonPDF);
-            }
             var buttonAdd = document.createElement("button");
             buttonAdd.onclick = function () {
                 service.add();

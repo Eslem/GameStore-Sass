@@ -187,7 +187,7 @@ var_dump(json_decode("[1,2,3]"));*/
 
 $pdf = new PDF();
 // T�tulos de las columnas
-$header = array(utf8_decode('Producto'), utf8_decode('Descripción'), utf8_decode('Cantidad'), utf8_decode('Prec. por Uni.'),
+$header = array(utf8_decode('Producto'), utf8_decode('Nombre Juego'), utf8_decode('Cantidad'), utf8_decode('Prec. por Uni.'),
     utf8_decode('Prec. Tot.'));
 //$pdf->WriteHTML($html);
 // Carga de datos
