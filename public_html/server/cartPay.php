@@ -11,7 +11,7 @@ $pin = $_POST['pin'];
 $data = json_encode(array("cuentaOrigen" => "$cuentaOrigen", "cuentaDestino" => "$cuentaDestino",
     "cantidad" => "$cantidad", "concepto" => "$concepto", "pin" => "$pin"));
 
-$ch = curl_init('http://localhost:8084/DAW-1/api/transferencia');
+$ch = curl_init('http://banco-slem.rhcloud.com/api/transferencia');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
