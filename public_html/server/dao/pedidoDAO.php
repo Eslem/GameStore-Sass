@@ -1,6 +1,11 @@
 <?php
 
-require_once 'genericDAO.php';
+$url= $_SERVER["REQUEST_URI"];
+if ($url === ("/GameStore-Sass/public_html/server/pdfCreator.php")) {
+    require 'dao/genericDAO.php';
+} else {
+    require_once 'genericDAO.php';
+}
 
 class PedidoDAO extends GenericDAO {
 
@@ -10,4 +15,5 @@ class PedidoDAO extends GenericDAO {
         $this->propertyNames = ['usuario', 'estado'];
         $this->propertyTypes = ['s', 's'];
     }
+
 }

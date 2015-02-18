@@ -1,7 +1,8 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-require('../admin/libs/fpdf17/fpdf.php');
+require 'controller/pedidoController.php';
+require '../admin/libs/fpdf17/fpdf.php';
 
 class PDF extends FPDF {
 
@@ -163,27 +164,10 @@ class PDF extends FPDF {
     }
 }
 
-require 'controller/pedidoController.php';
-//require 'dao/pedidoDAO.php';
 
-$pedidoDAO = new PedidoDAO();
 
-echo json_encode($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_GET['idPedido']));
 
-//echo 'Datos: ' . $_POST['datos'] . '<br/>';
-//echo ($_POST['datos']);
-
-/*$datos = $_POST['datos'];
-$obj = new stdClass();
-$obj = json_decode($datos);
-print_r($obj);*/
-/*var_dump(json_decode("[{'id':'1','val':'1'},{'id':'2','val':'2'}]"));
-var_dump(json_decode("{'id':'1','val':'1'}",JSON_FORCE_OBJECT));
-var_dump(json_decode("[1,2,3]"));*/
-//$datos = $_POST['datos'];
-//echo $datos;
-
-/*$pdf = new PDF();
+$pdf = new PDF();
 // T�tulos de las columnas
 $header = array(utf8_decode('Producto'), utf8_decode('Descripción'), utf8_decode('Cantidad'), utf8_decode('Prec. por Uni.'),
     utf8_decode('Prec. Tot.'));
@@ -205,5 +189,5 @@ $pdf->Ln(20);
 
 
 $pdf->FancyTable($header, $data);
-$pdf->Output();*/
+$pdf->Output();
 
