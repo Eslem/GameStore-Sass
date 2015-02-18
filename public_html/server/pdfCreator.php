@@ -3,8 +3,9 @@
 header('Content-Type: text/html; charset=UTF-8'); 
 require('../admin/libs/fpdf17/fpdf.php');
 
+print_r($_POST);
 $datos = $_POST['datos'];
-echo $datos;
+//echo $datos;
 
 class PDF extends FPDF {
 

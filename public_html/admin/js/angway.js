@@ -325,31 +325,33 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                     }).success(function(result) {
                         var array = result;
                         var datos = [];
-                        array.forEach(function(dat) {
+                        for (var dat in array) {
                             delete dat["id"];
                             delete dat["id_pedido"];
                             delete dat["nombre"];
                             datos.push(dat);
-                        });
+                        }
 
+                        console.log(datos);
+                        console.log(JSON.stringify(datos));
                         var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
-                                + '<input type="text" value="' + datos + '">'
+                                + '<input type="text" name="datos" value="' + JSON.stringify(datos) + '">'
                                 + '<input type="submit">'
                                 + '</form>';
-                        div.append(form);
-                        $('#postPDF input[type="submit"]').click();
-                        $('#postPDF').remove();
+                        $(div).append(form);
+                        /*$('#postPDF input[type="submit"]').click();
+                        $('#postPDF').remove();*/
 
                         /*$.ajax({
-                            url: rootURL + 'server/pdfCreator.php',
-                            dataType: 'JSON',
-                            type: 'POST',
-                            data: datos
-                        }).success(function(result) {
-                            console.log("hecho");
-                        }).error(function(error) {
-                            console.log(error.message, error.title);
-                        });*/
+                         url: rootURL + 'server/pdfCreator.php',
+                         dataType: 'JSON',
+                         type: 'POST',
+                         data: datos
+                         }).success(function(result) {
+                         console.log("hecho");
+                         }).error(function(error) {
+                         console.log(error.message, error.title);
+                         });*/
                     }).error(function(error) {
                         console.log(error);
                     });

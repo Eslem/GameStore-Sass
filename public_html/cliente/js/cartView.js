@@ -140,7 +140,7 @@ function placeOrder() {
                     insertOrder({id: user.id, status: 'Paid'}, function() {
                         var items = Object.keys(cart);
                         for (var i in items) {
-                            insertOrderLine({cartIndex: user.id, id: items[i], quantity: cart[items[i]]});
+                            insertOrderLine({orderIndex: user.id, id: items[i], quantity: cart[items[i]]});
                         }
                         alert("Compra realizada con exito");
                     });
