@@ -332,25 +332,21 @@ this.id = id;
                                 datos.push(dat);
                         });
                         
-                        < form action = "demo_form.asp" method = "get" target = "_blank" >
-                        First name: < input type = "text" name = "fname" > < br >
-                        Last name: < input type = "text" name = "lname" > < br >
-                        < input type = "submit" value = "Submit" >
-                        < /form>
+                       
 
-//                        $.ajax({
-//                            url: rootURL + 'server/pdfCreator.php',
-//                            dataType: 'JSON',
-//                            type: 'POST',
-//                            data: datos
-//                        }).success(function (result) {
-//                            console.log("hecho");
-//                        }).error(function (error) {
-//                            console.log(error.message, error.title);
-//                        });
-//                    }).error(function (error) {
-//                        console.log(error);
-//                    });
+                        $.ajax({
+                            url: rootURL + 'server/pdfCreator.php',
+                            dataType: 'JSON',
+                            type: 'POST',
+                            data: datos
+                        }).success(function (result) {
+                            console.log("hecho");
+                        }).error(function (error) {
+                            console.log(error.message, error.title);
+                        });
+                    }).error(function (error) {
+                        console.log(error);
+                    });
                 };
                         buttonPDF.innerHTML = "<i class='fa fa-file-pdf-o'></i>";
                         div.appendChild(buttonPDF);
