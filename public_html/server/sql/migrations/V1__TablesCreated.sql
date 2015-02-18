@@ -52,13 +52,32 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES (5, 'Aventura');
 INSERT INTO `categoria` (`id`, `nombre`) VALUES (6, '3PS');
 
 
-CREATE TABLE IF NOT EXISTS `pedido` (
+CREATE TABLE IF NOT EXISTS `carrito` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
   `estado` VARCHAR(10) NULL NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `usuario` (`usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `linea_carrito` (
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrito` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario` int(11) NOT NULL,
+  `estado` VARCHAR(10) NULL NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 

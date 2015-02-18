@@ -83,6 +83,6 @@ switch ($_POST['operation']) {
     /* Empty */
     case 'empty' :
         $_SESSION['cart'] = array();
-        //echo json_encode($_SESSION['cart']);
+        //echo json_encode(null);
         break;
 }

@@ -4,6 +4,7 @@
     display:inline-block;
     overflow:hidden;
     position:relative;
+    top:0;
 
     &:before, label {
         @include transition(.2s);

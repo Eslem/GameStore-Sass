@@ -1,4 +1,82 @@
-function getCart(callback) {
+// DATABASE //
+
+function insertCart(parameters, callback) {
+    $.ajax({
+        url: rootURL + 'server/controller/carritoController.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            query: 'insert',
+            values: [parameters.id, parameters.status]
+        }
+    }).success(function(result) {
+        console.log('Inserted cart ' + parameters.id);
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
+        console.log('Could not insert cart ' + parameters.id);
+        logError(error);
+    });
+}
+
+function emptyCart(id, callback) {
+    $.ajax({
+        url: rootURL + 'server/controller/carrito_lineaController.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            query: 'deleteByCondition',
+            condition: 'id_carrito = ' + id
+        }
+    }).success(function(result) {
+        console.log('Emptied cart ' + id);
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
+        console.log('Could not empty cart ' + id);
+        logError(error);
+    });
+}
+
+function deleteCart(id, callback) {
+    $.ajax({
+        url: rootURL + 'server/controller/carritoController.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            query: 'deleteByCondition',
+            condition: 'usuario = ' + id
+        }
+    }).success(function(result) {
+        console.log('Deleted cart ' + id);
+        emptyCart(id, callback(result));
+    }).error(function(error) {
+        console.log('Could not delete cart ' + id);
+        logError(error);
+    });
+}
+
+function insertCartLine(parameters, callback) {
+    $.ajax({
+        url: rootURL + 'server/controller/carrito_lineaController.php',
+        dataType: 'JSON',
+        type: 'POST',
+        data: {
+            query: 'insert',
+            values: [parameters.cartIndex, parameters.id, parameters.quantity]
+        }
+    }).success(function(result) {
+        console.log('Inserted line ' + parameters.id + ' on cart ' + parameters.cartIndex);
+        if (callback !== undefined) callback(result);
+    }).error(function(error) {
+        console.log('Could not insert line ' + parameters.id + ' on cart ' + parameters.cartIndex);
+        logError(error);
+    });
+}
+
+
+
+// GUI //
+
+function getSessionCart(callback) {
     $.ajax({
         url: rootURL + 'server/cartManager.php',
         dataType: 'JSON',
@@ -90,33 +168,36 @@ function decreaseProduct(id, callback) {
     });
 }
 
-function emptyCart() {
+function emptySessionCart() {
     $.ajax({
         url: rootURL + 'server/cartManager.php',
-        dataType: 'JSON',
         type: 'POST',
         data: {
             operation: 'empty'
         }
-    }).success(function(result) {
+    }).success(function() {
         console.log('Emptied $SESSION cart');
-        emptyOrder(0);
-        location.reload();
-    }).error(function(error) {
+        getSessionUser(function(user) {
+        console.log('User: ', user);
+            //emptyCart(0);
+        });
+        //location.reload();
+    }).error(function(error, type) {
         console.log('Could not empty $SESSION cart');
-        logError(error);
+        logError(error, type);
     });
 }
 
 function saveCart(cart) {
-    getSessionUser(function(user) {        
-        emptyOrder(user.id, function() {
+    getSessionUser(function(user) {
+        console.log('User: ', user);
+        emptyCart(user.id, function() {
             console.log('Emptied database cart');
-            insertOrder({id: user.id, status: 'Cart'}, function() {
+            insertCart({id: user.id, status: 'Cart'}, function() {
                 console.log('Inserted database cart');
                 var items = Object.keys(cart);
                 for (var i in items) {
-                    insertOrderLine({orderIndex: user.id, id: items[i], quantity: cart[items[i]]});
+                    insertCartLine({cartIndex: user.id, id: items[i], quantity: cart[items[i]]});
                 }
             });
         });

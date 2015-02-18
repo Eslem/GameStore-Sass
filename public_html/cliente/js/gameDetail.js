@@ -25,14 +25,8 @@ function loadGameDetail(container, gameInfo, inCart, permanent) {
             + '<div class="bottom"><div class="platforms">Plataformas</div>'
             + '<div class="precio">' + gameInfo.precio + '€</div>'
             + '<div class="diagonal slideButton ';
-
-    if (!inCart) {
-        strHTML += 'cart"';
-        if (permanent !== true) strHTML += ' onclick="addToCart(' + gameInfo.id + '); $(\'#divDetail\').fadeOut()"';
-        strHTML += '><label class="normalize">Añadir al carro</label>';
-    }
-
-    else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart); $(\'#divDetail\').fadeOut()">'
+    if (!inCart) strHTML += 'cart" onclick="addToCart(' + gameInfo.id + ');">'
+                + '<label class="normalize">Añadir al carro</label>';else strHTML += 'trash long" onclick="removeFromCart(' + gameInfo.id + ', loadCart); $(\'#divDetail\').fadeOut()">'
                 + '<label class="normalize">Eliminar del carro</label>';
 
     strHTML += '</div></div></div>';

@@ -1,6 +1,11 @@
 <?php
 
-require_once '../connectionManager.php';
+$url= $_SERVER["REQUEST_URI"];
+if ($url === ("/GameStore-Sass/public_html/server/pdfCreator.php")) {
+    require 'connectionManager.php';
+} else {
+    require_once '../connectionManager.php';
+}
 
 class GenericDAO {
 

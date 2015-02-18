@@ -6,15 +6,15 @@ function loginCliente() {
         type: 'POST',
         dataType: 'JSON',
         data: data,
-        success: function (user) {
+        success: function(user) {
             if (!user) {
                 console.log("Error en usuario o contraseña");
             } else {
-                setSessionUser(user, function () {
+                setSessionUser(user, function() {
                     /*$("#hexagono").toggleClass("inactive");
                      $(".form-slideLeft").toggleClass("inactive");*/
                     $("#navLinkProfile a").text(user.alias);
-                    $("#emailCliente, #passCliente").each(function (i, element) {
+                    $("#emailCliente, #passCliente").each(function(i, element) {
                         element.value = '';
                     });
                 });
@@ -32,7 +32,7 @@ function loginCliente() {
 
 
         },
-        error: function (error) {
+        error: function(error) {
             console.log('Could not get user');
             logError(error);
         }
@@ -55,10 +55,10 @@ function setSessionUser(user, callback) {
             operation: 'set',
             user: user
         }
-    }).success(function (result) {
+    }).success(function(result) {
         if (callback !== undefined)
             callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         console.log('Could not set $SESSION user');
         logError(error);
     });
@@ -72,7 +72,7 @@ function getSessionUser(callback) {
         data: {
             operation: 'get'
         }
-    }).done(function (result) {
+    }).done(function(result) {
         callback(result);
     });
 }
@@ -85,10 +85,11 @@ function unsetSessionUser(callback) {
         data: {
             operation: 'unset'
         }
-    }).success(function (result) {
+    }).success(function(result) {
+        console.log('Logged out');
         if (callback !== undefined)
             callback(result);
-    }).error(function (error) {
+    }).error(function(error) {
         logError(error);
     });
 }

@@ -26,6 +26,10 @@
         <script src="js/order.js" type="text/javascript"></script>
         <script src="js/errorLog.js" type="text/javascript"></script>
         <script src="js/loginCliente.js" type="text/javascript"></script>
+        
+        <script src="libs/promise_q/q.js" type="text/javascript"></script>
+        <script src="libs/promise_q/queue.js" type="text/javascript"></script>
+        
     </head>
 
     <body>
@@ -41,6 +45,7 @@
             <div id="log"></div>
 
 
+            <h2 id="emptyMessage">Sin productos en el carrito.</h2>
             <div id="totalCost"></div>
             <div id="actions">
                 <div class="diagonal">
@@ -50,7 +55,7 @@
                 </div>
                 <div class="diagonal">
                     <div class="normalize">
-                        <a href="javascript:logCart();">Realizar Compra</a>
+                        <a href="javascript:placeOrder();">Realizar Compra</a>
                     </div>
                 </div>
             </div>
