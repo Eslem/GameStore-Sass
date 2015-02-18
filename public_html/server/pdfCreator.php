@@ -167,7 +167,7 @@ require 'controller/pedidoController.php';
 
 $pedidoDAO = new PedidoDAO();
 
-echo json_encode($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_POST['idPedido']));
+var_dump($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_POST['idPedido']));
 
 //echo 'Datos: ' . $_POST['datos'] . '<br/>';
 //echo ($_POST['datos']);
@@ -182,7 +182,10 @@ var_dump(json_decode("[1,2,3]"));*/
 //$datos = $_POST['datos'];
 //echo $datos;
 
-$pdf = new PDF();
+
+// P D F //
+
+/*$pdf = new PDF();
 // T�tulos de las columnas
 $header = array(utf8_decode('Producto'), utf8_decode('Descripción'), utf8_decode('Cantidad'), utf8_decode('Prec. por Uni.'),
     utf8_decode('Prec. Tot.'));
@@ -204,5 +207,5 @@ $pdf->Ln(20);
 
 
 $pdf->FancyTable($header, $data);
-$pdf->Output();
+$pdf->Output();*/
 
