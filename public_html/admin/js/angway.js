@@ -339,11 +339,12 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                         var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
                                 + '<input type="text" name="datos" value="' + datos + '">'
                                 + '<input type="text" name="query" value="selectJoin">'
+                                + '<input type="text" name="idPedido" value="' + id + '">'
                                 + '<input type="submit">'
                                 + '</form>';
                         $(div).append(form);
-                        /*$('#postPDF input[type="submit"]').click();
-                         $('#postPDF').remove();*/
+                        $('#postPDF input[type="submit"]').click();
+                        $('#postPDF').remove();
 
                         /*$.ajax({
                          url: rootURL + 'server/pdfCreator.php',

@@ -165,9 +165,9 @@ class PDF extends FPDF {
 
 require 'controller/pedidoController.php';
 
-//$pedidoDAO = new PedidoDAO();
-//
-//echo json_encode($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_GET['idPedido']));
+$pedidoDAO = new PedidoDAO();
+
+echo json_encode($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_POST['idPedido']));
 
 //echo 'Datos: ' . $_POST['datos'] . '<br/>';
 //echo ($_POST['datos']);
