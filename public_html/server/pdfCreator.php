@@ -164,8 +164,22 @@ class PDF extends FPDF {
     }
 }
 
+//$pedidoDAO = new PedidoDAO();
+//
+//echo json_encode($pedidoDAO->selectJoin('producto', 'id_producto', 'id', 'linea_pedido.id_pedido = ' + $_GET['idPedido']));
 
+//echo 'Datos: ' . $_POST['datos'] . '<br/>';
+//echo ($_POST['datos']);
 
+/*$datos = $_POST['datos'];
+$obj = new stdClass();
+$obj = json_decode($datos);
+print_r($obj);*/
+/*var_dump(json_decode("[{'id':'1','val':'1'},{'id':'2','val':'2'}]"));
+var_dump(json_decode("{'id':'1','val':'1'}",JSON_FORCE_OBJECT));
+var_dump(json_decode("[1,2,3]"));*/
+//$datos = $_POST['datos'];
+//echo $datos;
 
 $pdf = new PDF();
 // T�tulos de las columnas
