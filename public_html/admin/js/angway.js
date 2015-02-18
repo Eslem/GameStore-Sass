@@ -8,18 +8,18 @@ function App() {
     this.controllers = {};
     this.routes = {};
     var app = this;
-    this.addRoute = function(name, route) {
+    this.addRoute = function (name, route) {
         route.name = name;
         this.routes[name] = route;
         var path = window.location.hash.split("#")[1];
         if (path === route.name) {
-            getSession(function() {
+            getSession(function () {
                 route.show();
                 onlogin();
             });
         }
     };
-    this.addController = function(controller) {
+    this.addController = function (controller) {
         controllers[controller.name] = controller;
     };
 }
@@ -35,7 +35,7 @@ function Route(viewPath, controller) {
     this.viewPath = viewPath;
     this.controller = controller;
     var route = this;
-    this.show = function() {
+    this.show = function () {
         window.location.replace("#" + route.name);
         var li = document.getElementById(route.name + "-li");
         if (li !== null) {
@@ -44,7 +44,7 @@ function Route(viewPath, controller) {
         }
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", this.viewPath + '?_=' + new Date().getTime(), false);
-        rawFile.onreadystatechange = function() {
+        rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4) {
                 if (rawFile.status === 200 || rawFile.status == 0) {
                     var allText = rawFile.responseText;
@@ -70,7 +70,7 @@ function Error(title, message, type) {
     this.title = title;
     this.message = message;
     this.type = type;
-    this.show = function() {
+    this.show = function () {
         console.log(type + "-" + title + ": \m" + message);
     };
 }
@@ -86,12 +86,12 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
     this.orientation = "ASC";
     this.callback = callback;
     var service = this;
-    this.removeCallback = function(obj) {
-        return function() {
+    this.removeCallback = function (obj) {
+        return function () {
             service.remove(obj);
         };
     };
-    this.addinputs = function(data) {
+    this.addinputs = function (data) {
         var modal = document.getElementById("modal-form");
         modal.innerHTML = "";
         var isEdit = data !== undefined;
@@ -120,15 +120,15 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             inputName.setAttribute("type", "hidden");
             modal.appendChild(inputName);
             inputName.value = data.id;
-            document.getElementById("sendModalForm").onclick = function() {
+            document.getElementById("sendModalForm").onclick = function () {
                 sendModalForm(service);
             };
         } else {
             inputQuery.value = "insertJSON";
-            document.getElementById("sendModalForm").onclick = function() {
+            document.getElementById("sendModalForm").onclick = function () {
                 addObj(service);
             };
-            document.getElementById("sendModalForm").onclick = function() {
+            document.getElementById("sendModalForm").onclick = function () {
                 addObj(service);
             };
         }
@@ -172,29 +172,29 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
 
 
     };
-    this.remove = function(data) {
+    this.remove = function (data) {
         var modal = document.getElementById("modal-form");
         modal.innerHTML = "Seguro quieres eliminar a " + data['nombre'];
-        document.getElementById("sendModalForm").onclick = function() {
+        document.getElementById("sendModalForm").onclick = function () {
             removeObj(service, data.id);
         };
         document.getElementById("sendModalForm").innerHTML = "Eliminar <i class='fa fa-trash-o'></i>";
         $(".modal.edit").slideDown();
     };
-    this.editCallback = function(obj) {
-        return function() {
+    this.editCallback = function (obj) {
+        return function () {
             service.edit(obj);
         };
     };
-    this.edit = function(data) {
+    this.edit = function (data) {
         service.addinputs(data);
         $(".modal.edit").slideDown();
     };
-    this.add = function() {
+    this.add = function () {
         service.addinputs();
         $(".modal.edit").slideDown();
     };
-    this.get = function() {
+    this.get = function () {
 
         $.ajax({
             url: baseurl + "../server/controller/" + service.controller + ".php",
@@ -206,7 +206,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 order: service.order,
                 orientation: service.orientation
             },
-            success: function(data) {
+            success: function (data) {
                 data = JSON.parse(data);
                 service.pages = Math.ceil(parseInt(data.count) / service.quantity);
                 service.show(data);
@@ -215,12 +215,12 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 }
 
             },
-            error: function(data) {
+            error: function (data) {
                 new Error("Error", "Error request", null).show();
             }
         });
     };
-    this.show = function(json) {
+    this.show = function (json) {
         if (document.getElementById(id) !== null)
             document.getElementById(id).innerHTML = "";
         if (document.getElementById("modal-edit") !== null)
@@ -261,7 +261,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 input.setAttribute("placeholder", service.header[x]);
                 input.setAttribute("name", x);
                 modal.appendChild(input);
-                header.onclick = function() {
+                header.onclick = function () {
                     if (service.order === this.getAttribute("data-header")) {
                         if (service.orientation === "ASC") {
                             service.orientation = "DESC";
@@ -309,7 +309,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             var div = document.createElement("div");
             if (service.controller === "pedido_lineaController") {
                 var buttonPDF = document.createElement("button");
-                buttonPDF.onclick = function() {
+                buttonPDF.onclick = function () {
                     var id = 1;
                     $.ajax({
                         url: rootURL + 'server/controller/pedido_lineaController.php',
@@ -322,10 +322,10 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                             otherField: 'id',
                             condition: 'linea_pedido.id_pedido = ' + id
                         }
-                    }).success(function(result) {
+                    }).success(function (result) {
                         var array = result;
                         var datos = [];
-                        array.forEach(function(dat) {
+                        array.forEach(function (dat) {
                             delete dat["id"];
                             delete dat["id_pedido"];
                             delete dat["descripcion"];
@@ -338,11 +338,12 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                         console.log(datos);
                         var form = '<form id="postPDF" method="post" action="' + rootURL + 'server/pdfCreator.php">'
                                 + '<input type="text" name="datos" value="' + datos + '">'
+                                + '<input type="text" name="query" value="selectJoin">'
                                 + '<input type="submit">'
                                 + '</form>';
                         $(div).append(form);
                         /*$('#postPDF input[type="submit"]').click();
-                        $('#postPDF').remove();*/
+                         $('#postPDF').remove();*/
 
                         /*$.ajax({
                          url: rootURL + 'server/pdfCreator.php',
@@ -354,7 +355,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                          }).error(function(error) {
                          console.log(error.message, error.title);
                          });*/
-                    }).error(function(error) {
+                    }).error(function (error) {
                         console.log(error);
                     });
                 };
@@ -362,20 +363,20 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                 div.appendChild(buttonPDF);
             }
             var buttonAdd = document.createElement("button");
-            buttonAdd.onclick = function() {
+            buttonAdd.onclick = function () {
                 service.add();
             };
             buttonAdd.innerHTML = "<i class='fa fa-plus-square'></i>";
             div.appendChild(buttonAdd);
             var first = document.createElement("button");
-            first.onclick = function() {
+            first.onclick = function () {
                 service.index = 0;
                 service.get();
             };
             first.textContent = "<<";
             div.appendChild(first);
             var buttonMinus = document.createElement("button");
-            buttonMinus.onclick = function() {
+            buttonMinus.onclick = function () {
                 service.index--;
                 service.get();
             };
@@ -388,7 +389,7 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
 
             var input = document.createElement("input");
             input.value = service.index + 1;
-            input.onchange = function() {
+            input.onchange = function () {
                 service.index = input.value - 1;
                 service.get();
             };
@@ -397,21 +398,21 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
             label.textContent = service.pages;
             div.appendChild(label);
             var buttonMore = document.createElement("button");
-            buttonMore.onclick = function() {
+            buttonMore.onclick = function () {
                 service.index++;
                 service.get();
             };
             buttonMore.textContent = ">";
             div.appendChild(buttonMore);
             var last = document.createElement("button");
-            last.onclick = function() {
+            last.onclick = function () {
                 service.index = service.pages;
                 service.get();
             };
             last.textContent = ">>";
             div.appendChild(last);
             var reload = document.createElement("button");
-            reload.onclick = function() {
+            reload.onclick = function () {
                 service.get();
             };
             reload.innerHTML = "<i class='fa fa-refresh'></i>";
@@ -442,13 +443,13 @@ function sendModalForm(service) {
         url: baseurl + "../server/controller/" + service.controller + ".php",
         type: "POST",
         data: data,
-        success: function(data) {
+        success: function (data) {
             $("#modal-edit").slideUp();
             service.get();
             if (service.controller === "productoController" && thumbnail !== null)
                 uploadImg(values["id"]);
         },
-        error: function(data) {
+        error: function (data) {
             new Error("Error", "Error request", null).show();
         }
     });
@@ -462,11 +463,11 @@ function removeObj(service, data) {
             query: "delete",
             id: data
         },
-        success: function(data) {
+        success: function (data) {
             $("#modal-edit").slideUp();
             service.get();
         },
-        error: function(data) {
+        error: function (data) {
             new Error("Error", "Error request", null).show();
         }
     });
@@ -488,20 +489,20 @@ function addObj(service, data) {
         url: baseurl + "../server/controller/" + service.controller + ".php",
         type: "POST",
         data: data,
-        success: function(data) {
+        success: function (data) {
             if (service.controller === "productoController" && thumbnail !== null)
                 uploadImg(data);
             $("#modal-edit").slideUp();
             service.get();
         },
-        error: function(data) {
+        error: function (data) {
             new Error("Error", "Error request", null).show();
         }
     });
 }
 
 function createCallback(i) {
-    return function() {
+    return function () {
         alert('you clicked' + i);
     };
 }

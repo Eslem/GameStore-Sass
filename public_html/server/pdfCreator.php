@@ -1,7 +1,6 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-require 'controller/pedidoController.php';
 require '../admin/libs/fpdf17/fpdf.php';
 
 class PDF extends FPDF {
@@ -163,6 +162,8 @@ class PDF extends FPDF {
         $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 }
+
+require 'controller/pedidoController.php';
 
 //$pedidoDAO = new PedidoDAO();
 //
