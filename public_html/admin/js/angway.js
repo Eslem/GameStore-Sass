@@ -327,7 +327,6 @@ function ServicePaginanted(id, header, controller, index, callback, hasPass) {
                         var datos = [];
                         array.forEach(function (dat) {
                             delete dat["id"];
-                            delete dat["id_pedido"];
                             delete dat["descripcion"];
                             delete dat["nombre"];
                             delete dat["video"];
