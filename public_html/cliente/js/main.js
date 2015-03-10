@@ -1,6 +1,6 @@
 var rootURL = location.hostname === 'localhost' ?
-        'http://localhost/GameStore-Sass/public_html/' : 'http://metro-hermanu.rhcloud.com/';
-
+      'http://localhost/GameStore-Sass/public_html/' : 'http://metrogames-slem.rhcloud.com/';
+  
 function loadNavbar(section) {
     $('#navbar').load('navbar.html', function () {
         $('#navLink' + section).addClass('active');
