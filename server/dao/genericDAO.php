@@ -14,7 +14,7 @@ class GenericDAO {
         if (true) {
             $openshiftHost = $_ENV["OPENSHIFT_MYSQL_DB_HOST"];
             $openshiftPort = $_ENV["OPENSHIFT_MYSQL_DB_PORT"];
-            $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'adminXFr3dCn', 'vGhykHT4Ph2v', 'metro');
+            $this->connectionManager = new ConnectionManager($openshiftHost . ':' . $openshiftPort, 'admin3PSnjwx', '2U9hxCaUq573', 'metrogames');
         } else {
             $this->connectionManager = new ConnectionManager('localhost', 'root', 'root', 'tienda');
         }
