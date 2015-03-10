@@ -36,8 +36,6 @@
 
 <h3>Scheenshots</h3>
 <h4>Client</h4>
-<img src="screenshots/client.png" alt="client screenshot">
-<img src="screenshots/client2.png" alt="client screenshot">
+<img src="screenshots/client2.PNG" alt="client screenshot" width="40%"><img src="screenshots/client.PNG" alt="client screenshot" width="60%">
 <h4>Admin</h4>
-<img src="screenshots/admin.png" alt="client screenshot">
-<img src="screenshots/admin2.png" alt="client screenshot">
+<img src="screenshots/admin.PNG" alt="client screenshot" width="40%"><img src="screenshots/admin2.PNG" alt="client screenshot" width="40%">
