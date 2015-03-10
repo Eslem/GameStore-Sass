@@ -1,4 +1,4 @@
-<h1>MetroGames</h1>
+<h1><a href="http://metrogames-slem.rhcloud.com/">MetroGames</a></h1>
 <p>Web GameStore project for DAW</p>
 <h3>Tecnologies</h3>
 <ul>
@@ -25,7 +25,7 @@
   <li>Payment with bank <a href="https://github.com/Eslem/DWS-Banco">(own api)</a></li>
   <li>Cart with DB and cookies</li>
   <li>Sessions</li>
-  <li>Admin Page
+  <li><a href="http://metrogames-slem.rhcloud.com/admin">Admin Page<a> 
     <ul>
       <li>List and edition of fames, users, orders...etc</li>
       <li>Desktop app with nodeWebkit</li>
